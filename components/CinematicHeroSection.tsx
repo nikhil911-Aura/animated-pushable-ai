@@ -156,7 +156,7 @@ export default function CinematicHeroSection() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-          Crafting extraordinary digital experiences
+          Now live — automating workflows for 2,000+ businesses
         </motion.div>
 
         {/* Headline — word-by-word stagger with blur slide-in */}
@@ -190,27 +190,38 @@ export default function CinematicHeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          Building platforms for brilliant minds, fearless makers, and
-          thoughtful souls. Through the noise, we craft digital havens for
-          deep work and pure flows.
+          Your AI assistant quietly handles emails, follow-ups, reports, and
+          repetitive tasks in the background — so your team can focus on
+          work that actually grows your business.
         </motion.p>
 
-        {/* CTA */}
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10"
+          className="flex flex-col sm:flex-row items-center gap-3 mt-10"
         >
           <MagneticButton maxDistance={14}>
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
-              className="text-base rounded-full px-14 py-5 cursor-pointer"
+              className="text-base rounded-full px-10 py-4 cursor-pointer"
               style={{ fontFamily: sans, background: "#f97316", color: "#FFFFFF" }}
             >
-              Begin Journey
+              Watch Demo
+            </motion.button>
+          </MagneticButton>
+          <MagneticButton maxDistance={14}>
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              transition={{ type: "spring", stiffness: 400, damping: 18 }}
+              className="text-base rounded-full px-10 py-4 cursor-pointer border"
+              style={{ fontFamily: sans, borderColor: "rgba(0,0,0,0.14)", color: "#111111", background: "transparent" }}
+            >
+              Try Now
             </motion.button>
           </MagneticButton>
         </motion.div>

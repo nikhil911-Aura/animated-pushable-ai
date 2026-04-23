@@ -61,12 +61,12 @@ export default function DemoSection() {
             Live Demo
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
-            Watch Real Workflows
+            See How Your AI Assistant Handles
             <br />
-            <span className="gradient-text">Run Themselves</span>
+            <span className="gradient-text">Work Behind The Scenes</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
-            Every task below is running live across Pushable AI users right now — invoices sent, leads followed up, candidates onboarded. No manual clicks. Ever.
+            Your AI assistant runs real tasks in the background — generating invoices, following up on leads, onboarding candidates, and compiling reports — without you lifting a finger. Watch exactly what it handles, when it happened, and what&apos;s running right now.
           </p>
         </motion.div>
 
@@ -147,7 +147,7 @@ export default function DemoSection() {
               className="group w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-orange-500 hover:bg-orange-400 text-white font-medium text-[13px] transition-all duration-200 shadow-sm shadow-orange-500/20"
             >
               <Zap className="w-4 h-4 fill-white" />
-              Request a Live Demo
+              Request Demo
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </motion.div>

@@ -12,31 +12,31 @@ const industries = [
     icon: Code2,
     name: "SaaS",
     color: "#f97316",
-    useCase: "Automate user onboarding sequences, track churn signals, and follow up on failed renewals — without lifting a finger.",
+    useCase: "Your AI assistant handles onboarding sequences, churn follow-ups, and renewal reminders automatically — so your team focuses on building, not chasing.",
   },
   {
     icon: Megaphone,
     name: "Marketing Agencies",
     color: "#fb923c",
-    useCase: "Deliver client reports automatically, schedule campaigns, and track performance across accounts in real time.",
+    useCase: "Automate client reports, campaign scheduling, and performance tracking across all accounts — so your team delivers more value without adding headcount.",
   },
   {
     icon: DollarSign,
     name: "Finance",
     color: "#f97316",
-    useCase: "Reconcile accounts, generate invoices on schedule, and flag payment anomalies before they become problems.",
+    useCase: "Generate invoices on schedule, reconcile accounts, and flag payment anomalies automatically — so nothing slips through the cracks at month-end.",
   },
   {
     icon: Settings,
     name: "Operations",
     color: "#fb923c",
-    useCase: "Coordinate multi-team workflows, maintain SOPs automatically, and escalate blockers before they delay delivery.",
+    useCase: "Coordinate cross-team workflows, maintain SOPs, and escalate blockers before they delay delivery — so your operations run like clockwork every day.",
   },
   {
     icon: Briefcase,
     name: "Agencies",
     color: "#f97316",
-    useCase: "Manage client onboarding, automate billing, and keep project timelines on track without manual follow-ups.",
+    useCase: "Handle client onboarding, automate billing, and keep project timelines on track — so your team spends time on client work, not admin.",
   },
 ];
 
@@ -76,12 +76,12 @@ export default function IndustrySection() {
             Industries
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
-            The Right Push for
+            The Right Push for Every Industry,
             <br />
-            <span className="gradient-text-soft">Every Industry</span>
+            <span className="gradient-text-soft">Built with Pushable</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
-            Whatever your business does, Pushable AI finds the workflows worth automating.
+            Whatever your business does, Pushable AI finds the routine tasks worth automating and handles them for you.
           </p>
         </motion.div>
 

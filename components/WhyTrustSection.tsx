@@ -12,25 +12,25 @@ const reasons = [
     icon: Clock,
     color: "#f97316",
     title: "Reduced Manual Work",
-    desc: "Reclaim 94+ hours per month. Pushable AI takes over repetitive low-value tasks so your team focuses exclusively on work that drives growth.",
+    desc: "Your AI handles repetitive, time-consuming tasks automatically — giving your team back 94+ hours a month to focus on actual growth work.",
   },
   {
     icon: Brain,
     color: "#fb923c",
     title: "Smart Decision Making",
-    desc: "Agents surface insights, flag anomalies, and recommend actions — giving your team the right information at the right moment, every time.",
+    desc: "Agents surface insights, flag anomalies, and recommend actions at the right moment — so your team always stays one step ahead.",
   },
   {
     icon: Repeat,
     color: "#f97316",
     title: "Consistency Without Glitches",
-    desc: "Every process runs exactly as defined, every single time. No human errors, no missed steps, no inconsistency across team members.",
+    desc: "Every process runs exactly as defined, every time. No human errors, no missed steps, no inconsistency across your entire team.",
   },
   {
     icon: Zap,
     color: "#fb923c",
     title: "No Task Delays",
-    desc: "Agents run 24/7. Whether it's midnight or a bank holiday, your workflows keep moving — no waiting on a team member to log back in.",
+    desc: "Agents run 24/7 through weekends and holidays — your workflows never pause waiting for someone to log back in.",
   },
 ];
 
@@ -69,19 +69,19 @@ export default function WhyTrustSection() {
               Why teams trust us
             </div>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.1]">
-              Built for Teams That
+              Why Businesses Trust
               <br />
-              <span className="gradient-text">Refuse to Slow Down</span>
+              <span className="gradient-text">Pushable AI?</span>
             </h2>
             <p className="text-gray-500 text-[15px] leading-relaxed mb-8">
-              Pushable AI isn&apos;t another tool that adds complexity — it removes it. Four core benefits that make every team we work with say the same thing: &quot;I can&apos;t go back.&quot;
+              Pushable AI isn&apos;t another tool that adds complexity — it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can actually see on their bottom line.
             </p>
             <a
               href="#"
               className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/8 text-gray-500 hover:text-gray-900 hover:border-orange-300 hover:bg-orange-50 text-[13px] font-medium transition-all duration-200"
             >
               <MessageCircle className="w-3.5 h-3.5" />
-              Talk to Our Expert
+              Talk to our Expert
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </a>
           </motion.div>

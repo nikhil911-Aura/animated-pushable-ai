@@ -13,23 +13,23 @@ const steps = [
     icon: LayoutGrid,
     color: "#f97316",
     title: "Choose Your Assistant",
-    body: "Browse four specialist AI agents — Finance, HR, Revenue, or Operations. Pick the one that hits your biggest bottleneck and activate in minutes. No technical setup required.",
+    body: "Pick the assistant built for your biggest challenge — Finance, HR, Revenue, or Operations. Zero setup, zero technical knowledge required. You'll be running in minutes.",
     items: ["Select from 4 specialists", "Preview before deploying", "No commitment required"],
   },
   {
     n: "02",
     icon: Plug,
     color: "#fb923c",
-    title: "Configure & Connect",
-    body: "Link your existing tools with one click. Slack, Gmail, HubSpot — all connected instantly. Your agent learns your workflows and starts running alongside your team immediately.",
+    title: "Connect Your Tools",
+    body: "Link Slack, Gmail, HubSpot, and 50+ more tools with one click — no code, no APIs, no configuration. Your assistant learns your workflow and starts working immediately.",
     items: ["50+ one-click integrations", "No code, no APIs to configure", "Live in under 10 minutes"],
   },
   {
     n: "03",
     icon: BarChart3,
     color: "#f97316",
-    title: "Monitor & Scale",
-    body: "Watch every task complete on a live dashboard. Add more agents, more workflows, and more connections as your business scales — the system grows with you automatically.",
+    title: "Watch It Handle the Work",
+    body: "Track every completed task on a clean live dashboard. Add agents, expand workflows, or connect more tools whenever you're ready. Your AI grows with your business.",
     items: ["Live task dashboard", "Add agents any time", "Weekly performance reports"],
   },
 ];
@@ -88,12 +88,12 @@ export default function HowItWorksSection() {
             How it works
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
-            Up and Running in
+            How Your AI Assistant
             <br />
-            <span className="gradient-text">Three Simple Steps</span>
+            <span className="gradient-text">Gets to Work</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
-            If you can use Slack, you can deploy a Pushable AI agent. No technical knowledge needed.
+            No technical setup needed. If you can send an email, you can run Pushable AI.
           </p>
         </motion.div>
 
@@ -207,7 +207,7 @@ export default function HowItWorksSection() {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-orange-300 hover:bg-orange-50 text-[13px] font-medium transition-all duration-200 group"
           >
             <MessageCircle className="w-3.5 h-3.5" />
-            Talk to Our Expert
+            Talk to our Expert
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
           </a>
         </motion.div>

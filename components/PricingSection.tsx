@@ -94,7 +94,7 @@ export default function PricingSection() {
             <span className="gradient-text">You Pay for Output.</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
-            Credit-based pricing means you only pay for tasks that actually run. No wasted seat licences, no idle subscriptions.
+            Think of credits like task tokens — one credit equals one completed action. An invoice sent, a lead followed up, a report filed. You only pay for work that actually gets done.
           </p>
         </motion.div>
 
@@ -108,9 +108,9 @@ export default function PricingSection() {
         >
           <div className="grid grid-cols-3 gap-px bg-black/[0.07] rounded-2xl overflow-hidden border border-black/[0.07]">
             {[
-              { icon: Zap,          label: "Pay Per Task",    desc: "Credits used only when a task completes" },
-              { icon: CreditCard,   label: "No Hidden Fees",  desc: "No seat licences, no idle charges" },
-              { icon: CheckCircle2, label: "Credits Rollover", desc: "Unused credits carry to next month" },
+              { icon: Zap,          label: "1 Credit = 1 Task",     desc: "Each completed action uses exactly one credit — nothing more" },
+              { icon: CreditCard,   label: "Only Pay for Results",   desc: "Credits deduct only when your AI finishes a real task" },
+              { icon: CheckCircle2, label: "Credits Never Expire",   desc: "Unused credits roll over every month — nothing is wasted" },
             ].map(({ icon: Icon, label, desc }) => (
               <div key={label} className="bg-white px-4 py-5 text-center">
                 <div className="w-7 h-7 rounded-lg bg-orange-500/10 flex items-center justify-center mx-auto mb-2">

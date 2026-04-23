@@ -68,7 +68,7 @@ export default function FinalCTASection() {
 
           {/* Sub */}
           <p className="text-gray-500 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
-            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first agent today — no technical setup, no complex contracts, no wasted time.
+            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today — no technical setup, no contracts, no wasted time. Just results from day one.
           </p>
 
           {/* CTAs */}

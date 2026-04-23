@@ -10,13 +10,13 @@ gsap.registerPlugin(ScrollTrigger);
 const agents = [
   {
     name: "Sara",
-    title: "Finance AI",
+    title: "Finance Workflow Agent",
     icon: DollarSign,
     color: "#f97316",
     bgFrom: "from-orange-500/8",
     bgTo: "to-orange-600/0",
     border: "border-orange-200",
-    description: "Handles invoicing, expense tracking, and reporting automatically so finances stay clear, updated, and decision-ready without manual effort.",
+    description: "Sara handles your financial workflows end-to-end — generating invoices, tracking expenses, and compiling reports — so your numbers stay accurate and your team stays focused on growth.",
     tasks: ["Auto-generate & send invoices", "Track expenses in real-time", "Compile monthly P&L reports", "Flag payment anomalies"],
     stat: { label: "Invoices/mo", value: "340+" },
     mockup: [
@@ -27,13 +27,13 @@ const agents = [
   },
   {
     name: "Layla",
-    title: "HR Manager AI",
+    title: "HR Workflow Manager",
     icon: Users,
     color: "#fb923c",
     bgFrom: "from-orange-400/8",
     bgTo: "to-orange-500/0",
     border: "border-orange-200",
-    description: "Manages hiring workflows, onboarding, and employee coordination so teams grow smoothly without delays or repetitive follow-ups.",
+    description: "Layla takes over your entire hiring and onboarding process — screening candidates, scheduling interviews, and sending welcome documents — so your HR team focuses on people, not admin.",
     tasks: ["Screen & rank applicants", "Automate onboarding docs", "Schedule interviews", "Track team milestones"],
     stat: { label: "Hours saved/hire", value: "18 hrs" },
     mockup: [
@@ -44,13 +44,13 @@ const agents = [
   },
   {
     name: "Marco",
-    title: "Revenue AI",
+    title: "Revenue AI Assistant",
     icon: TrendingUp,
     color: "#f97316",
     bgFrom: "from-orange-500/8",
     bgTo: "to-orange-600/0",
     border: "border-orange-200",
-    description: "Handles leads, proposals, and follow-ups to ensure no opportunity is missed and revenue keeps moving without manual tracking.",
+    description: "Marco keeps your revenue pipeline moving — following up on leads, creating proposals, tracking deals, and flagging at-risk accounts — so every opportunity gets the attention it deserves.",
     tasks: ["Follow up cold leads", "Generate proposals", "Monitor deal pipeline", "Recover at-risk accounts"],
     stat: { label: "Revenue recovered", value: "$24.8K" },
     mockup: [
@@ -61,13 +61,13 @@ const agents = [
   },
   {
     name: "Priya",
-    title: "Operations AI",
+    title: "Operations Backbone",
     icon: Settings,
     color: "#fb923c",
     bgFrom: "from-orange-400/8",
     bgTo: "to-orange-500/0",
     border: "border-orange-200",
-    description: "Manages day-to-day tasks, coordination, and execution so you can focus on strategy instead of managing operations.",
+    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks — giving you the headspace to focus entirely on strategy and growth.",
     tasks: ["Schedule & coordinate team syncs", "Maintain SOPs automatically", "Escalate blockers in real-time", "Track project milestones"],
     stat: { label: "Tasks automated/wk", value: "220+" },
     mockup: [
@@ -350,7 +350,7 @@ export default function AgentsSection() {
         <span className="gradient-text">for a Specific Role</span>
       </h2>
       <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-relaxed">
-        Four specialists running in parallel. Finance, HR, Revenue, and Operations — all autonomous, always on.
+        Four AI agents, each purpose-built for a different part of your business. Pick the one that fits your biggest bottleneck and let it handle the work end-to-end.
       </p>
     </motion.div>
   );
