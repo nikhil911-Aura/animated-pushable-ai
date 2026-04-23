@@ -1,17 +1,20 @@
-﻿import Navbar             from "@/components/Navbar";
+import dynamic from "next/dynamic";
+import Navbar               from "@/components/Navbar";
 import CinematicHeroSection from "@/components/CinematicHeroSection";
-import TrustSection        from "@/components/TrustSection";
-import AgentsSection       from "@/components/AgentsSection";
-import HowItWorksSection   from "@/components/HowItWorksSection";
-import DemoSection         from "@/components/DemoSection";
-import IndustrySection     from "@/components/IndustrySection";
-import PricingSection      from "@/components/PricingSection";
-import IntegrationsSection from "@/components/IntegrationsSection";
-import WhyTrustSection     from "@/components/WhyTrustSection";
-import FinalCTASection     from "@/components/FinalCTASection";
-import FAQSection          from "@/components/FAQSection";
-import Footer              from "@/components/Footer";
-import { SignatureTile }   from "@/components/animation";
+import TrustSection         from "@/components/TrustSection";
+
+/* ── Below-fold sections lazy-loaded after hero paint ─────────────── */
+const AgentsSection      = dynamic(() => import("@/components/AgentsSection"));
+const HowItWorksSection  = dynamic(() => import("@/components/HowItWorksSection"));
+const DemoSection        = dynamic(() => import("@/components/DemoSection"));
+const IndustrySection    = dynamic(() => import("@/components/IndustrySection"));
+const PricingSection     = dynamic(() => import("@/components/PricingSection"));
+const IntegrationsSection= dynamic(() => import("@/components/IntegrationsSection"));
+const WhyTrustSection    = dynamic(() => import("@/components/WhyTrustSection"));
+const FinalCTASection    = dynamic(() => import("@/components/FinalCTASection"));
+const FAQSection         = dynamic(() => import("@/components/FAQSection"));
+const Footer             = dynamic(() => import("@/components/Footer"));
+const SignatureTile      = dynamic(() => import("@/components/animation/SignatureTile"));
 
 export default function Home() {
   return (

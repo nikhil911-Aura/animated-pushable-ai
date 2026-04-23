@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Fraunces, Rubik } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces, Rubik, Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import AnimationShell from "@/components/animation/AnimationShell";
 
@@ -30,6 +30,21 @@ const rubik = Rubik({
   display: "swap",
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Pushable AI — AI Assistants That Run Your Business",
   description:
@@ -50,8 +65,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${rubik.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${rubik.variable} ${instrumentSerif.variable} ${inter.variable} antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://d8j0ntlcm91z4.cloudfront.net" crossOrigin="" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+      </head>
       <body className="bg-[#f3f0eb] text-[#111111] min-h-screen overflow-x-hidden">
         <AnimationShell>{children}</AnimationShell>
       </body>
