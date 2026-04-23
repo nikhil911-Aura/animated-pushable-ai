@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useEffect, useRef, ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, useState, ReactNode } from "react";
 import Lenis from "@studio-freight/lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,38 +12,42 @@ export function useLenis() {
   return useContext(LenisContext);
 }
 
-interface Props { children: ReactNode }
-
-export function SmoothScrollProvider({ children }: Props) {
-  const lenisRef = useRef<Lenis | null>(null);
+export function SmoothScrollProvider({ children }: { children: ReactNode }) {
+  const [lenis, setLenis] = useState<Lenis | null>(null);
+  const rafRef = useRef<(time: number) => void>(() => {});
 
   useEffect(() => {
-    /* Respect prefers-reduced-motion */
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const lenis = new Lenis({
-      duration: 1.15,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
+    const instance = new Lenis({
+      duration:        1.8,
+      easing:          (t) => 1 - Math.pow(1 - t, 4),
+      smoothWheel:     true,
+      wheelMultiplier: 0.8,
+      touchMultiplier: 1.8,
     });
-    lenisRef.current = lenis;
 
-    /* Sync Lenis to GSAP ticker */
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
+    function raf(time: number) {
+      instance.raf(time * 1000);
+    }
+    rafRef.current = raf;
+
+    gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    /* Keep ScrollTrigger in sync */
-    lenis.on("scroll", ScrollTrigger.update);
+    instance.on("scroll", ScrollTrigger.update);
+
+    setLenis(instance);
 
     return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
-      lenis.destroy();
+      gsap.ticker.remove(rafRef.current);
+      instance.destroy();
+      setLenis(null);
     };
   }, []);
 
   return (
-    <LenisContext.Provider value={lenisRef.current}>
+    <LenisContext.Provider value={lenis}>
       {children}
     </LenisContext.Provider>
   );

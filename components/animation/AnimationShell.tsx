@@ -153,7 +153,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
       {/* Scroll progress bar */}
       <div
         ref={barRef}
-        className="fixed top-0 left-0 right-0 h-[1px] z-[9999] origin-left"
+        className="fixed top-0 left-0 right-0 h-px z-9999 origin-left"
         style={{ background: "#fdba74", transform: "scaleX(0)" }}
         aria-hidden="true"
       />
@@ -176,7 +176,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
       {/* Cursor — outer ring (lagging) */}
       <div
         ref={ringRef}
-        className="pointer-events-none fixed z-[9998] rounded-full"
+        className="pointer-events-none fixed z-9998 rounded-full"
         style={{
           width: 36, height: 36,
           border: "1.5px solid rgba(249,115,22,0.55)",
