@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Fraunces, Rubik } from "next/font/google";
 import "./globals.css";
+import AnimationShell from "@/components/animation/AnimationShell";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,6 +12,21 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
+  display: "swap",
+  weight: "variable",
+});
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+  weight: ["400", "700"],
   display: "swap",
 });
 
@@ -34,10 +50,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${rubik.variable} antialiased`}
     >
-      <body className="bg-[#020817] text-slate-100 min-h-screen overflow-x-hidden">
-        {children}
+      <body className="bg-[#f3f0eb] text-[#111111] min-h-screen overflow-x-hidden">
+        <AnimationShell>{children}</AnimationShell>
       </body>
     </html>
   );

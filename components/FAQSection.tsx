@@ -1,6 +1,7 @@
-"use client";
-import { useState } from "react";
+﻿"use client";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
 import { Plus, Minus, HelpCircle } from "lucide-react";
 
 const faqs = [
@@ -30,6 +31,34 @@ const faqs = [
   },
 ];
 
+function WordReveal({ text }: { text: string }) {
+  const containerRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const spans = el.querySelectorAll<HTMLElement>("span");
+    gsap.fromTo(
+      spans,
+      { opacity: 0, y: 6 },
+      { opacity: 1, y: 0, duration: 0.35, ease: "power2.out", stagger: 0.015 }
+    );
+  }, []);
+
+  const words = text.split(" ");
+  return (
+    <p ref={containerRef} className="text-gray-500 text-[13px] leading-relaxed pb-5 pr-10">
+      {words.map((word, i) => (
+        <span key={i} className="inline-block">
+          {word}{i < words.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </p>
+  );
+}
+
 function Item({ q, a, index }: { q: string; a: string; index: number }) {
   const [open, setOpen] = useState(false);
 
@@ -39,26 +68,23 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, delay: index * 0.06 }}
-      className="border-b border-white/5 last:border-0"
+      className="border-b border-black/6 last:border-0"
     >
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 py-5 text-left group"
       >
-        <span className="text-[14px] sm:text-[15px] text-slate-300 group-hover:text-white transition-colors duration-200 leading-snug">
+        <span className="text-[14px] sm:text-[15px] text-gray-700 group-hover:text-gray-900 transition-colors duration-200 leading-snug">
           {q}
         </span>
         <div
           className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center transition-all duration-200 ${
             open
-              ? "bg-indigo-500/20 text-indigo-400"
-              : "bg-white/4 text-slate-600 group-hover:bg-white/8 group-hover:text-slate-400"
+              ? "bg-orange-500/20 text-orange-500"
+              : "bg-gray-100 text-gray-400 group-hover:bg-orange-50 group-hover:text-gray-600"
           }`}
         >
-          {open
-            ? <Minus className="w-3 h-3" />
-            : <Plus className="w-3 h-3" />
-          }
+          {open ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
         </div>
       </button>
 
@@ -71,7 +97,7 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
             transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <p className="text-slate-500 text-[13px] leading-relaxed pb-5 pr-10">{a}</p>
+            <WordReveal text={a} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -81,7 +107,7 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="py-28 relative">
+    <section id="faq" className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div className="max-w-2xl mx-auto px-5 sm:px-8 relative">
@@ -96,17 +122,17 @@ export default function FAQSection() {
             <HelpCircle className="w-3 h-3" />
             FAQ
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             Questions? We&apos;ve Got
             <br />
             <span className="gradient-text">Clear Answers.</span>
           </h2>
-          <p className="text-slate-400 text-[15px]">
+          <p className="text-gray-500 text-[15px]">
             Everything you need to know before deploying your first agent.
           </p>
         </motion.div>
 
-        <div className="rounded-2xl border border-white/6 bg-white/2 px-6 sm:px-8">
+        <div className="rounded-2xl border border-black/7 bg-white shadow-sm px-6 sm:px-8">
           {faqs.map((f, i) => (
             <Item key={i} q={f.q} a={f.a} index={i} />
           ))}
@@ -117,10 +143,10 @@ export default function FAQSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-slate-700 text-[12px] mt-6"
+          className="text-center text-gray-400 text-[12px] mt-6"
         >
           Still have questions?{" "}
-          <a href="#" className="text-indigo-400 hover:text-indigo-300 transition-colors">
+          <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">
             Chat with our team →
           </a>
         </motion.p>

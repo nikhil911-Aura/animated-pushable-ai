@@ -1,17 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DollarSign, Users, TrendingUp, Settings, ArrowRight, Sparkles, Activity } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const agents = [
   {
     name: "Sara",
     title: "Finance AI",
     icon: DollarSign,
-    color: "#6366f1",
-    bgFrom: "from-indigo-500/10",
-    bgTo: "to-indigo-600/0",
-    border: "border-indigo-500/20",
+    color: "#f97316",
+    bgFrom: "from-orange-500/8",
+    bgTo: "to-orange-600/0",
+    border: "border-orange-200",
     description: "Handles invoicing, expense tracking, and reporting automatically so finances stay clear, updated, and decision-ready without manual effort.",
     tasks: ["Auto-generate & send invoices", "Track expenses in real-time", "Compile monthly P&L reports", "Flag payment anomalies"],
     stat: { label: "Invoices/mo", value: "340+" },
@@ -25,10 +29,10 @@ const agents = [
     name: "Layla",
     title: "HR Manager AI",
     icon: Users,
-    color: "#8b5cf6",
-    bgFrom: "from-violet-500/10",
-    bgTo: "to-violet-600/0",
-    border: "border-violet-500/20",
+    color: "#fb923c",
+    bgFrom: "from-orange-400/8",
+    bgTo: "to-orange-500/0",
+    border: "border-orange-200",
     description: "Manages hiring workflows, onboarding, and employee coordination so teams grow smoothly without delays or repetitive follow-ups.",
     tasks: ["Screen & rank applicants", "Automate onboarding docs", "Schedule interviews", "Track team milestones"],
     stat: { label: "Hours saved/hire", value: "18 hrs" },
@@ -42,10 +46,10 @@ const agents = [
     name: "Marco",
     title: "Revenue AI",
     icon: TrendingUp,
-    color: "#a78bfa",
-    bgFrom: "from-purple-500/10",
-    bgTo: "to-purple-600/0",
-    border: "border-purple-500/20",
+    color: "#f97316",
+    bgFrom: "from-orange-500/8",
+    bgTo: "to-orange-600/0",
+    border: "border-orange-200",
     description: "Handles leads, proposals, and follow-ups to ensure no opportunity is missed and revenue keeps moving without manual tracking.",
     tasks: ["Follow up cold leads", "Generate proposals", "Monitor deal pipeline", "Recover at-risk accounts"],
     stat: { label: "Revenue recovered", value: "$24.8K" },
@@ -59,10 +63,10 @@ const agents = [
     name: "Priya",
     title: "Operations AI",
     icon: Settings,
-    color: "#60a5fa",
-    bgFrom: "from-blue-500/10",
-    bgTo: "to-blue-600/0",
-    border: "border-blue-500/20",
+    color: "#fb923c",
+    bgFrom: "from-orange-400/8",
+    bgTo: "to-orange-500/0",
+    border: "border-orange-200",
     description: "Manages day-to-day tasks, coordination, and execution so you can focus on strategy instead of managing operations.",
     tasks: ["Schedule & coordinate team syncs", "Maintain SOPs automatically", "Escalate blockers in real-time", "Track project milestones"],
     stat: { label: "Tasks automated/wk", value: "220+" },
@@ -74,6 +78,109 @@ const agents = [
   },
 ];
 
+function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: boolean }) {
+  const Icon = agent.icon;
+  return (
+    <div className="w-screen shrink-0 flex items-center justify-center px-5 sm:px-16 lg:px-24">
+      <div className="w-full max-w-4xl grid lg:grid-cols-2 gap-10 items-center">
+
+        {/* Left — text */}
+        <div>
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium mb-5"
+            style={{ background: `${agent.color}12`, color: agent.color, border: `1px solid ${agent.color}25` }}
+          >
+            <Icon className="w-3.5 h-3.5" />
+            {agent.title}
+          </div>
+          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight">
+            Meet <span style={{ color: agent.color }}>{agent.name}</span>
+          </h3>
+          <p className="text-gray-500 text-[16px] leading-relaxed mb-6">{agent.description}</p>
+
+          <div
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[12px] font-medium mb-6"
+            style={{ background: `${agent.color}10`, color: agent.color, border: `1px solid ${agent.color}22` }}
+          >
+            <span className="font-bold text-base">{agent.stat.value}</span>
+            <span className="text-gray-400">{agent.stat.label}</span>
+          </div>
+
+          <ul className="space-y-2.5 mb-8">
+            {agent.tasks.map((t) => (
+              <li key={t} className="flex items-center gap-2.5 text-[13px] text-gray-500">
+                <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: agent.color }} />
+                {t}
+              </li>
+            ))}
+          </ul>
+
+          <button
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] text-white transition-all duration-200 group/btn shadow-sm"
+            style={{ background: agent.color }}
+          >
+            Deploy {agent.name}
+            <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+          </button>
+        </div>
+
+        {/* Right — mockup */}
+        <div
+          className="rounded-2xl p-5 border bg-white shadow-sm"
+          style={{ borderColor: `${agent.color}25` }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center gap-2">
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{ background: `${agent.color}14`, border: `1px solid ${agent.color}25` }}
+              >
+                <Icon className="w-4 h-4" style={{ color: agent.color }} />
+              </div>
+              <div>
+                <div className="text-[12px] font-semibold text-[#111111]">{agent.name}</div>
+                <div className="text-[10px] text-gray-400">{agent.title}</div>
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <Activity className="w-3 h-3 text-green-500" />
+              <span className="text-[10px] text-green-600 mono">live</span>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {agent.mockup.map((m) => (
+              <div key={m.label} className="space-y-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-[12px] text-gray-500">{m.label}</span>
+                  <span
+                    className="text-[10px] px-1.5 py-0.5 rounded mono"
+                    style={{
+                      background: m.pct === 100 ? `${agent.color}12` : "rgba(0,0,0,0.04)",
+                      color: m.pct === 100 ? agent.color : "#888888",
+                    }}
+                  >
+                    {m.status}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-1">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={isActive ? { width: `${m.pct}%` } : { width: 0 }}
+                    transition={{ duration: 1.1, ease: "easeOut", delay: 0.2 }}
+                    className="h-1 rounded-full"
+                    style={{ background: agent.color }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active: boolean; onClick: () => void }) {
   const Icon = agent.icon;
   return (
@@ -81,55 +188,44 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
       layout
       onClick={onClick}
       whileHover={{ y: active ? 0 : -3 }}
-      className={`group relative rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden ${
+      className={`group relative rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden bg-white ${
         active
-          ? `${agent.border} bg-gradient-to-br ${agent.bgFrom} ${agent.bgTo} shadow-xl`
-          : "border-white/[0.06] bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.03]"
+          ? `${agent.border} shadow-md`
+          : "border-black/[0.07] hover:border-orange-200 hover:shadow-sm"
       }`}
     >
-      {/* Glow behind when active */}
       {active && (
         <div
-          className="absolute -inset-2 rounded-2xl blur-2xl opacity-20 pointer-events-none"
+          className="absolute -inset-2 rounded-2xl blur-2xl opacity-10 pointer-events-none"
           style={{ background: agent.color }}
         />
       )}
-
       <div className="relative p-5">
-        {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div
             className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{
-              background: `${agent.color}18`,
-              border: `1px solid ${agent.color}30`,
-            }}
+            style={{ background: `${agent.color}12`, border: `1px solid ${agent.color}22` }}
           >
             <Icon className="w-5 h-5" style={{ color: agent.color }} />
           </div>
           <div className="flex items-center gap-1.5">
-            <Activity className="w-3 h-3 text-green-400" />
-            <span className="text-[10px] text-green-400 mono">live</span>
+            <Activity className="w-3 h-3 text-green-500" />
+            <span className="text-[10px] text-green-600 mono">live</span>
           </div>
         </div>
-
-        <h3 className="text-[15px] font-semibold text-white mb-0.5">{agent.name}</h3>
-        <p className="text-[12px] text-slate-500 mb-4" style={{ color: active ? agent.color : undefined }}>
+        <h3 className="text-[15px] font-semibold text-[#111111] mb-0.5">{agent.name}</h3>
+        <p className="text-[12px] mb-4" style={{ color: active ? agent.color : "#888888" }}>
           {agent.title}
         </p>
-
-        <p className="text-[13px] text-slate-400 leading-relaxed mb-4">{agent.description}</p>
-
-        {/* Stat */}
+        <p className="text-[13px] text-gray-500 leading-relaxed mb-4">{agent.description}</p>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium"
-          style={{ background: `${agent.color}12`, color: agent.color, border: `1px solid ${agent.color}20` }}
+          style={{ background: `${agent.color}10`, color: agent.color, border: `1px solid ${agent.color}22` }}
         >
           <span className="font-bold text-sm">{agent.stat.value}</span>
-          <span className="text-slate-500">{agent.stat.label}</span>
+          <span className="text-gray-400">{agent.stat.label}</span>
         </div>
 
-        {/* Expanded content */}
         <AnimatePresence>
           {active && (
             <motion.div
@@ -139,21 +235,20 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              {/* Task mini-mockup */}
-              <div className="mt-4 rounded-xl bg-black/30 border border-white/[0.05] p-3 space-y-2">
+              <div className="mt-4 rounded-xl bg-gray-50 border border-black/5 p-3 space-y-2">
                 {agent.mockup.map((m) => (
                   <div key={m.label} className="flex items-center gap-2 text-[11px]">
-                    <div className="flex-1 text-slate-400 truncate">{m.label}</div>
+                    <div className="flex-1 text-gray-500 truncate">{m.label}</div>
                     <div
                       className="text-[10px] px-1.5 py-0.5 rounded mono"
                       style={{
-                        background: m.pct === 100 ? `${agent.color}15` : "rgba(255,255,255,0.04)",
-                        color: m.pct === 100 ? agent.color : "#64748b",
+                        background: m.pct === 100 ? `${agent.color}12` : "rgba(0,0,0,0.04)",
+                        color: m.pct === 100 ? agent.color : "#888888",
                       }}
                     >
                       {m.status}
                     </div>
-                    <div className="w-12 bg-white/5 rounded-full h-1 shrink-0">
+                    <div className="w-12 bg-gray-100 rounded-full h-1 shrink-0">
                       <div
                         className="h-1 rounded-full transition-all duration-700"
                         style={{ width: `${m.pct}%`, background: agent.color }}
@@ -162,17 +257,14 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
                   </div>
                 ))}
               </div>
-
-              {/* Capabilities */}
               <ul className="mt-3 space-y-1.5">
                 {agent.tasks.map((t) => (
-                  <li key={t} className="flex items-center gap-2 text-[12px] text-slate-500">
+                  <li key={t} className="flex items-center gap-2 text-[12px] text-gray-400">
                     <div className="w-1 h-1 rounded-full shrink-0" style={{ background: agent.color }} />
                     {t}
                   </li>
                 ))}
               </ul>
-
               <button
                 className="mt-4 flex items-center gap-1.5 text-[12px] font-medium transition-colors group/btn"
                 style={{ color: agent.color }}
@@ -190,39 +282,85 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
 
 export default function AgentsSection() {
   const [active, setActive] = useState(0);
+  const [activePanel, setActivePanel] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
-  return (
-    <section id="agents" className="py-28 relative">
-      <div className="section-line absolute top-0 inset-x-0" />
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-indigo-600/[0.04] rounded-full blur-[120px]" />
+  const outerRef  = useRef<HTMLDivElement | null>(null);
+  const trackRef  = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+    const outer = outerRef.current;
+    const track = trackRef.current;
+    if (!outer || !track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const panels = agents.length;
+    const scrollLen = window.innerHeight * 3.5;
+
+    const trigger = ScrollTrigger.create({
+      trigger: outer,
+      start: "top top",
+      end: `+=${scrollLen}`,
+      pin: true,
+      scrub: 1,
+      snap: {
+        snapTo: 1 / (panels - 1),
+        duration: { min: 0.2, max: 0.5 },
+        ease: "power1.inOut",
+      },
+      onUpdate: (self) => {
+        const idx = Math.round(self.progress * (panels - 1));
+        setActivePanel(idx);
+        gsap.to(track, {
+          x: -(self.progress * (panels - 1) * window.innerWidth),
+          ease: "none",
+          overwrite: "auto",
+          duration: 0,
+        });
+      },
+    });
+
+    return () => { trigger.kill(); };
+  }, [isMobile]);
+
+  const Header = (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7 }}
+      className="text-center mb-14 max-w-5xl mx-auto px-5 sm:px-8"
+    >
+      <div className="pld-3 badge mx-auto mb-5">
+        <Sparkles className="w-3 h-3" />
+        AI Agents
       </div>
+      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
+        Your AI Agents, Each Built
+        <br />
+        <span className="gradient-text">for a Specific Role</span>
+      </h2>
+      <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-relaxed">
+        Four specialists running in parallel. Finance, HR, Revenue, and Operations — all autonomous, always on.
+      </p>
+    </motion.div>
+  );
 
-      <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <div className="badge mx-auto mb-5">
-            <Sparkles className="w-3 h-3" />
-            AI Agents
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4 leading-[1.1]">
-            Your AI Agents, Each Built
-            <br />
-            <span className="gradient-text">for a Specific Role</span>
-          </h2>
-          <p className="text-slate-400 text-[16px] max-w-xl mx-auto leading-relaxed">
-            Four specialists running in parallel. Finance, HR, Revenue, and Operations — all autonomous, always on.
-          </p>
-        </motion.div>
-
-        {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  if (isMobile) {
+    return (
+      <section id="agents" className="py-28 relative bg-white">
+        <div className="section-line absolute top-0 inset-x-0" />
+        {Header}
+        <div className="max-w-5xl mx-auto px-5 grid sm:grid-cols-2 gap-4">
           {agents.map((agent, i) => (
             <motion.div
               key={agent.name}
@@ -239,24 +377,56 @@ export default function AgentsSection() {
             </motion.div>
           ))}
         </div>
+      </section>
+    );
+  }
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-12"
+  return (
+    <section id="agents" className="relative bg-white">
+      <div className="section-line absolute top-0 inset-x-0" />
+
+      <div ref={outerRef} className="relative overflow-hidden" style={{ height: "100vh" }}>
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-125 rounded-full blur-[120px] transition-colors duration-700"
+            style={{ background: `${agents[activePanel]?.color ?? "#f97316"}06` }}
+          />
+        </div>
+
+        {/* Progress dots */}
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
+          {agents.map((a, i) => (
+            <div
+              key={a.name}
+              className="transition-all duration-300 rounded-full"
+              style={{
+                width:   i === activePanel ? "24px" : "6px",
+                height:  "6px",
+                background: i === activePanel ? agents[activePanel].color : "rgba(0,0,0,0.15)",
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Section label */}
+        <div className="absolute top-8 right-8 z-20 flex items-center gap-2">
+          <div className="badge">
+            <Sparkles className="w-3 h-3" />
+            AI Agents
+          </div>
+        </div>
+
+        {/* Track */}
+        <div
+          ref={trackRef}
+          className="flex h-full will-change-transform"
+          style={{ width: `${agents.length * 100}vw` }}
         >
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-indigo-500/10 hover:bg-indigo-500/20 border border-indigo-500/20 hover:border-indigo-500/30 text-[13px] font-medium text-indigo-300 hover:text-indigo-200 transition-all duration-200 group"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            Deploy your agent today
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </a>
-        </motion.div>
+          {agents.map((agent, i) => (
+            <AgentPanel key={agent.name} agent={agent} isActive={i === activePanel} />
+          ))}
+        </div>
       </div>
     </section>
   );

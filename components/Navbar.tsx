@@ -29,32 +29,32 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "py-2 glass-dark border-b border-white/[0.04] shadow-2xl shadow-black/40"
+            ? "py-2 glass-dark border-b border-black/[0.06]"
             : "py-4 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2.5 group flex-shrink-0">
+          <a href="#" className="pld-1 flex items-center gap-2.5 group shrink-0">
             <div className="relative w-7 h-7">
-              <div className="absolute inset-0 rounded-lg bg-indigo-500/20 blur-md group-hover:bg-indigo-500/40 transition-all duration-300" />
-              <div className="relative w-7 h-7 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
+              <div className="absolute inset-0 rounded-lg bg-orange-500/20 blur-md group-hover:bg-orange-500/40 transition-all duration-300" />
+              <div className="relative w-7 h-7 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
                 <Zap className="w-3.5 h-3.5 text-white fill-white" />
               </div>
             </div>
-            <span className="text-white font-semibold text-[15px] tracking-tight">
+            <span className="text-[#111111] font-semibold text-[15px] tracking-tight">
               Pushable<span className="gradient-text">AI</span>
             </span>
           </a>
 
           {/* Center pill nav */}
-          <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1.5 py-1.5 border-white/[0.06]">
+          <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1.5 py-1.5">
             {links.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="px-3.5 py-1.5 text-[13px] text-slate-400 hover:text-white rounded-full hover:bg-white/[0.06] transition-all duration-200"
+                className="px-3.5 py-1.5 text-[13px] text-gray-500 hover:text-gray-900 rounded-full hover:bg-orange-50 transition-all duration-200"
               >
                 {l.label}
               </a>
@@ -63,23 +63,23 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
-            <a href="#" className="text-[13px] text-slate-400 hover:text-white transition-colors px-3 py-1.5">
+            <a href="#" className="text-[13px] text-gray-500 hover:text-gray-900 transition-colors px-3 py-1.5">
               Sign in
             </a>
             <a
               href="#"
-              className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-indigo-500 hover:bg-indigo-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden"
+              className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden shadow-sm shadow-orange-500/20"
             >
               <span className="relative z-10">Get Started</span>
               <ArrowRight className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-0.5 transition-transform" />
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-violet-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </a>
           </div>
 
           {/* Mobile toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-slate-400 hover:text-white transition-colors"
+            className="md:hidden p-2 text-gray-500 hover:text-gray-900 transition-colors"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -94,7 +94,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-0 top-14 z-40 glass-dark border-b border-white/[0.05] md:hidden"
+            className="fixed inset-x-0 top-14 z-40 glass-dark border-b border-black/[0.06] md:hidden"
           >
             <div className="px-5 py-5 flex flex-col gap-1">
               {links.map((l) => (
@@ -102,16 +102,16 @@ export default function Navbar() {
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="px-4 py-2.5 text-[14px] text-slate-300 hover:text-white hover:bg-white/[0.04] rounded-xl transition-all"
+                  className="px-4 py-2.5 text-[14px] text-gray-600 hover:text-gray-900 hover:bg-orange-50 rounded-xl transition-all"
                 >
                   {l.label}
                 </a>
               ))}
-              <div className="mt-3 pt-3 border-t border-white/[0.06] flex flex-col gap-2">
-                <a href="#" className="px-4 py-2.5 text-center text-[14px] text-slate-400 hover:text-white border border-white/[0.08] rounded-xl transition-all">
+              <div className="mt-3 pt-3 border-t border-black/[0.06] flex flex-col gap-2">
+                <a href="#" className="px-4 py-2.5 text-center text-[14px] text-gray-500 hover:text-gray-900 border border-black/[0.08] rounded-xl transition-all">
                   Sign in
                 </a>
-                <a href="#" className="px-4 py-2.5 text-center text-[14px] font-medium bg-indigo-500 hover:bg-indigo-400 text-white rounded-xl transition-all">
+                <a href="#" className="px-4 py-2.5 text-center text-[14px] font-medium bg-orange-500 hover:bg-orange-400 text-white rounded-xl transition-all">
                   Get Started
                 </a>
               </div>
