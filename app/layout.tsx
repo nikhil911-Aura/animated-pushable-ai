@@ -73,7 +73,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
-      <body className="bg-[#f3f0eb] text-[#111111] min-h-screen overflow-x-hidden">
+      <body className="bg-[#010828] text-[#EFF4FF] min-h-screen overflow-x-hidden">
         <PageLoader />
         <AnimationShell>{children}</AnimationShell>
       </body>

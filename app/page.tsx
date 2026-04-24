@@ -3,6 +3,7 @@
 import { Anton, Condiment } from "next/font/google";
 import { Mail, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Navbar              from "@/components/Navbar";
 import TrustSection        from "@/components/TrustSection";
 import AgentsSection       from "@/components/AgentsSection";
@@ -77,10 +78,73 @@ const SOCIAL_ICONS = [
 const DECORATIVE_TEXT =
   "An AI assistant that works beyond time and routine. Built to handle everyday workflows, reduce manual effort, and keep your operations moving smoothly without constant supervision.";
 
+/* ── Scramble text on hover ─────────────────────────────────── */
+const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*!?";
+
+function ScrambleLine({
+  text, style, animateIn, delay = 0, index = 0,
+}: {
+  text: string;
+  style?: React.CSSProperties;
+  animateIn: boolean;
+  delay?: number;
+  index?: number;
+}) {
+  const [display, setDisplay] = useState(text);
+  const [hovered, setHovered] = useState(false);
+  const rafRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const scramble = useCallback(() => {
+    let iter = 0;
+    const total = text.replace(/ /g, "").length * 4;
+    function tick() {
+      setDisplay(
+        text.split("").map((ch, i) => {
+          if (ch === " ") return " ";
+          if (i < Math.floor(iter / 4)) return ch;
+          return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+        }).join("")
+      );
+      iter++;
+      if (iter <= total) rafRef.current = setTimeout(tick, 28);
+      else setDisplay(text);
+    }
+    if (rafRef.current) clearTimeout(rafRef.current);
+    tick();
+  }, [text]);
+
+  return (
+    <div style={{ overflow: "hidden", lineHeight: 1.05 }}>
+      <motion.div
+        style={{ ...style, cursor: "default", display: "block" }}
+        initial={{ y: "105%", skewY: 4, opacity: 0 }}
+        animate={animateIn ? { y: "0%", skewY: 0, opacity: 1 } : { y: "105%", skewY: 4, opacity: 0 }}
+        whileHover={{ x: 14, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+        transition={{ delay: index * 0.14, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+        onMouseEnter={() => { setHovered(true); scramble(); }}
+        onMouseLeave={() => {
+          setHovered(false);
+          if (rafRef.current) clearTimeout(rafRef.current);
+          setDisplay(text);
+        }}
+      >
+        {display}
+      </motion.div>
+    </div>
+  );
+}
+
 /* ══════════════════════════════════════════════════════════════ */
 export default function Home() {
   const AF = "var(--font-orbis-anton)";
   const CF = "var(--font-orbis-condiment)";
+
+  // Delay hero animations until after the PageLoader exits (HOLD_MS 2400 + dissolve ~800ms)
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setReady(true), 3000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div
@@ -106,26 +170,17 @@ export default function Home() {
           className="relative z-10 max-w-[1831px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col"
           style={{ minHeight: "100vh" }}
         >
-          {/* Header */}
-          <header className="flex items-center pt-8 sm:pt-10">
-            <span
-              className="text-[16px] uppercase select-none"
-              style={{ fontFamily: AF, color: CREAM, letterSpacing: "0.04em" }}
-            >
-              Pushable AI
-            </span>
-          </header>
-
           {/* Hero content */}
           <div className="flex-1 flex flex-col justify-end pb-16 lg:pb-24 pt-10">
             <div className="relative max-w-[780px] lg:ml-32">
 
               {/* Cursive accent */}
               <motion.span
-                className="-rotate-1 pointer-events-none select-none absolute"
-                initial={{ opacity: 0, rotate: -12, scale: 0.8 }}
-                animate={{ opacity: 0.9, rotate: -1, scale: 1 }}
-                transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="select-none absolute"
+                initial={{ opacity: 0, rotate: -20, scale: 0.5, x: 40, y: -20 }}
+                animate={ready ? { opacity: 1, rotate: -3, scale: 1, x: 0, y: 0 } : { opacity: 0, rotate: -20, scale: 0.5, x: 40, y: -20 }}
+                whileHover={{ scale: 1.12, rotate: 2, y: -6, transition: { type: "spring", stiffness: 200, damping: 12 } }}
+                transition={{ delay: 0.5, duration: 1, type: "spring", stiffness: 120, damping: 14 }}
                 style={{
                   fontFamily:   CF,
                   color:        NEON,
@@ -134,31 +189,26 @@ export default function Home() {
                   top:          "18%",
                   mixBlendMode: "exclusion",
                   lineHeight:   1.1,
+                  display:      "inline-block",
+                  cursor:       "default",
                 }}
-                aria-hidden="true"
               >
                 AI automation
               </motion.span>
 
-              {/* Main heading */}
+              {/* Main heading — masked line reveal + scramble on hover */}
               <h1
-                className="uppercase leading-[1.05] sm:leading-[1]"
-                style={{
-                  fontFamily: AF,
-                  fontSize:   "clamp(40px,7vw,90px)",
-                  color:      CREAM,
-                }}
+                className="uppercase"
+                style={{ fontFamily: AF, fontSize: "clamp(40px,7vw,90px)", color: CREAM, lineHeight: 1.0 }}
               >
-                {["AI Assistant", "That Automates", "Your Routine Workflows"].map((line, i) => (
-                  <motion.span
+                {["AI Assistant", "That Automates", "Your Routine", "Workflows"].map((line, i) => (
+                  <ScrambleLine
                     key={i}
-                    className="block overflow-hidden"
-                    initial={{ opacity: 0, y: 48 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.13, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {line}
-                  </motion.span>
+                    text={line}
+                    index={i}
+                    animateIn={ready}
+                    style={{ fontFamily: AF, fontSize: "clamp(40px,7vw,90px)", color: CREAM }}
+                  />
                 ))}
               </h1>
             </div>
@@ -203,16 +253,19 @@ export default function Home() {
                 }}
               >
                 {["Hello!", "I’m Pushable AI"].map((line, i) => (
-                  <motion.span
-                    key={i}
-                    className="block overflow-hidden"
-                    initial={{ opacity: 0, y: 48 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.14, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {line}
-                  </motion.span>
+                  <div key={i} style={{ overflow: "hidden" }}>
+                    <motion.span
+                      className="block"
+                      initial={{ y: "105%", skewY: 4, opacity: 0 }}
+                      whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
+                      whileHover={{ x: 10, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.14, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ display: "block", cursor: "default" }}
+                    >
+                      {line}
+                    </motion.span>
+                  </div>
                 ))}
               </h2>
               {/* Cursive overlay */}
@@ -238,17 +291,17 @@ export default function Home() {
             </div>
 
             {/* Right description */}
-            <p
+            <motion.p
               className="uppercase max-w-[266px]"
-              style={{
-                fontFamily: "monospace",
-                fontSize:   "clamp(14px,1.4vw,16px)",
-                color:      CREAM,
-                lineHeight: 1.65,
-              }}
+              style={{ fontFamily: "monospace", fontSize: "clamp(14px,1.4vw,16px)", color: CREAM, lineHeight: 1.65, cursor: "default" }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ color: NEON, letterSpacing: "0.06em", x: 6, transition: { type: "spring", stiffness: 200, damping: 18 } }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               {DECORATIVE_TEXT}
-            </p>
+            </motion.p>
           </div>
 
           {/* Bottom row — decorative */}
@@ -292,60 +345,76 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-10 mb-12">
 
             <div>
-              <motion.div
-                className="uppercase leading-none"
-                style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-              >
-                Collection of
-              </motion.div>
+              <div style={{ overflow: "hidden" }}>
+                <motion.div
+                  className="uppercase leading-none"
+                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, cursor: "default" }}
+                  initial={{ y: "105%", skewY: 4, opacity: 0 }}
+                  whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
+                  whileHover={{ x: 12, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  Collection of
+                </motion.div>
+              </div>
               <div className="flex items-baseline gap-1 leading-none mt-1 ml-12 md:ml-24 lg:ml-32">
                 <motion.span
-                  style={{ fontFamily: CF, fontSize: "clamp(36px,6vw,70px)", color: NEON, lineHeight: 1 }}
+                  style={{ fontFamily: CF, fontSize: "clamp(36px,6vw,70px)", color: NEON, lineHeight: 1, display: "inline-block", cursor: "default" }}
                   initial={{ opacity: 0, rotate: -10, scale: 0.82 }}
                   whileInView={{ opacity: 1, rotate: -1, scale: 1 }}
+                  whileHover={{ scale: 1.1, rotate: 3, y: -4, transition: { type: "spring", stiffness: 220, damping: 12 } }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
                 >
                   Intelligent{" "}
                 </motion.span>
-                <motion.span
-                  className="uppercase"
-                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, lineHeight: 1 }}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  Agents
-                </motion.span>
+                <div style={{ overflow: "hidden", display: "inline-block" }}>
+                  <motion.span
+                    className="uppercase"
+                    style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, lineHeight: 1, display: "inline-block", cursor: "default" }}
+                    initial={{ y: "105%", skewY: 4, opacity: 0 }}
+                    whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
+                    whileHover={{ x: 10, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    Agents
+                  </motion.span>
+                </div>
               </div>
             </div>
 
             {/* DEPLOY YOUR AGENT */}
             <motion.div
-              className="cursor-pointer select-none flex-shrink-0"
+              className="cursor-pointer select-none flex-shrink-0 group"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ x: -10, transition: { type: "spring", stiffness: 260, damping: 18 } }}
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-baseline gap-3">
-                <span className="uppercase" style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM }}>
+                <motion.span
+                  className="uppercase"
+                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, display: "inline-block" }}
+                  whileHover={{ color: NEON, scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 16 } }}
+                >
                   DEPLOY
-                </span>
+                </motion.span>
                 <div
                   className="flex flex-col uppercase"
                   style={{ fontFamily: AF, fontSize: "clamp(20px,3vw,36px)", color: CREAM, lineHeight: 1.05 }}
                 >
-                  <span>YOUR</span>
-                  <span>AGENT</span>
+                  <motion.span whileHover={{ color: NEON, x: 4, transition: { type: "spring", stiffness: 300, damping: 16 } }}>YOUR</motion.span>
+                  <motion.span whileHover={{ color: NEON, x: 4, transition: { type: "spring", stiffness: 300, damping: 16 } }}>AGENT</motion.span>
                 </div>
               </div>
-              <div className="mt-2 w-full" style={{ background: RED, height: "clamp(6px,0.7vw,10px)", borderRadius: 3 }} />
+              <motion.div
+                className="mt-2 w-full"
+                style={{ background: RED, height: "clamp(6px,0.7vw,10px)", borderRadius: 3 }}
+                whileHover={{ scaleX: 1.06, originX: 1, transition: { type: "spring", stiffness: 300, damping: 18 } }}
+              />
             </motion.div>
           </div>
 
@@ -443,16 +512,18 @@ export default function Home() {
                   { text: "DEFINE WHAT'S NEXT.", mb: 0 },
                   { text: "FOLLOW THE SIGNAL.", mb: 0 },
                 ].map(({ text, mb }, i) => (
-                  <motion.div
-                    key={i}
-                    style={{ marginBottom: mb || undefined }}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {text}
-                  </motion.div>
+                  <div key={i} style={{ overflow: "hidden", marginBottom: mb || undefined }}>
+                    <motion.div
+                      initial={{ y: "105%", skewY: 3, opacity: 0 }}
+                      whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
+                      whileHover={{ x: -12, color: NEON, transition: { type: "spring", stiffness: 280, damping: 18 } }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+                      style={{ cursor: "default" }}
+                    >
+                      {text}
+                    </motion.div>
+                  </div>
                 ))}
               </h2>
             </div>
@@ -487,7 +558,7 @@ export default function Home() {
       {/* ════════════════════════════════════════
           ORIGINAL SECTIONS
       ════════════════════════════════════════ */}
-      <div style={{ background: "#f3f0eb" }}>
+      <div style={{ background: "#010828" }}>
         <TrustSection />
         <AgentsSection />
         <HowItWorksSection />

@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3f0eb;
-  --foreground: #111111;
+  --background: #010828;
+  --foreground: #EFF4FF;
   --brand:     #E8001D;
   --brand-mid: #FF2D42;
   --brand-dim: #CC001A;
@@ -37,8 +37,8 @@ html {
 }
 
 body {
-  background: #f3f0eb;
-  color: #111111;
+  background: #010828;
+  color: #EFF4FF;
   font-family: var(--font-geist-sans), 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -59,7 +59,7 @@ body::before {
 
 /* ─── Scrollbar ──────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: #f3f0eb; }
+::-webkit-scrollbar-track { background: #010828; }
 ::-webkit-scrollbar-thumb { background: #d8d4cc; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #E8001D; }
 
