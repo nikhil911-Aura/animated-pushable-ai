@@ -1,5 +1,5 @@
 ﻿"use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -13,14 +13,7 @@ const links = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open,     setOpen]     = useState(false);
-
-  useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 30);
-    window.addEventListener("scroll", fn, { passive: true });
-    return () => window.removeEventListener("scroll", fn);
-  }, []);
+  const [open, setOpen] = useState(false);
 
   return (
     <>
@@ -28,11 +21,7 @@ export default function Navbar() {
         initial={{ y: -70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "py-2 glass-dark border-b border-black/[0.06]"
-            : "py-4 bg-transparent"
-        }`}
+        className="fixed top-0 inset-x-0 z-50 transition-all duration-500 py-4 bg-transparent"
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
 
@@ -58,7 +47,7 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
-            <a href="#" className="text-[13px] text-gray-500 hover:text-gray-900 transition-colors px-3 py-1.5">
+            <a href="#" className="text-[13px] text-gray-700 hover:text-gray-900 transition-colors px-3 py-1.5">
               Sign in
             </a>
             <a

@@ -2,20 +2,6 @@
 
 import { Anton, Condiment } from "next/font/google";
 import { Mail, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
-import Navbar              from "@/components/Navbar";
-import TrustSection        from "@/components/TrustSection";
-import AgentsSection       from "@/components/AgentsSection";
-import HowItWorksSection   from "@/components/HowItWorksSection";
-import DemoSection         from "@/components/DemoSection";
-import IndustrySection     from "@/components/IndustrySection";
-import PricingSection      from "@/components/PricingSection";
-import IntegrationsSection from "@/components/IntegrationsSection";
-import WhyTrustSection     from "@/components/WhyTrustSection";
-import FinalCTASection     from "@/components/FinalCTASection";
-import FAQSection          from "@/components/FAQSection";
-import Footer              from "@/components/Footer";
-import { SignatureTile }   from "@/components/animation";
 
 /* ── Fonts ──────────────────────────────────────────────────── */
 const anton = Anton({
@@ -31,7 +17,7 @@ const condiment = Condiment({
 
 /* ── Design tokens ──────────────────────────────────────────── */
 const CREAM = "#EFF4FF";
-const NEON  = "#E8001D";
+const NEON  = "#6FFF00";
 const BG    = "#010828";
 const RED   = "#E8001D";
 
@@ -51,7 +37,7 @@ const CARDS = [
   { src: V.c3, score: "8.2/10" },
 ];
 
-/* ── Custom SVG icons ───────────────────────────────────────── */
+/* ── Custom SVG icons (lucide-react version lacks these) ─────── */
 function XIcon({ size = 20 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -78,7 +64,7 @@ const DECORATIVE_TEXT =
   "An AI assistant that works beyond time and routine. Built to handle everyday workflows, reduce manual effort, and keep your operations moving smoothly without constant supervision.";
 
 /* ══════════════════════════════════════════════════════════════ */
-export default function Home() {
+export default function OrbisPage() {
   const AF = "var(--font-orbis-anton)";
   const CF = "var(--font-orbis-condiment)";
 
@@ -87,7 +73,6 @@ export default function Home() {
       className={`${anton.variable} ${condiment.variable} overflow-x-hidden`}
       style={{ background: BG }}
     >
-      <Navbar />
 
       {/* ════════════════════════════════════════
           SECTION 1 · HERO
@@ -121,11 +106,8 @@ export default function Home() {
             <div className="relative max-w-[780px] lg:ml-32">
 
               {/* Cursive accent */}
-              <motion.span
-                className="-rotate-1 pointer-events-none select-none absolute"
-                initial={{ opacity: 0, rotate: -12, scale: 0.8 }}
-                animate={{ opacity: 0.9, rotate: -1, scale: 1 }}
-                transition={{ delay: 0.7, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              <span
+                className="-rotate-1 opacity-90 pointer-events-none select-none absolute"
                 style={{
                   fontFamily:   CF,
                   color:        NEON,
@@ -138,7 +120,7 @@ export default function Home() {
                 aria-hidden="true"
               >
                 AI automation
-              </motion.span>
+              </span>
 
               {/* Main heading */}
               <h1
@@ -149,17 +131,11 @@ export default function Home() {
                   color:      CREAM,
                 }}
               >
-                {["AI Assistant", "That Automates", "Your Routine Workflows"].map((line, i) => (
-                  <motion.span
-                    key={i}
-                    className="block overflow-hidden"
-                    initial={{ opacity: 0, y: 48 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 + i * 0.13, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {line}
-                  </motion.span>
-                ))}
+                AI Assistant
+                <br />
+                That Automates
+                <br />
+                Your Routine Workflows
               </h1>
             </div>
           </div>
@@ -202,26 +178,13 @@ export default function Home() {
                   lineHeight: 1,
                 }}
               >
-                {["Hello!", "I’m Pushable AI"].map((line, i) => (
-                  <motion.span
-                    key={i}
-                    className="block overflow-hidden"
-                    initial={{ opacity: 0, y: 48 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.14, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {line}
-                  </motion.span>
-                ))}
+                Hello!
+                <br />
+                I&apos;m Pushable AI
               </h2>
               {/* Cursive overlay */}
-              <motion.span
-                className="pointer-events-none select-none absolute"
-                initial={{ opacity: 0, rotate: -10, scale: 0.82 }}
-                whileInView={{ opacity: 1, rotate: -1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.35, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              <span
+                className="-rotate-1 pointer-events-none select-none absolute"
                 style={{
                   fontFamily:   CF,
                   color:        NEON,
@@ -234,7 +197,7 @@ export default function Home() {
                 aria-hidden="true"
               >
                 Pushable AI
-              </motion.span>
+              </span>
             </div>
 
             {/* Right description */}
@@ -251,9 +214,10 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Bottom row — decorative */}
+          {/* Bottom row — decorative opacity-10 text */}
           <div className="flex flex-row justify-between gap-8 mt-auto pt-16">
 
+            {/* Left col */}
             <div className="flex flex-col gap-5" style={{ opacity: 0.1 }}>
               {[0, 1].map(i => (
                 <p
@@ -266,6 +230,7 @@ export default function Home() {
               ))}
             </div>
 
+            {/* Right col — hidden below lg */}
             <div className="hidden lg:flex flex-col gap-5" style={{ opacity: 0.1 }}>
               {[0, 1].map(i => (
                 <p
@@ -291,50 +256,43 @@ export default function Home() {
           {/* Header row */}
           <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-10 mb-12">
 
+            {/* Left heading */}
             <div>
-              <motion.div
+              <div
                 className="uppercase leading-none"
                 style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM }}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
               >
                 Collection of
-              </motion.div>
-              <div className="flex items-baseline gap-1 leading-none mt-1 ml-12 md:ml-24 lg:ml-32">
-                <motion.span
-                  style={{ fontFamily: CF, fontSize: "clamp(36px,6vw,70px)", color: NEON, lineHeight: 1 }}
-                  initial={{ opacity: 0, rotate: -10, scale: 0.82 }}
-                  whileInView={{ opacity: 1, rotate: -1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.15, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+              </div>
+              <div
+                className="flex items-baseline gap-1 leading-none mt-1 ml-12 md:ml-24 lg:ml-32"
+              >
+                <span
+                  style={{
+                    fontFamily: CF,
+                    fontSize:   "clamp(36px,6vw,70px)",
+                    color:      NEON,
+                    lineHeight: 1,
+                  }}
                 >
                   Intelligent{" "}
-                </motion.span>
-                <motion.span
+                </span>
+                <span
                   className="uppercase"
                   style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, lineHeight: 1 }}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
                 >
                   Agents
-                </motion.span>
+                </span>
               </div>
             </div>
 
             {/* DEPLOY YOUR AGENT */}
-            <motion.div
-              className="cursor-pointer select-none flex-shrink-0"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            >
+            <div className="cursor-pointer select-none flex-shrink-0">
               <div className="flex items-baseline gap-3">
-                <span className="uppercase" style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM }}>
+                <span
+                  className="uppercase"
+                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM }}
+                >
                   DEPLOY
                 </span>
                 <div
@@ -345,8 +303,12 @@ export default function Home() {
                   <span>AGENT</span>
                 </div>
               </div>
-              <div className="mt-2 w-full" style={{ background: RED, height: "clamp(6px,0.7vw,10px)", borderRadius: 3 }} />
-            </motion.div>
+              {/* Red accent bar */}
+              <div
+                className="mt-2 w-full"
+                style={{ background: RED, height: "clamp(6px,0.7vw,10px)", borderRadius: 3 }}
+              />
+            </div>
           </div>
 
           {/* Card grid */}
@@ -357,12 +319,17 @@ export default function Home() {
                 className="liquid-glass rounded-[32px] hover:bg-white/10 transition-colors duration-200"
                 style={{ padding: 18 }}
               >
-                <div className="relative rounded-[24px] overflow-hidden" style={{ paddingBottom: "100%" }}>
+                <div
+                  className="relative rounded-[24px] overflow-hidden"
+                  style={{ paddingBottom: "100%" }}
+                >
                   <video
                     src={card.src}
                     autoPlay loop muted playsInline
                     className="absolute inset-0 w-full h-full object-cover"
                   />
+
+                  {/* Overlay bar */}
                   <div className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4">
                     <div>
                       <div
@@ -375,6 +342,7 @@ export default function Home() {
                         {card.score}
                       </div>
                     </div>
+
                     <button
                       className="rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 flex-shrink-0"
                       style={{
@@ -400,6 +368,7 @@ export default function Home() {
       ════════════════════════════════════════ */}
       <section className="relative overflow-hidden">
 
+        {/* Full-width video at native aspect ratio */}
         <video
           src={V.cta}
           autoPlay loop muted playsInline
@@ -407,18 +376,19 @@ export default function Home() {
           aria-hidden="true"
         />
 
+        {/* Text overlay */}
         <div className="absolute inset-0 flex items-center">
           <div className="w-full max-w-[1831px] mx-auto px-4 sm:px-8 lg:px-12 flex justify-end">
             <div
               className="relative text-right py-8"
-              style={{ paddingRight: "clamp(0px,20%,360px)", paddingLeft: "clamp(0px,15%,270px)" }}
+              style={{
+                paddingRight: "clamp(0px,20%,360px)",
+                paddingLeft:  "clamp(0px,15%,270px)",
+              }}
             >
-              <motion.span
-                className="pointer-events-none select-none absolute"
-                initial={{ opacity: 0, rotate: -14, scale: 0.8 }}
-                whileInView={{ opacity: 1, rotate: -1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4, duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              {/* "Go beyond" cursive */}
+              <span
+                className="-rotate-1 pointer-events-none select-none absolute"
                 style={{
                   fontFamily:   CF,
                   color:        NEON,
@@ -431,36 +401,31 @@ export default function Home() {
                 aria-hidden="true"
               >
                 Go beyond
-              </motion.span>
+              </span>
 
               <h2
                 className="uppercase text-right"
-                style={{ fontFamily: AF, fontSize: "clamp(16px,4.5vw,60px)", color: CREAM, lineHeight: 1.1 }}
+                style={{
+                  fontFamily: AF,
+                  fontSize:   "clamp(16px,4.5vw,60px)",
+                  color:      CREAM,
+                  lineHeight: 1.1,
+                }}
               >
-                {[
-                  { text: "JOIN US.", mb: "clamp(16px,3vw,48px)" },
-                  { text: "REVEAL WHAT'S HIDDEN.", mb: 0 },
-                  { text: "DEFINE WHAT'S NEXT.", mb: 0 },
-                  { text: "FOLLOW THE SIGNAL.", mb: 0 },
-                ].map(({ text, mb }, i) => (
-                  <motion.div
-                    key={i}
-                    style={{ marginBottom: mb || undefined }}
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.12, duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                  >
-                    {text}
-                  </motion.div>
-                ))}
+                <div style={{ marginBottom: "clamp(16px,3vw,48px)" }}>JOIN US.</div>
+                <div>REVEAL WHAT&apos;S HIDDEN.</div>
+                <div>DEFINE WHAT&apos;S NEXT.</div>
+                <div>FOLLOW THE SIGNAL.</div>
               </h2>
             </div>
           </div>
         </div>
 
         {/* Social icons — bottom left */}
-        <div className="absolute z-20" style={{ left: "8%", bottom: "clamp(8%,14%,20%)" }}>
+        <div
+          className="absolute z-20"
+          style={{ left: "8%", bottom: "clamp(8%,14%,20%)" }}
+        >
           <div
             className="liquid-glass flex flex-col overflow-hidden"
             style={{ borderRadius: "clamp(8px,1.25vw,20px)" }}
@@ -483,24 +448,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ════════════════════════════════════════
-          ORIGINAL SECTIONS
-      ════════════════════════════════════════ */}
-      <div style={{ background: "#f3f0eb" }}>
-        <TrustSection />
-        <AgentsSection />
-        <HowItWorksSection />
-        <DemoSection />
-        <IndustrySection />
-        <SignatureTile />
-        <PricingSection />
-        <IntegrationsSection />
-        <WhyTrustSection />
-        <FinalCTASection />
-        <FAQSection />
-        <Footer />
-      </div>
 
     </div>
   );

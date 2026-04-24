@@ -26,7 +26,8 @@
       "Read(//tmp/**)",
       "Bash(curl -s \"https://digital.tattooprojects.com/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
       "Bash(curl -s \"https://cdn.prod.website-files.com/65b22c828aafb9c100483aba/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
-      "Bash(curl -s https://digital.tattooprojects.com/)"
+      "Bash(curl -s https://digital.tattooprojects.com/)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => /git|github|hub/i.test\\(k\\)\\); console.log\\(keys\\);\")"
     ]
   }
 }
