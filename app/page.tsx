@@ -4,6 +4,8 @@ import { Anton, Condiment } from "next/font/google";
 import { Mail, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef, useCallback } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar              from "@/components/Navbar";
 import TrustSection        from "@/components/TrustSection";
 import AgentsSection       from "@/components/AgentsSection";
@@ -47,9 +49,9 @@ const V = {
 };
 
 const CARDS = [
-  { src: V.c1, score: "8.7/10" },
-  { src: V.c2, score: "9/10"   },
-  { src: V.c3, score: "8.2/10" },
+  { src: V.c1, score: "8.7/10", name: "NOVA",  role: "Workflow Agent"  },
+  { src: V.c2, score: "9/10",   name: "ORION", role: "Research Agent"  },
+  { src: V.c3, score: "8.2/10", name: "LYRA",  role: "Outreach Agent"  },
 ];
 
 /* ── Custom SVG icons ───────────────────────────────────────── */
@@ -146,6 +148,33 @@ export default function Home() {
     return () => clearTimeout(t);
   }, []);
 
+  // Scroll-zoom applied to every .szv-wrap element
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const t = setTimeout(() => {
+      document.querySelectorAll<HTMLElement>(".szv-wrap").forEach((el) => {
+        gsap.fromTo(el,
+          { scale: 0.28, borderRadius: "40px" },
+          {
+            scale:        1,
+            borderRadius: "0px",
+            ease:         "none",
+            scrollTrigger: {
+              trigger: el,
+              start:   "top 90%",
+              end:     "top -5%",
+              scrub:   1.2,
+            },
+          }
+        );
+      });
+      ScrollTrigger.refresh();
+    }, 500);
+
+    return () => clearTimeout(t);
+  }, []);
+
   return (
     <div
       className={`${anton.variable} ${condiment.variable} overflow-x-hidden`}
@@ -158,12 +187,14 @@ export default function Home() {
       ════════════════════════════════════════ */}
       <section className="relative min-h-screen overflow-hidden rounded-b-[32px]">
 
-        <video
-          src={V.hero}
-          autoPlay loop muted playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        />
+        <div className="szv-wrap absolute inset-0 origin-center overflow-hidden" style={{ willChange: "transform, border-radius" }}>
+          <video
+            src={V.hero}
+            autoPlay loop muted playsInline
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
+        </div>
         <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(1,8,40,0.45)" }} />
 
         <div
@@ -222,13 +253,19 @@ export default function Home() {
       ════════════════════════════════════════ */}
       <section className="relative min-h-screen overflow-hidden">
 
-        <video
-          src={V.about}
-          autoPlay loop muted playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          aria-hidden="true"
-        />
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(1,8,40,0.35)" }} />
+        {/* Scroll-zoom video container */}
+        <div
+          className="szv-wrap absolute inset-0 origin-center overflow-hidden"
+          style={{ willChange: "transform, border-radius" }}
+        >
+          <video
+            src={V.about}
+            autoPlay loop muted playsInline
+            className="w-full h-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 pointer-events-none" style={{ background: "rgba(1,8,40,0.35)" }} />
+        </div>
 
         <div
           className="relative z-10 max-w-[1831px] mx-auto px-4 sm:px-8 lg:px-12 flex flex-col justify-between"
@@ -338,7 +375,7 @@ export default function Home() {
       {/* ════════════════════════════════════════
           SECTION 3 · INTELLIGENT AGENTS GRID
       ════════════════════════════════════════ */}
-      <section style={{ background: BG }} className="py-16 sm:py-20 lg:py-24">
+      <section style={{ background: "#ffffff" }} className="py-16 sm:py-20 lg:py-24">
         <div className="max-w-[1831px] mx-auto px-4 sm:px-8 lg:px-12">
 
           {/* Header row */}
@@ -348,7 +385,7 @@ export default function Home() {
               <div style={{ overflow: "hidden" }}>
                 <motion.div
                   className="uppercase leading-none"
-                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, cursor: "default" }}
+                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: "#111111", cursor: "default" }}
                   initial={{ y: "105%", skewY: 4, opacity: 0 }}
                   whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
                   whileHover={{ x: 12, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
@@ -372,7 +409,7 @@ export default function Home() {
                 <div style={{ overflow: "hidden", display: "inline-block" }}>
                   <motion.span
                     className="uppercase"
-                    style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, lineHeight: 1, display: "inline-block", cursor: "default" }}
+                    style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: "#111111", lineHeight: 1, display: "inline-block", cursor: "default" }}
                     initial={{ y: "105%", skewY: 4, opacity: 0 }}
                     whileInView={{ y: "0%", skewY: 0, opacity: 1 }}
                     whileHover={{ x: 10, color: NEON, transition: { type: "spring", stiffness: 300, damping: 18 } }}
@@ -397,14 +434,14 @@ export default function Home() {
               <div className="flex items-baseline gap-3">
                 <motion.span
                   className="uppercase"
-                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: CREAM, display: "inline-block" }}
+                  style={{ fontFamily: AF, fontSize: "clamp(32px,5.5vw,60px)", color: "#111111", display: "inline-block" }}
                   whileHover={{ color: NEON, scale: 1.04, transition: { type: "spring", stiffness: 300, damping: 16 } }}
                 >
                   DEPLOY
                 </motion.span>
                 <div
                   className="flex flex-col uppercase"
-                  style={{ fontFamily: AF, fontSize: "clamp(20px,3vw,36px)", color: CREAM, lineHeight: 1.05 }}
+                  style={{ fontFamily: AF, fontSize: "clamp(20px,3vw,36px)", color: "#111111", lineHeight: 1.05 }}
                 >
                   <motion.span whileHover={{ color: NEON, x: 4, transition: { type: "spring", stiffness: 300, damping: 16 } }}>YOUR</motion.span>
                   <motion.span whileHover={{ color: NEON, x: 4, transition: { type: "spring", stiffness: 300, damping: 16 } }}>AGENT</motion.span>
@@ -423,15 +460,27 @@ export default function Home() {
             {CARDS.map((card, i) => (
               <div
                 key={i}
-                className="liquid-glass rounded-[32px] hover:bg-white/10 transition-colors duration-200"
-                style={{ padding: 18 }}
+                className="rounded-[32px] hover:scale-[1.02] transition-transform duration-300"
+                style={{ padding: 18, background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)" }}
               >
                 <div className="relative rounded-[24px] overflow-hidden" style={{ paddingBottom: "100%" }}>
-                  <video
-                    src={card.src}
-                    autoPlay loop muted playsInline
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
+                  <div className="szv-wrap absolute inset-0 origin-center overflow-hidden" style={{ willChange: "transform, border-radius" }}>
+                    <video
+                      src={card.src}
+                      autoPlay loop muted playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Bot name — top left */}
+                  <div className="absolute left-3 top-3 liquid-glass rounded-[14px] px-4 py-2">
+                    <div style={{ fontSize: 15, color: CREAM, fontFamily: AF, letterSpacing: "0.06em" }}>
+                      {card.name}
+                    </div>
+                    <div style={{ fontSize: 10, color: "rgba(239,244,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 1 }}>
+                      {card.role}
+                    </div>
+                  </div>
+
                   <div className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4">
                     <div>
                       <div
@@ -469,12 +518,14 @@ export default function Home() {
       ════════════════════════════════════════ */}
       <section className="relative overflow-hidden">
 
-        <video
-          src={V.cta}
-          autoPlay loop muted playsInline
-          className="w-full h-auto block"
-          aria-hidden="true"
-        />
+        <div className="szv-wrap w-full origin-center overflow-hidden" style={{ willChange: "transform, border-radius" }}>
+          <video
+            src={V.cta}
+            autoPlay loop muted playsInline
+            className="w-full h-auto block"
+            aria-hidden="true"
+          />
+        </div>
 
         <div className="absolute inset-0 flex items-center">
           <div className="w-full max-w-[1831px] mx-auto px-4 sm:px-8 lg:px-12 flex justify-end">

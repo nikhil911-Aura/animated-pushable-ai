@@ -27,7 +27,10 @@
       "Bash(curl -s \"https://digital.tattooprojects.com/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
       "Bash(curl -s \"https://cdn.prod.website-files.com/65b22c828aafb9c100483aba/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
       "Bash(curl -s https://digital.tattooprojects.com/)",
-      "Bash(node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => /git|github|hub/i.test\\(k\\)\\); console.log\\(keys\\);\")"
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const keys = Object.keys\\(l\\).filter\\(k => /git|github|hub/i.test\\(k\\)\\); console.log\\(keys\\);\")",
+      "Bash(sed -i 's/bg-\\\\[#f3f0eb\\\\]/bg-[#010828\\\\/80]/g' components/TrustSection.tsx components/PricingSection.tsx components/Footer.tsx)",
+      "Bash(sed -i 's/from-\\\\[#f3f0eb\\\\]/from-[#010828]/g' components/TrustSection.tsx)",
+      "Bash(sed -i 's/bg-\\\\[#010828\\\\]/bg-[#010828\\\\/80]/g' components/AgentsSection.tsx components/HowItWorksSection.tsx components/DemoSection.tsx components/IndustrySection.tsx components/IntegrationsSection.tsx components/WhyTrustSection.tsx components/FinalCTASection.tsx components/FAQSection.tsx)"
     ]
   }
 }
