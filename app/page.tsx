@@ -2,7 +2,7 @@
 
 import { Anton, Condiment } from "next/font/google";
 import { ChevronRight, Zap, Search, Mail } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useCallback, useState } from "react";
 import Navbar              from "@/components/Navbar";
 import TrustSection        from "@/components/TrustSection";
@@ -141,17 +141,29 @@ function BotCard({
   index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt]       = useState({ rx: 0, ry: 0, gx: 50, gy: 50 });
+  const glowRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
   const [flipped, setFlipped] = useState(false);
+
+  /* Motion values — drive transforms without React re-renders on every mousemove */
+  const tiltX  = useMotionValue(0);
+  const tiltY  = useMotionValue(0);
+  const sTiltX = useSpring(tiltX, { stiffness: 280, damping: 24, mass: 0.5 });
+  const sTiltY = useSpring(tiltY, { stiffness: 280, damping: 24, mass: 0.5 });
+  const vidX   = useTransform(sTiltY, v => -v * 1.2);
+  const vidY   = useTransform(sTiltX, v =>  v * 1.2);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || flipped) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
-    setTilt({ rx: (0.5 - y) * 18, ry: (x - 0.5) * 18, gx: x * 100, gy: y * 100 });
-  }, [flipped]);
+    tiltX.set((0.5 - y) * 18);
+    tiltY.set((x - 0.5) * 18);
+    if (glowRef.current) {
+      glowRef.current.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(232,0,29,0.28) 0%, transparent 55%)`;
+    }
+  }, [flipped, tiltX, tiltY]);
 
   const entrances = [
     { x: -60, y: 30, rotate: -6 },
@@ -168,33 +180,37 @@ function BotCard({
       transition={{ delay: index * 0.16, duration: 1, ease: [0.16, 1, 0.3, 1] }}
       style={{ perspective: "900px" }}
     >
+      {/* Flip layer — only animates on enter/leave, never on mousemove */}
       <motion.div
-        ref={cardRef}
-        className="rounded-[32px] cursor-pointer"
-        style={{
-          padding: 18,
-          background: "rgba(0,0,0,0.04)",
-          border: "1px solid rgba(0,0,0,0.08)",
-          transformStyle: "preserve-3d",
-        }}
-        animate={{
-          rotateX: flipped ? 0 : tilt.rx,
-          rotateY: flipped ? 180 : tilt.ry,
-          scale: !flipped && hovered ? 1.03 : 1,
-          boxShadow: !flipped && hovered
-            ? "0 32px 64px rgba(0,0,0,0.18), 0 0 40px rgba(232,0,29,0.14)"
-            : "0 2px 12px rgba(0,0,0,0.06)",
-        }}
-        transition={
-          flipped
-            ? { rotateY: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }, rotateX: { duration: 0.3 }, scale: { duration: 0.3 } }
-            : { type: "spring", stiffness: 280, damping: 24, mass: 0.5 }
-        }
-        onClick={() => { setFlipped(f => !f); setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 }); }}
-        onMouseMove={handleMouseMove}
-        onMouseEnter={() => !flipped && setHovered(true)}
-        onMouseLeave={() => { setHovered(false); setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 }); }}
+        animate={{ rotateY: flipped ? 180 : 0, scale: hovered && !flipped ? 1.03 : 1 }}
+        transition={{ rotateY: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }, scale: { type: "spring", stiffness: 300, damping: 22 } }}
+        style={{ transformStyle: "preserve-3d" }}
       >
+        {/* Tilt layer — motion values, zero re-renders on mousemove */}
+        <motion.div
+          ref={cardRef}
+          className="rounded-[32px] cursor-pointer"
+          style={{
+            padding: 18,
+            background: "rgba(0,0,0,0.04)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            transformStyle: "preserve-3d",
+            rotateX: sTiltX,
+            rotateY: sTiltY,
+            boxShadow: hovered && !flipped
+              ? "0 32px 64px rgba(0,0,0,0.18), 0 0 40px rgba(232,0,29,0.14)"
+              : "0 2px 12px rgba(0,0,0,0.06)",
+          }}
+          onMouseMove={handleMouseMove}
+          onMouseEnter={() => { setFlipped(true); setHovered(true); tiltX.set(0); tiltY.set(0); }}
+          onMouseLeave={() => {
+            setFlipped(false);
+            setHovered(false);
+            tiltX.set(0);
+            tiltY.set(0);
+            if (glowRef.current) glowRef.current.style.background = "transparent";
+          }}
+        >
         {/* Aspect-ratio container */}
         <div style={{ position: "relative", paddingBottom: "100%", transformStyle: "preserve-3d" }}>
 
@@ -205,26 +221,20 @@ function BotCard({
           >
             <motion.div
               className="absolute inset-[-4%]"
-              animate={{ x: -tilt.ry * 1.2, y: tilt.rx * 1.2, scale: hovered ? 1.06 : 1 }}
-              transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.4 }}
+              style={{ x: vidX, y: vidY }}
             >
               <video src={card.src} autoPlay loop muted playsInline className="w-full h-full object-cover" />
             </motion.div>
 
-            {/* Cursor glow */}
-            <motion.div
+            {/* Cursor glow — direct DOM mutation, zero React overhead */}
+            <div
+              ref={glowRef}
               className="absolute inset-0 pointer-events-none"
-              style={{ borderRadius: "24px" }}
-              animate={{
-                opacity: hovered ? 1 : 0,
-                background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, rgba(232,0,29,0.28) 0%, transparent 55%)`,
-              }}
-              transition={{ duration: 0.08 }}
+              style={{ borderRadius: "24px", opacity: hovered ? 1 : 0, transition: "opacity 0.15s" }}
             />
-            <motion.div
+            <div
               className="absolute inset-0 pointer-events-none rounded-[24px]"
-              animate={{ boxShadow: hovered ? "inset 0 0 0 1.5px rgba(232,0,29,0.4)" : "inset 0 0 0 0px rgba(232,0,29,0)" }}
-              transition={{ duration: 0.2 }}
+              style={{ boxShadow: hovered ? "inset 0 0 0 1.5px rgba(232,0,29,0.4)" : "inset 0 0 0 0px rgba(232,0,29,0)", transition: "box-shadow 0.2s" }}
             />
 
             {/* Name badge */}
@@ -336,6 +346,7 @@ function BotCard({
           </div>
 
         </div>
+        </motion.div>
       </motion.div>
     </motion.div>
   );
@@ -551,11 +562,17 @@ export default function Home() {
       ════════════════════════════════════════ */}
       <div style={{ background: "#010828" }}>
         <TrustSection />
-        <AgentsSection />
+        {/* <AgentsSection /> */}
         <HowItWorksSection />
         <DemoSection />
         <IndustrySection />
-        <SignatureTile />
+      </div>
+
+      {/* SignatureTile lives in its own div so GSAP pin-spacer
+          never conflicts with React reconciling the sections list */}
+      <SignatureTile />
+
+      <div style={{ background: "#010828" }}>
         <PricingSection />
         <IntegrationsSection />
         <WhyTrustSection />
