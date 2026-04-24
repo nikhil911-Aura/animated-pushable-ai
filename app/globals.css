@@ -238,6 +238,15 @@ body::before {
   background-size: 32px 32px;
 }
 
+/* ─── Cinematic hero fade-rise ───────────────────────── */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.animate-fade-rise         { animation: fade-rise 0.8s ease-out 0s   both; }
+.animate-fade-rise-delay   { animation: fade-rise 0.8s ease-out 0.2s both; }
+.animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+
 /* ─── Depth parallax layers ─────────────────────────── */
 .pld-0  { translate: var(--pld0-x,0px) var(--pld0-y,0px); will-change: translate; }
 .pld-1  { translate: var(--pld1-x,0px) var(--pld1-y,0px); will-change: translate; }
