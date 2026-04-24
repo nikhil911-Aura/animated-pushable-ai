@@ -581,29 +581,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Social icons — bottom left */}
-        <div className="absolute z-20" style={{ left: "8%", bottom: "clamp(8%,14%,20%)" }}>
-          <div
-            className="liquid-glass flex flex-col overflow-hidden"
-            style={{ borderRadius: "clamp(8px,1.25vw,20px)" }}
-          >
-            {SOCIAL_ICONS.map((icon, i) => (
-              <button
-                key={i}
-                className={`flex items-center justify-center hover:bg-white/10 transition-colors duration-200${
-                  i < SOCIAL_ICONS.length - 1 ? " border-b border-white/10" : ""
-                }`}
-                style={{
-                  color:  CREAM,
-                  width:  "clamp(44px,14vw,268px)",
-                  height: "clamp(36px,10vw,80px)",
-                }}
-              >
-                {icon}
-              </button>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* ════════════════════════════════════════
