@@ -136,6 +136,149 @@ function ScrambleLine({
   );
 }
 
+/* ── 3D Tilt card for Section 3 bot videos ──────────────────── */
+function BotCard({
+  card,
+  index,
+}: {
+  card: { src: string; score: string; name: string; role: string };
+  index: number;
+}) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, gx: 50, gy: 50 });
+  const [hovered, setHovered] = useState(false);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    setTilt({ rx: (0.5 - y) * 18, ry: (x - 0.5) * 18, gx: x * 100, gy: y * 100 });
+  }, []);
+
+  const entrances = [
+    { x: -60, y: 30, rotate: -6 },
+    { x: 0,   y: 80, rotate: 0  },
+    { x: 60,  y: 30, rotate: 6  },
+  ];
+  const ent = entrances[index] ?? { x: 0, y: 50, rotate: 0 };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: ent.x, y: ent.y, rotate: ent.rotate }}
+      whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ delay: index * 0.16, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      style={{ perspective: "900px" }}
+    >
+      <motion.div
+        ref={cardRef}
+        className="rounded-[32px] cursor-pointer"
+        style={{
+          padding: 18,
+          background: "rgba(0,0,0,0.04)",
+          border: "1px solid rgba(0,0,0,0.08)",
+          transformStyle: "preserve-3d",
+        }}
+        animate={{
+          rotateX: tilt.rx,
+          rotateY: tilt.ry,
+          scale: hovered ? 1.03 : 1,
+          boxShadow: hovered
+            ? "0 32px 64px rgba(0,0,0,0.18), 0 0 40px rgba(232,0,29,0.14)"
+            : "0 2px 12px rgba(0,0,0,0.06)",
+        }}
+        transition={{ type: "spring", stiffness: 280, damping: 24, mass: 0.5 }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => {
+          setHovered(false);
+          setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 });
+        }}
+      >
+        <div className="relative rounded-[24px] overflow-hidden" style={{ paddingBottom: "100%" }}>
+          {/* Video with inner parallax counter-movement */}
+          <motion.div
+            className="absolute inset-[-4%]"
+            animate={{
+              x: -tilt.ry * 1.2,
+              y: tilt.rx * 1.2,
+              scale: hovered ? 1.06 : 1,
+            }}
+            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.4 }}
+          >
+            <video
+              src={card.src}
+              autoPlay loop muted playsInline
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+
+          {/* Cursor-tracking glow */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            style={{ borderRadius: "24px" }}
+            animate={{
+              opacity: hovered ? 1 : 0,
+              background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, rgba(232,0,29,0.28) 0%, transparent 55%)`,
+            }}
+            transition={{ duration: 0.08 }}
+          />
+
+          {/* Hover border ring */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none rounded-[24px]"
+            animate={{
+              boxShadow: hovered
+                ? "inset 0 0 0 1.5px rgba(232,0,29,0.4)"
+                : "inset 0 0 0 0px rgba(232,0,29,0)",
+            }}
+            transition={{ duration: 0.2 }}
+          />
+
+          {/* Bot name badge — top left */}
+          <div
+            className="absolute left-3 top-3 liquid-glass rounded-[14px] px-4 py-2"
+            style={{ zIndex: 10 }}
+          >
+            <div style={{ fontSize: 15, color: CREAM, fontFamily: "var(--font-orbis-anton)", letterSpacing: "0.06em" }}>
+              {card.name}
+            </div>
+            <div style={{ fontSize: 10, color: "rgba(239,244,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 1 }}>
+              {card.role}
+            </div>
+          </div>
+
+          {/* Bottom info bar */}
+          <div
+            className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4"
+            style={{ zIndex: 10 }}
+          >
+            <div>
+              <div className="uppercase" style={{ fontSize: 11, color: "rgba(239,244,255,0.7)", fontFamily: "monospace", letterSpacing: "0.04em" }}>
+                RARITY SCORE:
+              </div>
+              <div style={{ fontSize: 16, color: CREAM, fontFamily: "var(--font-orbis-anton)", marginTop: 2 }}>
+                {card.score}
+              </div>
+            </div>
+            <button
+              className="rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 flex-shrink-0"
+              style={{
+                width: 48, height: 48,
+                background: "linear-gradient(135deg, #b724ff 0%, #7c3aed 100%)",
+                boxShadow: "0 8px 24px rgba(167,139,250,0.5)",
+              }}
+            >
+              <ChevronRight size={20} color="white" strokeWidth={2.5} />
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 /* ══════════════════════════════════════════════════════════════ */
 export default function Home() {
   const AF = "var(--font-orbis-anton)";
@@ -455,58 +598,10 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Card grid */}
+          {/* Card grid — 3D tilt + inner parallax (no scroll-zoom on these) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CARDS.map((card, i) => (
-              <div
-                key={i}
-                className="rounded-[32px] hover:scale-[1.02] transition-transform duration-300"
-                style={{ padding: 18, background: "rgba(0,0,0,0.04)", border: "1px solid rgba(0,0,0,0.08)" }}
-              >
-                <div className="relative rounded-[24px] overflow-hidden" style={{ paddingBottom: "100%" }}>
-                  <div className="szv-wrap absolute inset-0 origin-center overflow-hidden" style={{ willChange: "transform, border-radius" }}>
-                    <video
-                      src={card.src}
-                      autoPlay loop muted playsInline
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Bot name — top left */}
-                  <div className="absolute left-3 top-3 liquid-glass rounded-[14px] px-4 py-2">
-                    <div style={{ fontSize: 15, color: CREAM, fontFamily: AF, letterSpacing: "0.06em" }}>
-                      {card.name}
-                    </div>
-                    <div style={{ fontSize: 10, color: "rgba(239,244,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 1 }}>
-                      {card.role}
-                    </div>
-                  </div>
-
-                  <div className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4">
-                    <div>
-                      <div
-                        className="uppercase"
-                        style={{ fontSize: 11, color: "rgba(239,244,255,0.7)", fontFamily: "monospace", letterSpacing: "0.04em" }}
-                      >
-                        RARITY SCORE:
-                      </div>
-                      <div style={{ fontSize: 16, color: CREAM, fontFamily: AF, marginTop: 2 }}>
-                        {card.score}
-                      </div>
-                    </div>
-                    <button
-                      className="rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 flex-shrink-0"
-                      style={{
-                        width:      48,
-                        height:     48,
-                        background: "linear-gradient(135deg, #b724ff 0%, #7c3aed 100%)",
-                        boxShadow:  "0 8px 24px rgba(167,139,250,0.5)",
-                      }}
-                    >
-                      <ChevronRight size={20} color="white" strokeWidth={2.5} />
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <BotCard key={i} card={card} index={i} />
             ))}
           </div>
         </div>
