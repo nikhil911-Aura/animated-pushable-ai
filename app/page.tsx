@@ -1,7 +1,7 @@
 "use client";
 
 import { Anton, Condiment } from "next/font/google";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Zap, Search, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useCallback, useState } from "react";
 import Navbar              from "@/components/Navbar";
@@ -39,6 +39,45 @@ const CARDS = [
   { src: V.c1, score: "8.7/10", name: "NOVA",  role: "Workflow Agent" },
   { src: V.c2, score: "9/10",   name: "ORION", role: "Research Agent" },
   { src: V.c3, score: "8.2/10", name: "LYRA",  role: "Outreach Agent" },
+];
+
+const BOT_DETAILS = [
+  {
+    badge: "Workflow Automation",
+    icon: <Zap size={11} />,
+    description: "NOVA handles your workflow automation end-to-end — routing tasks, syncing tools, and managing deadlines so operations run on autopilot.",
+    stat: "2.4k+", statLabel: "Tasks/mo",
+    features: ["Automate multi-step workflows", "Route tasks between tools", "Track deadlines in real-time"],
+    live: [
+      { label: "CRM Sync",        status: "Running", accent: false },
+      { label: "Report Pipeline", status: "Done",    accent: true  },
+      { label: "Data Export",     status: "Queued",  accent: false },
+    ],
+  },
+  {
+    badge: "Research Intelligence",
+    icon: <Search size={11} />,
+    description: "ORION dives into data and documents — surfacing insights, summarizing research, and delivering briefings on demand.",
+    stat: "500+", statLabel: "Reports/mo",
+    features: ["Deep market research", "Document summarization", "Competitive analysis"],
+    live: [
+      { label: "Market Analysis",  status: "Running", accent: false },
+      { label: "Competitor Brief", status: "Sent",    accent: true  },
+      { label: "Industry Scan",    status: "Drafting",accent: false },
+    ],
+  },
+  {
+    badge: "Outreach & Comms",
+    icon: <Mail size={11} />,
+    description: "LYRA manages your outreach pipeline — personalizing messages, scheduling follow-ups, and tracking responses at scale.",
+    stat: "1.2k+", statLabel: "Emails/mo",
+    features: ["Personalize outreach at scale", "Schedule follow-up sequences", "Track open & reply rates"],
+    live: [
+      { label: "Campaign #42",    status: "Sent",    accent: true  },
+      { label: "Follow-up Seq.", status: "Running", accent: false },
+      { label: "Lead Digest",    status: "Drafting",accent: false },
+    ],
+  },
 ];
 
 const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*!?";
@@ -91,25 +130,28 @@ function ScrambleLine({
   );
 }
 
-/* ── 3D Tilt card ───────────────────────────────────────────── */
+/* ── 3D Tilt + Flip card ────────────────────────────────────── */
 function BotCard({
   card,
+  detail,
   index,
 }: {
   card: { src: string; score: string; name: string; role: string };
+  detail: typeof BOT_DETAILS[0];
   index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt]       = useState({ rx: 0, ry: 0, gx: 50, gy: 50 });
   const [hovered, setHovered] = useState(false);
+  const [flipped, setFlipped] = useState(false);
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || flipped) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width;
     const y = (e.clientY - rect.top) / rect.height;
     setTilt({ rx: (0.5 - y) * 18, ry: (x - 0.5) * 18, gx: x * 100, gy: y * 100 });
-  }, []);
+  }, [flipped]);
 
   const entrances = [
     { x: -60, y: 30, rotate: -6 },
@@ -136,77 +178,163 @@ function BotCard({
           transformStyle: "preserve-3d",
         }}
         animate={{
-          rotateX: tilt.rx,
-          rotateY: tilt.ry,
-          scale: hovered ? 1.03 : 1,
-          boxShadow: hovered
+          rotateX: flipped ? 0 : tilt.rx,
+          rotateY: flipped ? 180 : tilt.ry,
+          scale: !flipped && hovered ? 1.03 : 1,
+          boxShadow: !flipped && hovered
             ? "0 32px 64px rgba(0,0,0,0.18), 0 0 40px rgba(232,0,29,0.14)"
             : "0 2px 12px rgba(0,0,0,0.06)",
         }}
-        transition={{ type: "spring", stiffness: 280, damping: 24, mass: 0.5 }}
+        transition={
+          flipped
+            ? { rotateY: { duration: 0.7, ease: [0.16, 1, 0.3, 1] }, rotateX: { duration: 0.3 }, scale: { duration: 0.3 } }
+            : { type: "spring", stiffness: 280, damping: 24, mass: 0.5 }
+        }
+        onClick={() => { setFlipped(f => !f); setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 }); }}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setHovered(true)}
+        onMouseEnter={() => !flipped && setHovered(true)}
         onMouseLeave={() => { setHovered(false); setTilt({ rx: 0, ry: 0, gx: 50, gy: 50 }); }}
       >
-        <div className="relative rounded-[24px] overflow-hidden" style={{ paddingBottom: "100%" }}>
+        {/* Aspect-ratio container */}
+        <div style={{ position: "relative", paddingBottom: "100%", transformStyle: "preserve-3d" }}>
 
-          <motion.div
-            className="absolute inset-[-4%]"
-            animate={{ x: -tilt.ry * 1.2, y: tilt.rx * 1.2, scale: hovered ? 1.06 : 1 }}
-            transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.4 }}
+          {/* ══ FRONT FACE ══ */}
+          <div
+            className="absolute inset-0 rounded-[24px] overflow-hidden"
+            style={{ backfaceVisibility: "hidden", WebkitBackfaceVisibility: "hidden" }}
           >
-            <video src={card.src} autoPlay loop muted playsInline className="w-full h-full object-cover" />
-          </motion.div>
-
-          <motion.div
-            className="absolute inset-0 pointer-events-none"
-            style={{ borderRadius: "24px" }}
-            animate={{
-              opacity: hovered ? 1 : 0,
-              background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, rgba(232,0,29,0.28) 0%, transparent 55%)`,
-            }}
-            transition={{ duration: 0.08 }}
-          />
-
-          <motion.div
-            className="absolute inset-0 pointer-events-none rounded-[24px]"
-            animate={{
-              boxShadow: hovered
-                ? "inset 0 0 0 1.5px rgba(232,0,29,0.4)"
-                : "inset 0 0 0 0px rgba(232,0,29,0)",
-            }}
-            transition={{ duration: 0.2 }}
-          />
-
-          <div className="absolute left-3 top-3 liquid-glass rounded-[14px] px-4 py-2" style={{ zIndex: 10 }}>
-            <div style={{ fontSize: 15, color: CREAM, fontFamily: "var(--font-orbis-anton)", letterSpacing: "0.06em" }}>
-              {card.name}
-            </div>
-            <div style={{ fontSize: 10, color: "rgba(239,244,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 1 }}>
-              {card.role}
-            </div>
-          </div>
-
-          <div className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4" style={{ zIndex: 10 }}>
-            <div>
-              <div className="uppercase" style={{ fontSize: 11, color: "rgba(239,244,255,0.7)", fontFamily: "monospace", letterSpacing: "0.04em" }}>
-                RARITY SCORE:
-              </div>
-              <div style={{ fontSize: 16, color: CREAM, fontFamily: "var(--font-orbis-anton)", marginTop: 2 }}>
-                {card.score}
-              </div>
-            </div>
-            <button
-              className="rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200 flex-shrink-0"
-              style={{
-                width: 48, height: 48,
-                background: "linear-gradient(135deg, #b724ff 0%, #7c3aed 100%)",
-                boxShadow: "0 8px 24px rgba(167,139,250,0.5)",
-              }}
+            <motion.div
+              className="absolute inset-[-4%]"
+              animate={{ x: -tilt.ry * 1.2, y: tilt.rx * 1.2, scale: hovered ? 1.06 : 1 }}
+              transition={{ type: "spring", stiffness: 220, damping: 28, mass: 0.4 }}
             >
-              <ChevronRight size={20} color="white" strokeWidth={2.5} />
-            </button>
+              <video src={card.src} autoPlay loop muted playsInline className="w-full h-full object-cover" />
+            </motion.div>
+
+            {/* Cursor glow */}
+            <motion.div
+              className="absolute inset-0 pointer-events-none"
+              style={{ borderRadius: "24px" }}
+              animate={{
+                opacity: hovered ? 1 : 0,
+                background: `radial-gradient(circle at ${tilt.gx}% ${tilt.gy}%, rgba(232,0,29,0.28) 0%, transparent 55%)`,
+              }}
+              transition={{ duration: 0.08 }}
+            />
+            <motion.div
+              className="absolute inset-0 pointer-events-none rounded-[24px]"
+              animate={{ boxShadow: hovered ? "inset 0 0 0 1.5px rgba(232,0,29,0.4)" : "inset 0 0 0 0px rgba(232,0,29,0)" }}
+              transition={{ duration: 0.2 }}
+            />
+
+            {/* Name badge */}
+            <div className="absolute left-3 top-3 liquid-glass rounded-[14px] px-4 py-2" style={{ zIndex: 10 }}>
+              <div style={{ fontSize: 15, color: CREAM, fontFamily: "var(--font-orbis-anton)", letterSpacing: "0.06em" }}>{card.name}</div>
+              <div style={{ fontSize: 10, color: "rgba(239,244,255,0.6)", fontFamily: "monospace", letterSpacing: "0.08em", textTransform: "uppercase", marginTop: 1 }}>{card.role}</div>
+            </div>
+
+            {/* Tap hint */}
+            <div className="absolute right-4 top-4 pointer-events-none" style={{ zIndex: 10 }}>
+              <div style={{ fontSize: 8, color: "rgba(239,244,255,0.45)", fontFamily: "monospace", textTransform: "uppercase", letterSpacing: "0.1em", textAlign: "center", lineHeight: 1.4 }}>
+                tap<br/>reveal
+              </div>
+            </div>
+
+            {/* Score bar */}
+            <div className="absolute left-3 right-3 bottom-3 liquid-glass rounded-[20px] flex items-center justify-between px-5 py-4" style={{ zIndex: 10 }}>
+              <div>
+                <div className="uppercase" style={{ fontSize: 11, color: "rgba(239,244,255,0.7)", fontFamily: "monospace", letterSpacing: "0.04em" }}>RARITY SCORE:</div>
+                <div style={{ fontSize: 16, color: CREAM, fontFamily: "var(--font-orbis-anton)", marginTop: 2 }}>{card.score}</div>
+              </div>
+              <button
+                className="rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ width: 48, height: 48, background: "linear-gradient(135deg, #b724ff 0%, #7c3aed 100%)", boxShadow: "0 8px 24px rgba(167,139,250,0.5)" }}
+              >
+                <ChevronRight size={20} color="white" strokeWidth={2.5} />
+              </button>
+            </div>
           </div>
+
+          {/* ══ BACK FACE ══ */}
+          <div
+            className="absolute inset-0 rounded-[24px] overflow-hidden"
+            style={{
+              backfaceVisibility: "hidden",
+              WebkitBackfaceVisibility: "hidden",
+              transform: "rotateY(180deg)",
+              background: "#ffffff",
+              padding: "20px",
+            }}
+          >
+            <div className="h-full flex flex-col gap-2.5">
+
+              {/* Badge */}
+              <div className="inline-flex items-center gap-1.5 self-start rounded-full px-3 py-1" style={{ background: "rgba(232,0,29,0.07)", border: "1px solid rgba(232,0,29,0.18)" }}>
+                <span style={{ color: "#E8001D" }}>{detail.icon}</span>
+                <span style={{ fontSize: 9, color: "#E8001D", fontFamily: "var(--font-inter)", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>{detail.badge}</span>
+              </div>
+
+              {/* Meet name */}
+              <div style={{ lineHeight: 1 }}>
+                <div style={{ fontFamily: "var(--font-inter)", fontSize: 11, color: "#999", marginBottom: 2 }}>Meet</div>
+                <div style={{ fontFamily: "var(--font-orbis-anton)", fontSize: "clamp(26px,3.5vw,36px)", color: "#E8001D", lineHeight: 1, letterSpacing: "0.01em" }}>{card.name}</div>
+              </div>
+
+              {/* Description */}
+              <p style={{ fontFamily: "var(--font-inter)", fontSize: 10, color: "#555", lineHeight: 1.55 }}>{detail.description}</p>
+
+              {/* Stat */}
+              <div className="inline-flex items-baseline gap-1.5 self-start rounded-full px-3 py-1" style={{ background: "rgba(232,0,29,0.06)", border: "1px solid rgba(232,0,29,0.13)" }}>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 13, color: "#E8001D", fontWeight: 700 }}>{detail.stat}</span>
+                <span style={{ fontFamily: "var(--font-inter)", fontSize: 9, color: "#E8001D" }}>{detail.statLabel}</span>
+              </div>
+
+              {/* Features */}
+              <ul className="flex flex-col gap-1">
+                {detail.features.map((f, i) => (
+                  <li key={i} className="flex items-center gap-2">
+                    <span style={{ width: 5, height: 5, borderRadius: "50%", background: "#E8001D", flexShrink: 0, display: "inline-block" }} />
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 10, color: "#333" }}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Live status mini-card */}
+              <div className="flex-1 rounded-[12px] overflow-hidden" style={{ background: "#f7f7f7", border: "1px solid rgba(0,0,0,0.06)", padding: "10px 12px", minHeight: 0 }}>
+                <div className="flex items-center justify-between mb-2">
+                  <div>
+                    <div style={{ fontFamily: "var(--font-inter)", fontSize: 10, fontWeight: 600, color: "#111" }}>{card.name}</div>
+                    <div style={{ fontFamily: "var(--font-inter)", fontSize: 9, color: "#999" }}>{card.role}</div>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#22c55e", display: "inline-block" }} />
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: 9, color: "#22c55e", fontStyle: "italic" }}>live</span>
+                  </div>
+                </div>
+                {detail.live.map((item, i) => (
+                  <div key={i} className="mb-1.5">
+                    <div className="flex items-center justify-between">
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 9, color: "#444" }}>{item.label}</span>
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: 9, fontWeight: item.accent ? 600 : 400, color: item.accent ? "#E8001D" : "#888" }}>{item.status}</span>
+                    </div>
+                    <div style={{ height: 2, background: "#e5e5e5", borderRadius: 1, marginTop: 3 }}>
+                      <div style={{ height: "100%", width: item.accent ? "88%" : "52%", background: "#E8001D", borderRadius: 1 }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Deploy button */}
+              <button
+                className="rounded-full w-full flex items-center justify-center gap-1.5"
+                style={{ background: "#E8001D", color: "#fff", border: "none", padding: "10px", fontFamily: "var(--font-inter)", fontSize: 11, fontWeight: 600, cursor: "pointer", flexShrink: 0 }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                Deploy {card.name} <ChevronRight size={13} />
+              </button>
+            </div>
+          </div>
+
         </div>
       </motion.div>
     </motion.div>
@@ -411,7 +539,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {CARDS.map((card, i) => (
-              <BotCard key={i} card={card} index={i} />
+              <BotCard key={i} card={card} detail={BOT_DETAILS[i]} index={i} />
             ))}
           </div>
         </div>
