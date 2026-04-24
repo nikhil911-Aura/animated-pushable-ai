@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Fraunces, Rubik, Instrument_Serif, Inter } from "next/font/google";
 import "./globals.css";
 import AnimationShell from "@/components/animation/AnimationShell";
+import PageLoader     from "@/components/PageLoader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,6 +74,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
       <body className="bg-[#f3f0eb] text-[#111111] min-h-screen overflow-x-hidden">
+        <PageLoader />
         <AnimationShell>{children}</AnimationShell>
       </body>
     </html>

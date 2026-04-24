@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -13,7 +13,7 @@ const plans = [
     price: "$49",
     credits: "500 credits / mo",
     desc: "For solo operators testing one workflow.",
-    color: "#f97316",
+    color: "#E8001D",
     features: ["1 AI Agent", "500 task credits/mo", "3 integrations", "Email support", "Basic dashboard"],
     cta: "Start for Free",
     highlight: false,
@@ -23,7 +23,7 @@ const plans = [
     price: "$149",
     credits: "2,000 credits / mo",
     desc: "The sweet spot for growing teams.",
-    color: "#f97316",
+    color: "#E8001D",
     features: ["3 AI Agents", "2,000 task credits/mo", "All integrations", "Priority support", "Advanced dashboard", "Custom workflows"],
     cta: "Get Started",
     highlight: true,
@@ -33,7 +33,7 @@ const plans = [
     price: "$399",
     credits: "Unlimited",
     desc: "For businesses running on automation.",
-    color: "#fb923c",
+    color: "#FF2D42",
     features: ["All 4 AI Agents", "Unlimited credits", "All integrations", "Dedicated support", "White-label option", "API access"],
     cta: "Contact Sales",
     highlight: false,
@@ -51,7 +51,7 @@ export default function PricingSection() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const pulse = gsap.to(featured, {
-      boxShadow: "0 0 0 2px rgba(249,115,22,0.45), 0 8px 32px 4px rgba(249,115,22,0.12)",
+      boxShadow: "0 0 0 2px rgba(232,0,29,0.45), 0 8px 32px 4px rgba(232,0,29,0.12)",
       duration: 1.4, repeat: -1, yoyo: true, ease: "power1.inOut", paused: true,
     });
 
@@ -73,7 +73,7 @@ export default function PricingSection() {
     <section id="pricing" className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 bg-orange-400/6 rounded-full blur-[130px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 bg-brand-400/6 rounded-full blur-[130px]" />
       </div>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -94,7 +94,7 @@ export default function PricingSection() {
             <span className="gradient-text">You Pay for Output.</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
-            Think of credits like task tokens — one credit equals one completed action. An invoice sent, a lead followed up, a report filed. You only pay for work that actually gets done.
+            Think of credits like task tokens â€” one credit equals one completed action. An invoice sent, a lead followed up, a report filed. You only pay for work that actually gets done.
           </p>
         </motion.div>
 
@@ -108,13 +108,13 @@ export default function PricingSection() {
         >
           <div className="grid grid-cols-3 gap-px bg-black/[0.07] rounded-2xl overflow-hidden border border-black/[0.07]">
             {[
-              { icon: Zap,          label: "1 Credit = 1 Task",     desc: "Each completed action uses exactly one credit — nothing more" },
+              { icon: Zap,          label: "1 Credit = 1 Task",     desc: "Each completed action uses exactly one credit â€” nothing more" },
               { icon: CreditCard,   label: "Only Pay for Results",   desc: "Credits deduct only when your AI finishes a real task" },
-              { icon: CheckCircle2, label: "Credits Never Expire",   desc: "Unused credits roll over every month — nothing is wasted" },
+              { icon: CheckCircle2, label: "Credits Never Expire",   desc: "Unused credits roll over every month â€” nothing is wasted" },
             ].map(({ icon: Icon, label, desc }) => (
               <div key={label} className="bg-white px-4 py-5 text-center">
-                <div className="w-7 h-7 rounded-lg bg-orange-500/10 flex items-center justify-center mx-auto mb-2">
-                  <Icon className="w-3.5 h-3.5 text-orange-500" />
+                <div className="w-7 h-7 rounded-lg bg-brand-500/10 flex items-center justify-center mx-auto mb-2">
+                  <Icon className="w-3.5 h-3.5 text-brand-500" />
                 </div>
                 <div className="text-[12px] font-semibold text-[#111111] mb-1">{label}</div>
                 <div className="text-[11px] text-gray-400 leading-snug">{desc}</div>
@@ -131,13 +131,13 @@ export default function PricingSection() {
               ref={plan.highlight ? featuredRef : undefined}
               className={`relative rounded-2xl border p-6 flex flex-col transition-all duration-300 ${
                 plan.highlight
-                  ? "border-orange-300 bg-white shadow-lg"
-                  : "border-black/[0.07] bg-white shadow-sm hover:border-orange-200 hover:shadow-md"
+                  ? "border-brand-300 bg-white shadow-lg"
+                  : "border-black/[0.07] bg-white shadow-sm hover:border-brand-200 hover:shadow-md"
               }`}
             >
               {plan.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                  <div className="px-3 py-1 rounded-full bg-linear-to-r from-orange-500 to-amber-500 text-[11px] font-medium text-white shadow-sm shadow-orange-500/20">
+                  <div className="px-3 py-1 rounded-full bg-linear-to-r from-brand-500 to-brand-400 text-[11px] font-medium text-white shadow-sm shadow-brand-500/20">
                     Most Popular
                   </div>
                 </div>
@@ -170,8 +170,8 @@ export default function PricingSection() {
                 href="#"
                 className={`group flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${
                   plan.highlight
-                    ? "bg-orange-500 hover:bg-orange-400 text-white shadow-sm shadow-orange-500/20"
-                    : "border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-orange-300 hover:bg-orange-50"
+                    ? "bg-brand-500 hover:bg-brand-400 text-white shadow-sm shadow-brand-500/20"
+                    : "border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50"
                 }`}
               >
                 {plan.cta}
@@ -188,7 +188,7 @@ export default function PricingSection() {
           transition={{ delay: 0.5 }}
           className="text-center text-gray-400 text-[12px] mt-6"
         >
-          All plans include a 14-day free trial · No credit card required to start
+          All plans include a 14-day free trial Â· No credit card required to start
         </motion.p>
       </div>
     </section>

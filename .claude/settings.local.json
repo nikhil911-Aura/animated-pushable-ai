@@ -20,7 +20,13 @@
       "Bash(/c/Users/Dell/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,codec_name,duration -of default=noprint_wrappers=1 c:/animated-demo-web/public/hero/orb-feed.mp4)",
       "Bash(/c/Users/Dell/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffprobe.exe -v error -select_streams v:0 -show_entries stream=width,height,codec_name,duration -of default=noprint_wrappers=1 c:/animated-demo-web/public/hero/vedio2.mp4)",
       "Bash(/c/Users/Dell/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe -i c:/animated-demo-web/public/hero/vedio2.mp4 -vcodec libx264 -crf 26 -preset medium -vf crop=ih:ih,scale=512:512 -an -movflags +faststart -y c:/animated-demo-web/public/hero/orb-feed.mp4)",
-      "Bash(npx next *)"
+      "Bash(npx next *)",
+      "WebFetch(domain:digital.tattooprojects.com)",
+      "Bash(curl -s \"https://digital.tattooprojects.com/\")",
+      "Read(//tmp/**)",
+      "Bash(curl -s \"https://digital.tattooprojects.com/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
+      "Bash(curl -s \"https://cdn.prod.website-files.com/65b22c828aafb9c100483aba/css/igors-trendy-site-edfdfb.webflow.65b22c828aafb9c100483abe.28a197f04.opt.min.css\")",
+      "Bash(curl -s https://digital.tattooprojects.com/)"
     ]
   }
 }

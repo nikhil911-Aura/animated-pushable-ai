@@ -1,7 +1,8 @@
-"use client";
+﻿"use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const links = [
   { label: "Product",      href: "#agents" },
@@ -36,16 +37,10 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#" className="pld-1 flex items-center gap-2.5 group shrink-0">
-            <div className="relative w-7 h-7">
-              <div className="absolute inset-0 rounded-lg bg-orange-500/20 blur-md group-hover:bg-orange-500/40 transition-all duration-300" />
-              <div className="relative w-7 h-7 rounded-lg bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center">
-                <Zap className="w-3.5 h-3.5 text-white fill-white" />
-              </div>
+          <a href="#" className="pld-1 shrink-0">
+            <div className="bg-[#111111] rounded-xl px-3 py-2">
+              <Image src="/brand/logo.png" alt="Pushable AI" width={120} height={28} className="h-7 w-auto" priority />
             </div>
-            <span className="text-[#111111] font-semibold text-[15px] tracking-tight">
-              Pushable<span className="gradient-text">AI</span>
-            </span>
           </a>
 
           {/* Center pill nav */}
@@ -54,7 +49,7 @@ export default function Navbar() {
               <a
                 key={l.label}
                 href={l.href}
-                className="px-3.5 py-1.5 text-[13px] text-gray-500 hover:text-gray-900 rounded-full hover:bg-orange-50 transition-all duration-200"
+                className="px-3.5 py-1.5 text-[13px] text-gray-500 hover:text-gray-900 rounded-full hover:bg-brand-50 transition-all duration-200"
               >
                 {l.label}
               </a>
@@ -68,11 +63,11 @@ export default function Navbar() {
             </a>
             <a
               href="#"
-              className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-orange-500 hover:bg-orange-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden shadow-sm shadow-orange-500/20"
+              className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden shadow-sm shadow-brand-500/20"
             >
               <span className="relative z-10">Get Started</span>
               <ArrowRight className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-0.5 transition-transform" />
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </a>
           </div>
 
@@ -102,7 +97,7 @@ export default function Navbar() {
                   key={l.label}
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="px-4 py-2.5 text-[14px] text-gray-600 hover:text-gray-900 hover:bg-orange-50 rounded-xl transition-all"
+                  className="px-4 py-2.5 text-[14px] text-gray-600 hover:text-gray-900 hover:bg-brand-50 rounded-xl transition-all"
                 >
                   {l.label}
                 </a>
@@ -111,7 +106,7 @@ export default function Navbar() {
                 <a href="#" className="px-4 py-2.5 text-center text-[14px] text-gray-500 hover:text-gray-900 border border-black/[0.08] rounded-xl transition-all">
                   Sign in
                 </a>
-                <a href="#" className="px-4 py-2.5 text-center text-[14px] font-medium bg-orange-500 hover:bg-orange-400 text-white rounded-xl transition-all">
+                <a href="#" className="px-4 py-2.5 text-center text-[14px] font-medium bg-brand-500 hover:bg-brand-400 text-white rounded-xl transition-all">
                   Get Started
                 </a>
               </div>

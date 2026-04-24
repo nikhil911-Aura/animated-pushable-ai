@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
@@ -12,11 +12,11 @@ const agents = [
     name: "Sara",
     title: "Finance Workflow Agent",
     icon: DollarSign,
-    color: "#f97316",
-    bgFrom: "from-orange-500/8",
-    bgTo: "to-orange-600/0",
-    border: "border-orange-200",
-    description: "Sara handles your financial workflows end-to-end — generating invoices, tracking expenses, and compiling reports — so your numbers stay accurate and your team stays focused on growth.",
+    color: "#E8001D",
+    bgFrom: "from-brand-500/8",
+    bgTo: "to-brand-600/0",
+    border: "border-brand-200",
+    description: "Sara handles your financial workflows end-to-end â€” generating invoices, tracking expenses, and compiling reports â€” so your numbers stay accurate and your team stays focused on growth.",
     tasks: ["Auto-generate & send invoices", "Track expenses in real-time", "Compile monthly P&L reports", "Flag payment anomalies"],
     stat: { label: "Invoices/mo", value: "340+" },
     mockup: [
@@ -29,15 +29,15 @@ const agents = [
     name: "Layla",
     title: "HR Workflow Manager",
     icon: Users,
-    color: "#fb923c",
-    bgFrom: "from-orange-400/8",
-    bgTo: "to-orange-500/0",
-    border: "border-orange-200",
-    description: "Layla takes over your entire hiring and onboarding process — screening candidates, scheduling interviews, and sending welcome documents — so your HR team focuses on people, not admin.",
+    color: "#FF2D42",
+    bgFrom: "from-brand-400/8",
+    bgTo: "to-brand-500/0",
+    border: "border-brand-200",
+    description: "Layla takes over your entire hiring and onboarding process â€” screening candidates, scheduling interviews, and sending welcome documents â€” so your HR team focuses on people, not admin.",
     tasks: ["Screen & rank applicants", "Automate onboarding docs", "Schedule interviews", "Track team milestones"],
     stat: { label: "Hours saved/hire", value: "18 hrs" },
     mockup: [
-      { label: "John D. — Interview",  status: "Scheduled", pct: 100 },
+      { label: "John D. â€” Interview",  status: "Scheduled", pct: 100 },
       { label: "Onboarding Pack",      status: "Sent",      pct: 100 },
       { label: "Background Check",     status: "Running",   pct: 55  },
     ],
@@ -46,11 +46,11 @@ const agents = [
     name: "Marco",
     title: "Revenue AI Assistant",
     icon: TrendingUp,
-    color: "#f97316",
-    bgFrom: "from-orange-500/8",
-    bgTo: "to-orange-600/0",
-    border: "border-orange-200",
-    description: "Marco keeps your revenue pipeline moving — following up on leads, creating proposals, tracking deals, and flagging at-risk accounts — so every opportunity gets the attention it deserves.",
+    color: "#E8001D",
+    bgFrom: "from-brand-500/8",
+    bgTo: "to-brand-600/0",
+    border: "border-brand-200",
+    description: "Marco keeps your revenue pipeline moving â€” following up on leads, creating proposals, tracking deals, and flagging at-risk accounts â€” so every opportunity gets the attention it deserves.",
     tasks: ["Follow up cold leads", "Generate proposals", "Monitor deal pipeline", "Recover at-risk accounts"],
     stat: { label: "Revenue recovered", value: "$24.8K" },
     mockup: [
@@ -63,11 +63,11 @@ const agents = [
     name: "Priya",
     title: "Operations Backbone",
     icon: Settings,
-    color: "#fb923c",
-    bgFrom: "from-orange-400/8",
-    bgTo: "to-orange-500/0",
-    border: "border-orange-200",
-    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks — giving you the headspace to focus entirely on strategy and growth.",
+    color: "#FF2D42",
+    bgFrom: "from-brand-400/8",
+    bgTo: "to-brand-500/0",
+    border: "border-brand-200",
+    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks â€” giving you the headspace to focus entirely on strategy and growth.",
     tasks: ["Schedule & coordinate team syncs", "Maintain SOPs automatically", "Escalate blockers in real-time", "Track project milestones"],
     stat: { label: "Tasks automated/wk", value: "220+" },
     mockup: [
@@ -84,7 +84,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
     <div className="w-screen shrink-0 flex items-center justify-center px-5 sm:px-16 lg:px-24">
       <div className="w-full max-w-4xl grid lg:grid-cols-2 gap-10 items-center">
 
-        {/* Left — text */}
+        {/* Left â€” text */}
         <div>
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium mb-5"
@@ -124,7 +124,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
           </button>
         </div>
 
-        {/* Right — mockup */}
+        {/* Right â€” mockup */}
         <div
           className="rounded-2xl p-5 border bg-white shadow-sm"
           style={{ borderColor: `${agent.color}25` }}
@@ -191,7 +191,7 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
       className={`group relative rounded-2xl border cursor-pointer transition-all duration-300 overflow-hidden bg-white ${
         active
           ? `${agent.border} shadow-md`
-          : "border-black/[0.07] hover:border-orange-200 hover:shadow-sm"
+          : "border-black/[0.07] hover:border-brand-200 hover:shadow-sm"
       }`}
     >
       {active && (
@@ -390,7 +390,7 @@ export default function AgentsSection() {
         <div className="absolute inset-0 pointer-events-none">
           <div
             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-125 rounded-full blur-[120px] transition-colors duration-700"
-            style={{ background: `${agents[activePanel]?.color ?? "#f97316"}06` }}
+            style={{ background: `${agents[activePanel]?.color ?? "#E8001D"}06` }}
           />
         </div>
 

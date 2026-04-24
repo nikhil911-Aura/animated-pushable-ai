@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import dynamic from "next/dynamic";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -17,7 +17,7 @@ const HeroOrb = dynamic(() => import("@/components/hero/HeroOrb"), {
       <div
         className="w-64 h-64 rounded-full"
         style={{
-          background: "radial-gradient(circle, rgba(249,115,22,0.14) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(232,0,29,0.14) 0%, transparent 70%)",
           filter: "blur(40px)",
         }}
       />
@@ -181,7 +181,7 @@ export default function HeroSection() {
             style={{ transformOrigin: "50% 40%" }}
           >
             {/* Eyebrow */}
-            <p className="pld-1 hero-eye mb-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-orange-500 opacity-0">
+            <p className="pld-1 hero-eye mb-7 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-500 opacity-0">
               Everyday workflows, quietly done
             </p>
 
@@ -206,17 +206,17 @@ export default function HeroSection() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
               <MagneticButton>
-                <button className="hero-cta opacity-0 group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-orange-500 hover:bg-orange-400 text-white font-semibold text-[14px] transition-all duration-200 shadow-lg shadow-orange-500/20 overflow-hidden">
+                <button className="hero-cta opacity-0 group relative inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold text-[14px] transition-all duration-200 shadow-lg shadow-brand-500/20 overflow-hidden">
                   <Play className="w-3.5 h-3.5 fill-white relative z-10" />
                   <span className="relative z-10">Watch Demo</span>
-                  <div className="absolute inset-0 bg-linear-to-r from-orange-500 via-amber-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-size-[200%_100%] group-hover:bg-right" />
+                  <div className="absolute inset-0 bg-linear-to-r from-brand-500 via-amber-400 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-size-[200%_100%] group-hover:bg-right" />
                 </button>
               </MagneticButton>
 
               <MagneticButton>
                 <a
                   href="#agents"
-                  className="hero-cta opacity-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/[0.12] hover:border-orange-300 hover:bg-orange-50 text-[#111111] font-semibold text-[14px] transition-all duration-200"
+                  className="hero-cta opacity-0 inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/[0.12] hover:border-brand-300 hover:bg-brand-50 text-[#111111] font-semibold text-[14px] transition-all duration-200"
                 >
                   Try Now
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -233,7 +233,7 @@ export default function HeroSection() {
             >
               {["No credit card", "Setup in 10 min", "2,000+ businesses"].map((t) => (
                 <span key={t} className="flex items-center gap-1.5">
-                  <Zap className="w-2.5 h-2.5 text-orange-400" />
+                  <Zap className="w-2.5 h-2.5 text-brand-400" />
                   {t}
                 </span>
               ))}
@@ -250,7 +250,7 @@ export default function HeroSection() {
               className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(249,115,22,0.10) 0%, transparent 70%)",
+                  "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(232,0,29,0.10) 0%, transparent 70%)",
                 filter: "blur(40px)",
               }}
             />
@@ -309,7 +309,7 @@ export default function HeroSection() {
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           className="w-px h-10 rounded-full overflow-hidden bg-black/10"
         >
-          <div className="w-full h-1/2 bg-linear-to-b from-orange-400/60 to-transparent" />
+          <div className="w-full h-1/2 bg-linear-to-b from-brand-400/60 to-transparent" />
         </motion.div>
       </motion.div>
     </section>

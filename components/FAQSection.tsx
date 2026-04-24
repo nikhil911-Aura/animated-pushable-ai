@@ -80,8 +80,8 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
         <div
           className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center transition-all duration-200 ${
             open
-              ? "bg-orange-500/20 text-orange-500"
-              : "bg-gray-100 text-gray-400 group-hover:bg-orange-50 group-hover:text-gray-600"
+              ? "bg-brand-500/20 text-brand-500"
+              : "bg-gray-100 text-gray-400 group-hover:bg-brand-50 group-hover:text-gray-600"
           }`}
         >
           {open ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
@@ -146,7 +146,7 @@ export default function FAQSection() {
           className="text-center text-gray-400 text-[12px] mt-6"
         >
           Still have questions?{" "}
-          <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">
+          <a href="#" className="text-brand-500 hover:text-brand-600 transition-colors">
             Chat with our team →
           </a>
         </motion.p>

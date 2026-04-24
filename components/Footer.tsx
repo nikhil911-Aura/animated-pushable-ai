@@ -20,7 +20,7 @@ export default function Footer() {
   return (
     <footer className="relative pt-20 pb-10 border-t border-black/6 bg-[#f3f0eb]">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-orange-600/4 rounded-full blur-100" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-brand-600/4 rounded-full blur-100" />
       </div>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -29,7 +29,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <a href="#" className="flex items-center gap-2.5 mb-4 w-fit group">
-              <div className="w-7 h-7 rounded-lg bg-linear-to-br from-orange-500 to-amber-600 flex items-center justify-center shadow-lg">
+              <div className="w-7 h-7 rounded-lg bg-linear-to-br from-brand-500 to-brand-500 flex items-center justify-center shadow-lg">
                 <Zap className="w-3.5 h-3.5 text-white fill-white" />
               </div>
               <span className="text-[#111111] font-semibold text-[15px] tracking-tight">
@@ -45,7 +45,7 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-8 h-8 rounded-lg border border-black/7 bg-white flex items-center justify-center text-gray-400 hover:text-gray-700 hover:border-orange-200 transition-all duration-200"
+                  className="w-8 h-8 rounded-lg border border-black/7 bg-white flex items-center justify-center text-gray-400 hover:text-gray-700 hover:border-brand-200 transition-all duration-200"
                 >
                   <Icon className="w-3.5 h-3.5" />
                 </a>

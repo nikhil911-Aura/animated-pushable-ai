@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CHARS = ["·", ":", "+", "×", "◦", "▸", "▫", "○", "∙", "/", "—", "~", "▪"];
+const CHARS = ["Â·", ":", "+", "Ã—", "â—¦", "â–¸", "â–«", "â—‹", "âˆ™", "/", "â€”", "~", "â–ª"];
 const COLS  = 52;
 const ROWS  = 22;
 const TOTAL = COLS * ROWS;
@@ -58,7 +58,7 @@ export default function SignatureTile() {
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* ── Build full-viewport character grid ── */
+    /* â”€â”€ Build full-viewport character grid â”€â”€ */
     const rand      = mulberry32(42);
     const cells: HTMLElement[] = [];
     const gridInner = document.createElement("div");
@@ -99,7 +99,7 @@ export default function SignatureTile() {
         userSelect:     "none",
         pointerEvents:  "none",
         color: isOrange
-          ? "rgba(249,115,22,0.9)"
+          ? "rgba(232,0,29,0.9)"
           : isAccent
             ? "rgba(0,0,0,0.22)"
             : "rgba(0,0,0,0.09)",
@@ -111,7 +111,7 @@ export default function SignatureTile() {
     }
     grid.appendChild(gridInner);
 
-    /* ── Set initial CSS states for content ── */
+    /* â”€â”€ Set initial CSS states for content â”€â”€ */
     const allWords = [
       ...(line1 ? Array.from(line1.querySelectorAll<HTMLElement>("[data-w]")) : []),
       ...(line2 ? Array.from(line2.querySelectorAll<HTMLElement>("[data-w]")) : []),
@@ -136,13 +136,13 @@ export default function SignatureTile() {
       return () => { if (grid.contains(gridInner)) grid.removeChild(gridInner); };
     }
 
-    /* ── Threshold per cell: ripple from center ── */
+    /* â”€â”€ Threshold per cell: ripple from center â”€â”€ */
     const thresholds = dists.map(d => ({
       start: 0.06 + d * 0.24,
       end:   0.06 + d * 0.24 + 0.05,
     }));
 
-    /* ── One-shot triggered tweens ── */
+    /* â”€â”€ One-shot triggered tweens â”€â”€ */
     let firedOverline = false;
     let firedWords    = false;
     let firedRuler    = false;
@@ -170,7 +170,7 @@ export default function SignatureTile() {
       gsap.to(items, { opacity: 1, y: 0, duration: 0.55, ease: "power2.out", stagger: 0.13 });
     }
 
-    /* ── ScrollTrigger ── */
+    /* â”€â”€ ScrollTrigger â”€â”€ */
     const trigger = ScrollTrigger.create({
       trigger:       section,
       start:         "top top",
@@ -215,7 +215,7 @@ export default function SignatureTile() {
       ref={sectionRef}
       className="relative flex items-center justify-center"
       style={{ height: "100vh", background: "#f3f0eb", overflow: "hidden", isolation: "isolate" }}
-      aria-label="Pushable AI — brand statement"
+      aria-label="Pushable AI â€” brand statement"
     >
       {/* Full-viewport character grid */}
       <div ref={gridRef} className="absolute inset-0 pointer-events-none" aria-hidden="true" />
@@ -224,7 +224,7 @@ export default function SignatureTile() {
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-160 h-160 rounded-full"
-          style={{ background: "radial-gradient(circle, rgba(249,115,22,0.09) 0%, transparent 65%)" }}
+          style={{ background: "radial-gradient(circle, rgba(232,0,29,0.09) 0%, transparent 65%)" }}
         />
       </div>
 
@@ -234,10 +234,10 @@ export default function SignatureTile() {
         {/* Overline */}
         <p
           ref={overlineRef}
-          className="text-[11px] font-semibold tracking-[0.28em] uppercase text-orange-400 mb-7"
+          className="text-[11px] font-semibold tracking-[0.28em] uppercase text-brand-400 mb-7"
           style={{ fontFamily: sans }}
         >
-          One Platform · All Your Workflows
+          One Platform Â· All Your Workflows
         </p>
 
         {/* Headline line 1 */}
@@ -252,7 +252,7 @@ export default function SignatureTile() {
                 fontSize:    "clamp(44px, 7vw, 88px)",
                 fontWeight:  700,
                 letterSpacing: "-2.5px",
-                color:       orange ? "#f97316" : "#111111",
+                color:       orange ? "#E8001D" : "#111111",
                 fontStyle:   italic ? "italic" : "normal",
                 marginRight: "0.22em",
               }}
@@ -274,7 +274,7 @@ export default function SignatureTile() {
                 fontSize:    "clamp(44px, 7vw, 88px)",
                 fontWeight:  700,
                 letterSpacing: "-2.5px",
-                color:       orange ? "#f97316" : "#111111",
+                color:       orange ? "#E8001D" : "#111111",
                 fontStyle:   italic ? "italic" : "normal",
                 marginRight: "0.22em",
               }}
@@ -288,7 +288,7 @@ export default function SignatureTile() {
         <div
           ref={rulerRef}
           className="h-px rounded-full mt-9 mb-8"
-          style={{ background: "linear-gradient(to right, transparent, #f97316, #fb923c, transparent)", width: 0 }}
+          style={{ background: "linear-gradient(to right, transparent, #E8001D, #FF2D42, transparent)", width: 0 }}
         />
 
         {/* Stats */}

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { CountUp, RevealBlock } from "@/components/animation";
 
@@ -34,7 +34,7 @@ const STATS = [
 function LogoChip({ name, abbr, color }: { name: string; abbr: string; color: string }) {
   return (
     <div
-      className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2.5 mx-2 rounded-xl border border-black/[0.07] bg-white hover:border-orange-200 hover:shadow-md transition-all duration-300 cursor-default group"
+      className="flex-shrink-0 flex items-center gap-2.5 px-4 py-2.5 mx-2 rounded-xl border border-black/[0.07] bg-white hover:border-brand-200 hover:shadow-md transition-all duration-300 cursor-default group"
     >
       <div
         className="w-6 h-6 rounded-lg flex items-center justify-center text-[10px] font-bold flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
@@ -58,28 +58,28 @@ export default function TrustSection() {
       <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-[#f3f0eb] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-[#f3f0eb] to-transparent z-10 pointer-events-none" />
 
-      {/* ── Header ── */}
+      {/* â”€â”€ Header â”€â”€ */}
       <RevealBlock variant="fade" className="max-w-5xl mx-auto px-5 sm:px-8 mb-8 text-center">
         <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-[0.2em]">
           Works with the tools your team already uses
         </p>
       </RevealBlock>
 
-      {/* ── Row 1 — scrolls left ── */}
+      {/* â”€â”€ Row 1 â€” scrolls left â”€â”€ */}
       <div className="overflow-hidden mb-2.5">
         <div className="flex animate-marquee" style={{ width: "max-content" }}>
           {R1.map((l, i) => <LogoChip key={`r1-${i}`} {...l} />)}
         </div>
       </div>
 
-      {/* ── Row 2 — scrolls right ── */}
+      {/* â”€â”€ Row 2 â€” scrolls right â”€â”€ */}
       <div className="overflow-hidden">
         <div className="flex animate-marquee-rev" style={{ width: "max-content" }}>
           {R2.map((l, i) => <LogoChip key={`r2-${i}`} {...l} />)}
         </div>
       </div>
 
-      {/* ── Stats ── */}
+      {/* â”€â”€ Stats â”€â”€ */}
       <div className="max-w-3xl mx-auto mt-10 px-5 sm:px-8">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -89,7 +89,7 @@ export default function TrustSection() {
           className="relative rounded-2xl border border-black/[0.07] bg-white shadow-sm overflow-hidden"
         >
           {/* Subtle top-edge orange glow */}
-          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-orange-400/40 to-transparent" />
+          <div className="absolute top-0 inset-x-0 h-px bg-linear-to-r from-transparent via-brand-400/40 to-transparent" />
 
           <div className="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 divide-x-0 sm:divide-x divide-black/5">
             {STATS.map((s, i) => (
@@ -102,7 +102,7 @@ export default function TrustSection() {
                 className="group relative px-5 py-6 text-center overflow-hidden"
               >
                 {/* Hover glow */}
-                <div className="absolute inset-0 bg-linear-to-b from-orange-50/0 to-orange-50/0 group-hover:from-orange-50/60 group-hover:to-orange-50/20 transition-all duration-400 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-b from-brand-50/0 to-orange-50/0 group-hover:from-brand-50/60 group-hover:to-brand-50/20 transition-all duration-400 pointer-events-none" />
 
                 <div className="relative">
                   <div className="text-2xl sm:text-3xl font-bold gradient-text mb-0.5 tabular-nums">
@@ -129,8 +129,8 @@ export default function TrustSection() {
           transition={{ delay: 0.6 }}
           className="text-center text-[11px] text-gray-400 mt-4"
         >
-          Trusted by 2,000+ businesses across 40+ countries ·{" "}
-          <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">See case studies →</a>
+          Trusted by 2,000+ businesses across 40+ countries Â·{" "}
+          <a href="#" className="text-brand-500 hover:text-brand-600 transition-colors">See case studies â†’</a>
         </motion.p>
       </div>
     </section>

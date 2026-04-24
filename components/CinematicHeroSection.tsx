@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -14,19 +14,19 @@ const HEADLINE = [
   { text: "AI",         color: "#000000", italic: false },
   { text: "Assistant",  color: "#000000", italic: false },
   { text: "That",       color: "#000000", italic: false },
-  { text: "Automates",  color: "#f97316", italic: true  },
+  { text: "Automates",  color: "#E8001D", italic: true  },
   { text: "Your",       color: "#000000", italic: false },
-  { text: "Routine",    color: "#f97316", italic: true  },
-  { text: "Workflows",  color: "#f97316", italic: true  },
+  { text: "Routine",    color: "#E8001D", italic: true  },
+  { text: "Workflows",  color: "#E8001D", italic: true  },
 ];
 
 const STATS = [
   { to: 200, suffix: "+", label: "Clients worldwide"  },
   { to: 99,  suffix: "%", label: "Uptime guaranteed"  },
-  { to: 4.9, suffix: "★", label: "Average rating", decimals: 1 },
+  { to: 4.9, suffix: "â˜…", label: "Average rating", decimals: 1 },
 ];
 
-/* ── Video with RAF fade-in/out loop ──────────────────────── */
+/* â”€â”€ Video with RAF fade-in/out loop â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function VideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const rafId    = useRef<number>(0);
@@ -69,7 +69,7 @@ function VideoBackground() {
   );
 }
 
-/* ── Ambient floating blobs ───────────────────────────────── */
+/* â”€â”€ Ambient floating blobs â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function AmbientBlobs() {
   const b1 = useRef<HTMLDivElement>(null);
   const b2 = useRef<HTMLDivElement>(null);
@@ -85,16 +85,16 @@ function AmbientBlobs() {
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
       <div ref={b1} className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-[90px]"
-        style={{ background: "rgba(249,115,22,0.07)" }} />
+        style={{ background: "rgba(232,0,29,0.07)" }} />
       <div ref={b2} className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full blur-[110px]"
-        style={{ background: "rgba(251,146,60,0.06)" }} />
+        style={{ background: "rgba(255,45,66,0.06)" }} />
       <div ref={b3} className="absolute top-1/2 left-1/2 w-48 h-48 rounded-full blur-[80px]"
-        style={{ background: "rgba(253,186,116,0.05)" }} />
+        style={{ background: "rgba(255,128,149,0.05)" }} />
     </div>
   );
 }
 
-/* ── Scroll indicator ─────────────────────────────────────── */
+/* â”€â”€ Scroll indicator â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ScrollIndicator() {
   return (
     <motion.div
@@ -109,7 +109,7 @@ function ScrollIndicator() {
         Scroll
       </span>
       <motion.div
-        className="w-px h-10 bg-gradient-to-b from-orange-400 to-transparent origin-top"
+        className="w-px h-10 bg-gradient-to-b from-brand-400 to-transparent origin-top"
         animate={{ scaleY: [0, 1, 0] }}
         transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut", times: [0, 0.5, 1] }}
       />
@@ -117,7 +117,7 @@ function ScrollIndicator() {
   );
 }
 
-/* ── Main export ────────────────────────────────────────────── */
+/* â”€â”€ Main export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function CinematicHeroSection() {
   const serif = "var(--font-instrument-serif)";
   const sans  = "var(--font-inter)";
@@ -127,7 +127,7 @@ export default function CinematicHeroSection() {
       className="relative min-h-screen w-full overflow-hidden flex items-center justify-center"
       style={{ background: "#FFFFFF" }}
     >
-      {/* ── Layers: video → blobs → gradient ── */}
+      {/* â”€â”€ Layers: video â†’ blobs â†’ gradient â”€â”€ */}
       <div className="absolute inset-0 z-0">
         <VideoBackground />
         <AmbientBlobs />
@@ -137,7 +137,7 @@ export default function CinematicHeroSection() {
         />
       </div>
 
-      {/* ── Hero content ── */}
+      {/* â”€â”€ Hero content â”€â”€ */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-5xl mx-auto">
 
         {/* Badge */}
@@ -150,16 +150,16 @@ export default function CinematicHeroSection() {
             fontFamily: sans,
             fontSize: 12,
             letterSpacing: "0.04em",
-            borderColor: "rgba(249,115,22,0.25)",
-            background: "rgba(249,115,22,0.06)",
-            color: "#ea580c",
+            borderColor: "rgba(232,0,29,0.25)",
+            background: "rgba(232,0,29,0.06)",
+            color: "#CC001A",
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
-          Now live — automating workflows for 2,000+ businesses
+          <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
+          Now live â€” automating workflows for 2,000+ businesses
         </motion.div>
 
-        {/* Headline — word-by-word stagger with blur slide-in */}
+        {/* Headline â€” word-by-word stagger with blur slide-in */}
         <h1
           className="font-normal mb-0 text-5xl sm:text-7xl md:text-8xl max-w-4xl"
           style={{ fontFamily: serif, lineHeight: 0.95, letterSpacing: "-2.46px" }}
@@ -191,7 +191,7 @@ export default function CinematicHeroSection() {
           transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           Your AI assistant quietly handles emails, follow-ups, reports, and
-          repetitive tasks in the background — so your team can focus on
+          repetitive tasks in the background â€” so your team can focus on
           work that actually grows your business.
         </motion.p>
 
@@ -208,7 +208,7 @@ export default function CinematicHeroSection() {
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
               className="text-base rounded-full px-10 py-4 cursor-pointer"
-              style={{ fontFamily: sans, background: "#f97316", color: "#FFFFFF" }}
+              style={{ fontFamily: sans, background: "#E8001D", color: "#FFFFFF" }}
             >
               Watch Demo
             </motion.button>
@@ -246,7 +246,7 @@ export default function CinematicHeroSection() {
         </motion.div>
       </div>
 
-      {/* ── Scroll indicator ── */}
+      {/* â”€â”€ Scroll indicator â”€â”€ */}
       <ScrollIndicator />
     </section>
   );

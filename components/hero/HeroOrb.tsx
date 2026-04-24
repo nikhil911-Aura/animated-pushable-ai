@@ -1,10 +1,10 @@
-"use client";
+﻿"use client";
 import { useRef, useEffect, useMemo, useState, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 
-/* ─── GLSL ─────────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ GLSL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 
 // Ashima Arts simplex noise (MIT license)
 const NOISE_FN = `
@@ -42,7 +42,7 @@ varying vec3 vWorldPos;
 varying float vDisp;
 void main(){
   vNorm = normalize(normalMatrix * normal);
-  // 3-octave organic displacement — surface breathes, not spins
+  // 3-octave organic displacement â€” surface breathes, not spins
   float d = snoise(position * 1.70 + uTime * 0.22) * 0.090
            + snoise(position * 3.50 - uTime * 0.17) * 0.045
            + snoise(position * 7.10 + uTime * 0.11) * 0.020;
@@ -61,7 +61,7 @@ varying float vDisp;
 void main(){
   vec3 vd = normalize(cameraPosition - vWorldPos);
   float fr = pow(1.0 - clamp(dot(vNorm, vd), 0.0, 1.0), 2.5);
-  // 4-stop Fresnel gradient: near-black core → orange → amber → cream white
+  // 4-stop Fresnel gradient: near-black core â†’ orange â†’ amber â†’ cream white
   vec3 c0 = vec3(0.06, 0.02, 0.01);
   vec3 c1 = vec3(0.98, 0.45, 0.09);
   vec3 c2 = vec3(1.00, 0.72, 0.29);
@@ -78,7 +78,7 @@ void main(){
   gl_FragColor = vec4(col, 0.55 + fr * 0.40);
 }`;
 
-/* ─── Shader Orb — organic Fresnel sphere ──────────────────────────────────── */
+/* â”€â”€â”€ Shader Orb â€” organic Fresnel sphere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function ShaderOrb() {
   const mat = useMemo(() => new THREE.ShaderMaterial({
     vertexShader: VERT,
@@ -101,7 +101,7 @@ function ShaderOrb() {
   );
 }
 
-/* ─── Neural Network — node graph in sphere shell ──────────────────────────── */
+/* â”€â”€â”€ Neural Network â€” node graph in sphere shell â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function NeuralNet({ prefersReduced }: { prefersReduced: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
 
@@ -121,7 +121,7 @@ function NeuralNet({ prefersReduced }: { prefersReduced: boolean }) {
       pts.push(new THREE.Vector3(x, y, z));
     }
 
-    // Sparse connections — max 3 per node keeps it clean
+    // Sparse connections â€” max 3 per node keeps it clean
     const conns = new Array(N).fill(0);
     const linePos: number[] = [];
     for (let i = 0; i < N; i++) {
@@ -152,7 +152,7 @@ function NeuralNet({ prefersReduced }: { prefersReduced: boolean }) {
   });
 
   const lineMat = useMemo(() => new THREE.LineBasicMaterial({
-    color: "#fb923c",
+    color: "#FF2D42",
     transparent: true,
     opacity: 0.18,
     blending: THREE.AdditiveBlending,
@@ -160,7 +160,7 @@ function NeuralNet({ prefersReduced }: { prefersReduced: boolean }) {
   }), []);
 
   const nodeMat = useMemo(() => new THREE.PointsMaterial({
-    color: "#fdba74",
+    color: "#FF8095",
     size: 0.016,
     transparent: true,
     opacity: 0.75,
@@ -179,11 +179,11 @@ function NeuralNet({ prefersReduced }: { prefersReduced: boolean }) {
   );
 }
 
-/* ─── Orbital Rings — 3 inclined particle rings ────────────────────────────── */
+/* â”€â”€â”€ Orbital Rings â€” 3 inclined particle rings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const RING_DEFS = [
-  { tilt: 0,                  axisZ: 0,             radius: 1.52, color: "#f97316", speed:  0.40 },
-  { tilt: Math.PI / 3,        axisZ: Math.PI / 5,   radius: 1.64, color: "#fb923c", speed: -0.30 },
-  { tilt: -Math.PI * 0.22,    axisZ: Math.PI * 0.4, radius: 1.47, color: "#fbbf24", speed:  0.52 },
+  { tilt: 0,                  axisZ: 0,             radius: 1.52, color: "#E8001D", speed:  0.40 },
+  { tilt: Math.PI / 3,        axisZ: Math.PI / 5,   radius: 1.64, color: "#FF2D42", speed: -0.30 },
+  { tilt: -Math.PI * 0.22,    axisZ: Math.PI * 0.4, radius: 1.47, color: "#FF2D42", speed:  0.52 },
 ] as const;
 
 function OrbitalRings({ prefersReduced }: { prefersReduced: boolean }) {
@@ -238,7 +238,7 @@ function OrbitalRings({ prefersReduced }: { prefersReduced: boolean }) {
   );
 }
 
-/* ─── Video Core — texture plane inside sphere ──────────────────────────────── */
+/* â”€â”€â”€ Video Core â€” texture plane inside sphere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function VideoCore({ scrollProgress }: { scrollProgress: React.MutableRefObject<number> }) {
   const planeRef = useRef<THREE.Mesh>(null);
   const [tex, setTex] = useState<THREE.VideoTexture | null>(null);
@@ -305,7 +305,7 @@ function VideoCore({ scrollProgress }: { scrollProgress: React.MutableRefObject<
   );
 }
 
-/* ─── Scene ─────────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Scene â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function OrbScene({
   prefersReduced,
   scrollProgress,
@@ -351,7 +351,7 @@ function OrbScene({
   return (
     <>
       <ambientLight intensity={0.15} />
-      <pointLight position={[-2.5, -1, -2]} color="#fb923c" intensity={4.0} />
+      <pointLight position={[-2.5, -1, -2]} color="#FF2D42" intensity={4.0} />
       <pointLight position={[2,    3,   2]} color="#fff8f0" intensity={0.8} />
 
       <group ref={groupRef}>
@@ -370,7 +370,7 @@ function OrbScene({
           />
         </mesh>
 
-        {/* Organic shader sphere — Fresnel iridescence */}
+        {/* Organic shader sphere â€” Fresnel iridescence */}
         <ShaderOrb />
 
         {/* Inner warm emissive core */}
@@ -378,7 +378,7 @@ function OrbScene({
           <sphereGeometry args={[0.68, 48, 48]} />
           <meshStandardMaterial
             color="#431407"
-            emissive="#ea580c"
+            emissive="#CC001A"
             emissiveIntensity={1.1}
             transparent
             opacity={0.5}
@@ -397,7 +397,7 @@ function OrbScene({
         <OrbitalRings prefersReduced={prefersReduced} />
       </group>
 
-      {/* Luminous bloom — makes emissive elements truly glow */}
+      {/* Luminous bloom â€” makes emissive elements truly glow */}
       <EffectComposer>
         <Bloom
           luminanceThreshold={0.15}
@@ -410,7 +410,7 @@ function OrbScene({
   );
 }
 
-/* ─── Export ─────────────────────────────────────────────────────────────────── */
+/* â”€â”€â”€ Export â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 export default function HeroOrb({
   prefersReduced = false,
   scrollProgress,

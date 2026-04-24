@@ -16,7 +16,7 @@ interface Props {
 export default function FlowLine({
   from,
   to,
-  color = "rgba(253,186,116,0.35)",
+  color = "rgba(255,128,149,0.35)",
   strokeWidth = 1.5,
   className = "",
 }: Props) {

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -44,7 +44,7 @@ export default function HeroAtmosphere({ prefersReduced }: { prefersReduced: boo
         <rect width="100%" height="100%" filter="url(#hero-noise)" />
       </svg>
 
-      {/* Blob 1 — primary orange, large, left-centre */}
+      {/* Blob 1 â€” primary orange, large, left-centre */}
       <div
         ref={b1}
         className="absolute rounded-full"
@@ -55,13 +55,13 @@ export default function HeroAtmosphere({ prefersReduced }: { prefersReduced: boo
           maxHeight: 720,
           top: "5%",
           left: "-15%",
-          background: "radial-gradient(ellipse at center, rgba(249,115,22,0.18) 0%, transparent 68%)",
+          background: "radial-gradient(ellipse at center, rgba(232,0,29,0.18) 0%, transparent 68%)",
           filter: "blur(120px)",
           willChange: "transform",
         }}
       />
 
-      {/* Blob 2 — amber accent, medium, right-centre */}
+      {/* Blob 2 â€” amber accent, medium, right-centre */}
       <div
         ref={b2}
         className="absolute rounded-full"
@@ -72,13 +72,13 @@ export default function HeroAtmosphere({ prefersReduced }: { prefersReduced: boo
           maxHeight: 640,
           top: "20%",
           right: "-10%",
-          background: "radial-gradient(ellipse at center, rgba(251,146,60,0.13) 0%, transparent 68%)",
+          background: "radial-gradient(ellipse at center, rgba(255,45,66,0.13) 0%, transparent 68%)",
           filter: "blur(130px)",
           willChange: "transform",
         }}
       />
 
-      {/* Blob 3 — warm cream, small, bottom-centre */}
+      {/* Blob 3 â€” warm cream, small, bottom-centre */}
       <div
         ref={b3}
         className="absolute rounded-full"
@@ -89,7 +89,7 @@ export default function HeroAtmosphere({ prefersReduced }: { prefersReduced: boo
           maxHeight: 480,
           bottom: "0%",
           left: "30%",
-          background: "radial-gradient(ellipse at center, rgba(249,115,22,0.09) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at center, rgba(232,0,29,0.09) 0%, transparent 70%)",
           filter: "blur(100px)",
           willChange: "transform",
         }}

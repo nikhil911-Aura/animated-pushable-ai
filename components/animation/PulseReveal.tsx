@@ -50,7 +50,7 @@ export default function PulseReveal({
           borderRadius: "inherit",
           pointerEvents: "none",
           background:
-            "radial-gradient(ellipse at center, rgba(253,186,116,0.25) 0%, transparent 70%)",
+            "radial-gradient(ellipse at center, rgba(255,128,149,0.25) 0%, transparent 70%)",
           opacity: "0",
         });
         el.style.position = "relative";

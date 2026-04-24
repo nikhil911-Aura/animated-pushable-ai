@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -11,32 +11,32 @@ const industries = [
   {
     icon: Code2,
     name: "SaaS",
-    color: "#f97316",
-    useCase: "Your AI assistant handles onboarding sequences, churn follow-ups, and renewal reminders automatically — so your team focuses on building, not chasing.",
+    color: "#E8001D",
+    useCase: "Your AI assistant handles onboarding sequences, churn follow-ups, and renewal reminders automatically â€” so your team focuses on building, not chasing.",
   },
   {
     icon: Megaphone,
     name: "Marketing Agencies",
-    color: "#fb923c",
-    useCase: "Automate client reports, campaign scheduling, and performance tracking across all accounts — so your team delivers more value without adding headcount.",
+    color: "#FF2D42",
+    useCase: "Automate client reports, campaign scheduling, and performance tracking across all accounts â€” so your team delivers more value without adding headcount.",
   },
   {
     icon: DollarSign,
     name: "Finance",
-    color: "#f97316",
-    useCase: "Generate invoices on schedule, reconcile accounts, and flag payment anomalies automatically — so nothing slips through the cracks at month-end.",
+    color: "#E8001D",
+    useCase: "Generate invoices on schedule, reconcile accounts, and flag payment anomalies automatically â€” so nothing slips through the cracks at month-end.",
   },
   {
     icon: Settings,
     name: "Operations",
-    color: "#fb923c",
-    useCase: "Coordinate cross-team workflows, maintain SOPs, and escalate blockers before they delay delivery — so your operations run like clockwork every day.",
+    color: "#FF2D42",
+    useCase: "Coordinate cross-team workflows, maintain SOPs, and escalate blockers before they delay delivery â€” so your operations run like clockwork every day.",
   },
   {
     icon: Briefcase,
     name: "Agencies",
-    color: "#f97316",
-    useCase: "Handle client onboarding, automate billing, and keep project timelines on track — so your team spends time on client work, not admin.",
+    color: "#E8001D",
+    useCase: "Handle client onboarding, automate billing, and keep project timelines on track â€” so your team spends time on client work, not admin.",
   },
 ];
 
@@ -60,7 +60,7 @@ export default function IndustrySection() {
     <section id="industries" className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-orange-400/5 rounded-full blur-[110px]" />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand-400/5 rounded-full blur-[110px]" />
       </div>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -91,7 +91,7 @@ export default function IndustrySection() {
             return (
               <div
                 key={industry.name}
-                className="group relative rounded-2xl border border-black/7 bg-white hover:border-orange-200 hover:shadow-sm hover:-translate-y-1 p-6 transition-all duration-300 overflow-hidden cursor-default"
+                className="group relative rounded-2xl border border-black/7 bg-white hover:border-brand-200 hover:shadow-sm hover:-translate-y-1 p-6 transition-all duration-300 overflow-hidden cursor-default"
               >
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -110,16 +110,16 @@ export default function IndustrySection() {
           })}
 
           {/* "Your industry" CTA card */}
-          <div className="rounded-2xl border border-dashed border-orange-300 bg-orange-50/50 p-6 flex flex-col justify-between">
+          <div className="rounded-2xl border border-dashed border-brand-300 bg-brand-50/50 p-6 flex flex-col justify-between">
             <div>
               <h3 className="text-[15px] font-semibold text-[#111111] mb-2">Your Industry</h3>
               <p className="text-gray-400 text-[13px] leading-relaxed mb-4">
                 Don&apos;t see yours listed? Pushable AI adapts to any workflow across any sector.
               </p>
             </div>
-            <a href="#" className="text-[13px] text-orange-500 hover:text-orange-600 font-medium transition-colors group flex items-center gap-1">
+            <a href="#" className="text-[13px] text-brand-500 hover:text-brand-600 font-medium transition-colors group flex items-center gap-1">
               Talk to us
-              <span className="group-hover:translate-x-0.5 transition-transform inline-block">→</span>
+              <span className="group-hover:translate-x-0.5 transition-transform inline-block">â†’</span>
             </a>
           </div>
         </div>

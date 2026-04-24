@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
 
@@ -27,7 +27,7 @@ function OrbitalVisual() {
   return (
     <div className="relative flex items-center justify-center" style={{ height: 460 }}>
       {/* Hub */}
-      <div className="absolute z-20 w-16 h-16 rounded-2xl bg-linear-to-br from-orange-500 to-amber-600 flex items-center justify-center shadow-lg shadow-orange-500/20">
+      <div className="absolute z-20 w-16 h-16 rounded-2xl bg-linear-to-br from-brand-500 to-brand-500 flex items-center justify-center shadow-lg shadow-brand-500/20">
         <Zap className="w-8 h-8 text-white fill-white" />
       </div>
 
@@ -39,10 +39,10 @@ function OrbitalVisual() {
             width:  ring.radius * 2,
             height: ring.radius * 2,
             borderColor: ri === 0
-              ? "rgba(249,115,22,0.25)"
+              ? "rgba(232,0,29,0.25)"
               : ri === 1
-              ? "rgba(251,146,60,0.18)"
-              : "rgba(251,146,60,0.12)",
+              ? "rgba(255,45,66,0.18)"
+              : "rgba(255,45,66,0.12)",
           }}
           animate={{ rotate: ring.dir * 360 }}
           transition={{ duration: ring.duration, repeat: Infinity, ease: "linear" }}
@@ -94,7 +94,7 @@ function OrbitalVisual() {
               x1={cx} y1={cy}
               x2={cx + Math.cos(rad) * r}
               y2={cy + Math.sin(rad) * r}
-              stroke="rgba(249,115,22,0.12)"
+              stroke="rgba(232,0,29,0.12)"
               strokeWidth="0.8"
               strokeDasharray="4 6"
             />
@@ -110,8 +110,8 @@ export default function IntegrationsSection() {
     <section className="py-28 relative bg-white">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-0 w-80 h-80 bg-orange-400/5 rounded-full blur-[100px] -translate-y-1/2" />
-        <div className="absolute top-1/2 right-0 w-80 h-80 bg-orange-400/5 rounded-full blur-[100px] -translate-y-1/2" />
+        <div className="absolute top-1/2 left-0 w-80 h-80 bg-brand-400/5 rounded-full blur-[100px] -translate-y-1/2" />
+        <div className="absolute top-1/2 right-0 w-80 h-80 bg-brand-400/5 rounded-full blur-[100px] -translate-y-1/2" />
       </div>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -132,7 +132,7 @@ export default function IntegrationsSection() {
             <span className="gradient-text">Your Entire Stack</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
-            Connect your existing tools in one click. Pushable AI plugs into 50+ platforms your team already uses — no reconfiguration needed.
+            Connect your existing tools in one click. Pushable AI plugs into 50+ platforms your team already uses â€” no reconfiguration needed.
           </p>
         </motion.div>
 
@@ -155,7 +155,7 @@ export default function IntegrationsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.04 }}
               whileHover={{ y: -3, scale: 1.04 }}
-              className="group rounded-xl border border-black/7 bg-white hover:border-orange-200 hover:shadow-sm p-3 text-center transition-all duration-200 cursor-default"
+              className="group rounded-xl border border-black/7 bg-white hover:border-brand-200 hover:shadow-sm p-3 text-center transition-all duration-200 cursor-default"
             >
               <div
                 className="w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-bold mx-auto mb-2"
@@ -175,8 +175,8 @@ export default function IntegrationsSection() {
           transition={{ delay: 0.4 }}
           className="text-center text-gray-400 text-[12px] mt-6"
         >
-          + 40 more integrations available ·{" "}
-          <a href="#" className="text-orange-500 hover:text-orange-600 transition-colors">Request yours →</a>
+          + 40 more integrations available Â·{" "}
+          <a href="#" className="text-brand-500 hover:text-brand-600 transition-colors">Request yours â†’</a>
         </motion.p>
       </div>
     </section>

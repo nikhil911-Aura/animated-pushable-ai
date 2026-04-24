@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -11,23 +11,23 @@ const steps = [
   {
     n: "01",
     icon: LayoutGrid,
-    color: "#f97316",
+    color: "#E8001D",
     title: "Choose Your Assistant",
-    body: "Pick the assistant built for your biggest challenge — Finance, HR, Revenue, or Operations. Zero setup, zero technical knowledge required. You'll be running in minutes.",
+    body: "Pick the assistant built for your biggest challenge â€” Finance, HR, Revenue, or Operations. Zero setup, zero technical knowledge required. You'll be running in minutes.",
     items: ["Select from 4 specialists", "Preview before deploying", "No commitment required"],
   },
   {
     n: "02",
     icon: Plug,
-    color: "#fb923c",
+    color: "#FF2D42",
     title: "Connect Your Tools",
-    body: "Link Slack, Gmail, HubSpot, and 50+ more tools with one click — no code, no APIs, no configuration. Your assistant learns your workflow and starts working immediately.",
+    body: "Link Slack, Gmail, HubSpot, and 50+ more tools with one click â€” no code, no APIs, no configuration. Your assistant learns your workflow and starts working immediately.",
     items: ["50+ one-click integrations", "No code, no APIs to configure", "Live in under 10 minutes"],
   },
   {
     n: "03",
     icon: BarChart3,
-    color: "#f97316",
+    color: "#E8001D",
     title: "Watch It Handle the Work",
     body: "Track every completed task on a clean live dashboard. Add agents, expand workflows, or connect more tools whenever you're ready. Your AI grows with your business.",
     items: ["Live task dashboard", "Add agents any time", "Weekly performance reports"],
@@ -72,7 +72,7 @@ export default function HowItWorksSection() {
     <section id="how-it-works" ref={sectionRef} className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-orange-400/5 rounded-full blur-[110px]" />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand-400/5 rounded-full blur-[110px]" />
       </div>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -106,7 +106,7 @@ export default function HowItWorksSection() {
           {/* Animated fill */}
           <div
             ref={lineFillRef}
-            className="absolute left-6.75 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-px origin-top bg-linear-to-b from-orange-500/70 via-orange-400/50 to-transparent"
+            className="absolute left-6.75 sm:left-1/2 sm:-translate-x-px top-0 bottom-0 w-px origin-top bg-linear-to-b from-brand-500/70 via-brand-400/50 to-transparent"
             style={{ transform: "scaleY(0)" }}
           />
 
@@ -204,7 +204,7 @@ export default function HowItWorksSection() {
           <p className="text-gray-400 text-sm mb-4">Not sure which agent fits your workflow?</p>
           <a
             href="#"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-orange-300 hover:bg-orange-50 text-[13px] font-medium transition-all duration-200 group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 text-[13px] font-medium transition-all duration-200 group"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             Talk to our Expert

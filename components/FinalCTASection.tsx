@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -24,9 +24,9 @@ function AuroraBackground() {
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div ref={a1} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-orange-500/8 rounded-full blur-[150px]" />
-      <div ref={a2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-75 bg-amber-500/6 rounded-full blur-[120px]" />
-      <div ref={a3} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-orange-400/5 rounded-full blur-[100px]" />
+      <div ref={a1} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-brand-500/8 rounded-full blur-[150px]" />
+      <div ref={a2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-75 bg-brand-500/6 rounded-full blur-[120px]" />
+      <div ref={a3} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-400/5 rounded-full blur-[100px]" />
     </div>
   );
 }
@@ -41,7 +41,7 @@ export default function FinalCTASection() {
       {/* Dot grid */}
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
 
-      {/* Radial vignette — fades to page bg colour */}
+      {/* Radial vignette â€” fades to page bg colour */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,transparent_30%,white_100%)] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-5 sm:px-8 relative text-center">
@@ -68,7 +68,7 @@ export default function FinalCTASection() {
 
           {/* Sub */}
           <p className="text-gray-500 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
-            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today — no technical setup, no contracts, no wasted time. Just results from day one.
+            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today â€” no technical setup, no contracts, no wasted time. Just results from day one.
           </p>
 
           {/* CTAs */}
@@ -77,19 +77,19 @@ export default function FinalCTASection() {
               href="#"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-orange-500 hover:bg-orange-400 text-white font-semibold text-[15px] transition-all duration-200 shadow-lg shadow-orange-500/20 overflow-hidden"
+              className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold text-[15px] transition-all duration-200 shadow-lg shadow-brand-500/20 overflow-hidden"
             >
               <Zap className="w-4 h-4 fill-white relative z-10" />
               <span className="relative z-10">Activate Your AI Assistant</span>
               <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-0.5 transition-transform" />
-              <div className="absolute inset-0 bg-linear-to-r from-orange-500 to-amber-500 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+              <div className="absolute inset-0 bg-linear-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
             </motion.a>
 
             <motion.a
               href="#"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/8 text-gray-600 hover:text-gray-900 hover:border-orange-300 hover:bg-orange-50 font-semibold text-[15px] transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/8 text-gray-600 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 font-semibold text-[15px] transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4" />
               Talk to the Team
@@ -106,7 +106,7 @@ export default function FinalCTASection() {
           >
             {["14-day free trial", "No credit card required", "Cancel anytime", "Setup in < 10 min"].map((t) => (
               <span key={t} className="flex items-center gap-1.5">
-                <span className="w-1 h-1 rounded-full bg-orange-400" />
+                <span className="w-1 h-1 rounded-full bg-brand-400" />
                 {t}
               </span>
             ))}

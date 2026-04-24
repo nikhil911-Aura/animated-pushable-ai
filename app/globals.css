@@ -3,6 +3,9 @@
 :root {
   --background: #f3f0eb;
   --foreground: #111111;
+  --brand:     #E8001D;
+  --brand-mid: #FF2D42;
+  --brand-dim: #CC001A;
 }
 
 @theme inline {
@@ -10,6 +13,15 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Brand red scale — use as bg-brand-500, text-brand-400, etc. */
+  --color-brand-50:  #FFF0F1;
+  --color-brand-100: #FFD6DA;
+  --color-brand-200: #FFB3BB;
+  --color-brand-300: #FF8095;
+  --color-brand-400: #FF2D42;
+  --color-brand-500: #E8001D;
+  --color-brand-600: #CC001A;
+  --color-brand-700: #A80015;
 }
 
 @layer base {
@@ -49,7 +61,7 @@ body::before {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #f3f0eb; }
 ::-webkit-scrollbar-thumb { background: #d8d4cc; border-radius: 2px; }
-::-webkit-scrollbar-thumb:hover { background: #f97316; }
+::-webkit-scrollbar-thumb:hover { background: #E8001D; }
 
 /* ─── Glass ──────────────────────────────────────────── */
 .glass {
@@ -74,16 +86,16 @@ body::before {
   box-shadow: 0 2px 32px rgba(0, 0, 0, 0.06);
 }
 
-/* ─── Gradient text — orange to amber ───────────────── */
+/* ─── Gradient text — brand red ─────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
+  background: linear-gradient(135deg, #CC001A 0%, #E8001D 50%, #FF2D42 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-soft {
-  background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fdba74 100%);
+  background: linear-gradient(135deg, #E8001D 0%, #FF2D42 50%, #FF8095 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -91,13 +103,13 @@ body::before {
 
 /* ─── Glow ───────────────────────────────────────────── */
 .glow-orange {
-  box-shadow: 0 0 40px rgba(249, 115, 22, 0.22), 0 0 80px rgba(249, 115, 22, 0.08);
+  box-shadow: 0 0 40px rgba(232, 0, 29, 0.22), 0 0 80px rgba(232, 0, 29, 0.08);
 }
 .glow-amber {
-  box-shadow: 0 0 40px rgba(251, 191, 36, 0.18), 0 0 80px rgba(251, 191, 36, 0.07);
+  box-shadow: 0 0 40px rgba(232, 0, 29, 0.18), 0 0 80px rgba(232, 0, 29, 0.07);
 }
 .text-glow {
-  text-shadow: 0 0 40px rgba(249, 115, 22, 0.3);
+  text-shadow: 0 0 40px rgba(232, 0, 29, 0.3);
 }
 
 /* ─── Gradient border ────────────────────────────────── */
@@ -110,7 +122,7 @@ body::before {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(249,115,22,0.5) 0%, rgba(251,146,60,0.3) 50%, rgba(249,115,22,0.1) 100%);
+  background: linear-gradient(135deg, rgba(232,0,29,0.5) 0%, rgba(255,45,66,0.3) 50%, rgba(232,0,29,0.1) 100%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -133,9 +145,9 @@ body::before {
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 500;
-  background: rgba(249, 115, 22, 0.08);
-  border: 1px solid rgba(249, 115, 22, 0.22);
-  color: #ea580c;
+  background: rgba(232, 0, 29, 0.07);
+  border: 1px solid rgba(232, 0, 29, 0.2);
+  color: #CC001A;
   letter-spacing: 0.01em;
 }
 
@@ -200,7 +212,7 @@ body::before {
 .animate-float-slow  { animation: float-slow 7s ease-in-out infinite; }
 .animate-pulse-glow  { animation: pulse-glow 3s ease-in-out infinite; }
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(249,115,22,0.06), transparent);
+  background: linear-gradient(90deg, transparent, rgba(232,0,29,0.06), transparent);
   background-size: 200% 100%;
   animation: shimmer 2.5s infinite;
 }
@@ -215,14 +227,14 @@ body::before {
 /* ─── Grid overlay ───────────────────────────────────── */
 .grid-overlay {
   background-image:
-    linear-gradient(rgba(249,115,22,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249,115,22,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(232,0,29,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,0,29,0.05) 1px, transparent 1px);
   background-size: 80px 80px;
 }
 
 /* ─── Dot grid ───────────────────────────────────────── */
 .dot-grid {
-  background-image: radial-gradient(rgba(249,115,22,0.12) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(232,0,29,0.12) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 

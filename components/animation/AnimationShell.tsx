@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef, ReactNode } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,7 +11,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
   const dotRef  = useRef<HTMLDivElement | null>(null);
   const ringRef = useRef<HTMLDivElement | null>(null);
 
-  /* ── Scroll progress bar ─────────────────────────────────── */
+  /* â”€â”€ Scroll progress bar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   useEffect(() => {
     const bar = barRef.current;
     if (!bar) return;
@@ -23,7 +23,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  /* ── Global depth-parallax CSS vars ─────────────────────── */
+  /* â”€â”€ Global depth-parallax CSS vars â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -55,7 +55,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
     return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
   }, []);
 
-  /* ── Dual-layer cursor ───────────────────────────────────── */
+  /* â”€â”€ Dual-layer cursor â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
   useEffect(() => {
     const dot  = dotRef.current;
     const ring = ringRef.current;
@@ -67,7 +67,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
     ring.style.opacity = "0";
     document.body.style.cursor = "none";
 
-    /* quickTo setters — dot is instant, ring lags */
+    /* quickTo setters â€” dot is instant, ring lags */
     const dotX  = gsap.quickTo(dot,  "x", { duration: 0.04, ease: "none" });
     const dotY  = gsap.quickTo(dot,  "y", { duration: 0.04, ease: "none" });
     const ringX = gsap.quickTo(ring, "x", { duration: 0.45, ease: "power3.out" });
@@ -98,8 +98,8 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
         gsap.to(dot,  { scale: 0,   duration: 0.2, ease: "power2.out" });
         gsap.to(ring, {
           scale: 1.7,
-          borderColor: "#f97316",
-          backgroundColor: "rgba(249,115,22,0.08)",
+          borderColor: "#E8001D",
+          backgroundColor: "rgba(232,0,29,0.08)",
           duration: 0.35,
           ease: "power2.out",
         });
@@ -110,7 +110,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
         gsap.to(dot,  { scale: 1, duration: 0.35, ease: "elastic.out(1,0.5)" });
         gsap.to(ring, {
           scale: 1,
-          borderColor: "rgba(249,115,22,0.55)",
+          borderColor: "rgba(232,0,29,0.55)",
           backgroundColor: "transparent",
           duration: 0.35,
           ease: "power2.out",
@@ -154,32 +154,32 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
       <div
         ref={barRef}
         className="fixed top-0 left-0 right-0 h-px z-9999 origin-left"
-        style={{ background: "#fdba74", transform: "scaleX(0)" }}
+        style={{ background: "#FF8095", transform: "scaleX(0)" }}
         aria-hidden="true"
       />
 
-      {/* Cursor — inner dot (precise) */}
+      {/* Cursor â€” inner dot (precise) */}
       <div
         ref={dotRef}
         className="pointer-events-none fixed z-9999 rounded-full"
         style={{
           width: 6, height: 6,
-          background: "#f97316",
+          background: "#E8001D",
           left: 0, top: 0,
           transform: "translate(-50%,-50%)",
           willChange: "transform",
-          boxShadow: "0 0 6px rgba(249,115,22,0.6)",
+          boxShadow: "0 0 6px rgba(232,0,29,0.6)",
         }}
         aria-hidden="true"
       />
 
-      {/* Cursor — outer ring (lagging) */}
+      {/* Cursor â€” outer ring (lagging) */}
       <div
         ref={ringRef}
         className="pointer-events-none fixed z-9998 rounded-full"
         style={{
           width: 36, height: 36,
-          border: "1.5px solid rgba(249,115,22,0.55)",
+          border: "1.5px solid rgba(232,0,29,0.55)",
           background: "transparent",
           left: 0, top: 0,
           transform: "translate(-50%,-50%)",
