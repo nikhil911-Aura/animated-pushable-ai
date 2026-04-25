@@ -22,7 +22,6 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 inset-x-0 z-50 py-4"
-        style={{ background: "rgba(1,8,40,0.75)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
 
@@ -36,7 +35,7 @@ export default function Navbar() {
           {/* Center pill nav */}
           <nav
             className="hidden md:flex items-center gap-0.5 rounded-full px-1.5 py-1.5"
-            style={{ background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)" }}
+            style={{ background: "rgba(1,8,40,0.75)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
           >
             {links.map((l) => (
               <a
@@ -51,10 +50,7 @@ export default function Navbar() {
 
           {/* Right actions */}
           <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
-            <a href="#" className="text-[13px] text-white/70 hover:text-white transition-colors px-3 py-1.5">
-              Sign in
-            </a>
-            <a
+<a
               href="#"
               className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden shadow-sm shadow-brand-500/30"
             >
@@ -67,7 +63,7 @@ export default function Navbar() {
           {/* Mobile toggle */}
           <button
             onClick={() => setOpen(!open)}
-            className="md:hidden p-2 text-white/70 hover:text-white transition-colors"
+            className="md:hidden p-2 text-gray-700 hover:text-gray-900 transition-colors"
           >
             {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>

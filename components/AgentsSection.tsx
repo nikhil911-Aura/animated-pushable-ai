@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { DollarSign, Users, TrendingUp, Settings, ArrowRight, Sparkles, Activity } from "lucide-react";
+import { DollarSign, Users, TrendingUp, Settings, ArrowRight, Activity } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -390,28 +390,6 @@ export default function AgentsSection() {
           />
         </div>
 
-        {/* Progress dots */}
-        <div className="absolute top-8 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2.5">
-          {agents.map((a, i) => (
-            <div
-              key={a.name}
-              className="transition-all duration-300 rounded-full"
-              style={{
-                width:   i === activePanel ? "24px" : "6px",
-                height:  "6px",
-                background: i === activePanel ? agents[activePanel].color : "rgba(0,0,0,0.15)",
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Section label */}
-        <div className="absolute top-8 right-8 z-20 flex items-center gap-2">
-          <div className="badge">
-            <Sparkles className="w-3 h-3" />
-            AI Agents
-          </div>
-        </div>
 
         {/* Track */}
         <div
