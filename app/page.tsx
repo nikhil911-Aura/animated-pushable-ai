@@ -66,9 +66,13 @@ export default function Home() {
             style={{ opacity: 1 }}
             aria-hidden="true"
           />
-          {/* White gradient glass effect */}
+          {/* Cloud/mist effect — dense at top half, clears toward bottom */}
           <div className="absolute inset-0 pointer-events-none" style={{
-            background: "linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 25%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 100%)"
+            background: "linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.95) 10%, rgba(255,255,255,0.88) 25%, rgba(255,255,255,0.65) 40%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0.05) 70%, rgba(255,255,255,0) 100%)"
+          }} />
+          {/* Extra soft cloud bloom at very top */}
+          <div className="absolute inset-x-0 top-0 h-[45%] pointer-events-none" style={{
+            background: "radial-gradient(ellipse 120% 60% at 50% 0%, rgba(255,255,255,0.6) 0%, transparent 100%)"
           }} />
         </div>
 

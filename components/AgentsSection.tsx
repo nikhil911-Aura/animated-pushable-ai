@@ -332,30 +332,10 @@ export default function AgentsSection() {
     return () => { trigger.kill(); };
   }, [isMobile]);
 
-  const Header = (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7 }}
-      className="text-center mb-14 max-w-5xl mx-auto px-5 sm:px-8"
-    >
-      <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
-        Your AI Agents, Each Built
-        <br />
-        <span className="text-[#111111]">for a Specific Role</span>
-      </h2>
-      <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-relaxed">
-        Four AI agents, each purpose-built for a different part of your business. Pick the one that fits your biggest bottleneck and let it handle the work end-to-end.
-      </p>
-    </motion.div>
-  );
-
   if (isMobile) {
     return (
-      <section id="agents" className="py-28 relative bg-[#f3f0eb]">
+      <section id="agents" className="pt-2 pb-28 relative bg-[#f3f0eb]">
         <div className="section-line absolute top-0 inset-x-0" />
-        {Header}
         <div className="max-w-5xl mx-auto px-5 grid sm:grid-cols-2 gap-4">
           {agents.map((agent, i) => (
             <motion.div

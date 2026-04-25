@@ -39,13 +39,13 @@ function LogoChip({ name, slug }: { name: string; slug: string }) {
 
 export default function TrustSection() {
   return (
-    <section className="py-16 overflow-hidden relative bg-[#f3f0eb]">
+    <section className="pt-16 pb-0 overflow-hidden relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div className="absolute left-0 inset-y-0 w-32 bg-gradient-to-r from-[#f3f0eb] to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 inset-y-0 w-32 bg-gradient-to-l from-[#f3f0eb] to-transparent z-10 pointer-events-none" />
 
-      <RevealBlock variant="fade" className="max-w-5xl mx-auto px-5 sm:px-8 mb-8 text-center">
+      <RevealBlock variant="fade" className="max-w-5xl mx-auto px-5 sm:px-8 mb-2 text-center">
         <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-[0.2em]">
           Trusted by Industry Leaders
         </p>

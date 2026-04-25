@@ -49,10 +49,10 @@ export default function Navbar() {
         <div
           className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between transition-all duration-300"
           style={scrolled ? {
-            background: "rgba(243,240,235,0.88)",
+            background: "rgba(255,255,255,0.92)",
             backdropFilter: "blur(20px)",
             WebkitBackdropFilter: "blur(20px)",
-            boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+            boxShadow: "0 2px 20px rgba(0,0,0,0.10), 0 0 0 1px rgba(0,0,0,0.05)",
             borderRadius: "16px",
             padding: "10px 24px",
           } : {}}
