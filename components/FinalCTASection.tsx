@@ -10,8 +10,6 @@ export default function FinalCTASection() {
       {/* Dot grid */}
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
 
-      {/* Radial vignette â€” fades to page bg colour */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_70%_at_50%_50%,transparent_30%,white_100%)] pointer-events-none" />
 
       <div className="max-w-3xl mx-auto px-5 sm:px-8 relative text-center">
         <motion.div

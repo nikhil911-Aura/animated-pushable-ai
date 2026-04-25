@@ -97,9 +97,9 @@ export default function Home() {
               letterSpacing: "-1px",
             }}
           >
-            AI Assistant That <em style={{ color: NEON }}>Automates</em>
+            AI Assistant That <em>Automates</em>
             <br />
-            Your <em style={{ color: NEON }}>Routine Workflows</em>
+            Your <em>Routine Workflows</em>
           </motion.h1>
 
           {/* CTA buttons */}
@@ -140,8 +140,8 @@ export default function Home() {
         <IndustrySection />
         <PricingSection />
         <WhyTrustSection />
-        <FinalCTASection />
         <FAQSection />
+        <FinalCTASection />
         <Footer />
       </div>
 
