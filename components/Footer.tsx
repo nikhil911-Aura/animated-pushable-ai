@@ -18,7 +18,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative pt-20 pb-10 border-t border-black/6 bg-[#f3f0eb]">
+    <footer className="relative pt-20 pb-10 bg-[#f3f0eb]">
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-brand-600/4 rounded-full blur-100" />
       </div>
@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-black/6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6">
           <p className="text-gray-400 text-[12px]">
             © {new Date().getFullYear()} Pushable AI, Inc. All rights reserved.
           </p>

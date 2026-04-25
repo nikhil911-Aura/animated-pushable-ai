@@ -44,14 +44,14 @@ export default function Home() {
   }, []);
 
   return (
-    <div className={`${anton.variable} ${condiment.variable} overflow-x-hidden`}>
+    <div className={`${anton.variable} ${condiment.variable} overflow-x-hidden bg-[#f3f0eb]`}>
 
       <Navbar />
 
       {/* ════════════════════════════════════════
           HERO
       ════════════════════════════════════════ */}
-      <section className="relative min-h-screen overflow-hidden" style={{ background: "#ffffff" }}>
+      <section className="relative min-h-screen overflow-hidden" style={{ background: "#f3f0eb" }}>
 
         {/* Landscape video — fades up from the bottom half */}
         <div className="absolute inset-0">
@@ -66,7 +66,7 @@ export default function Home() {
             style={{ opacity: 1 }}
             aria-hidden="true"
           />
-          {/* White gradient so video fades in from bottom */}
+          {/* White gradient glass effect */}
           <div className="absolute inset-0 pointer-events-none" style={{
             background: "linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 25%, rgba(255,255,255,0.25) 55%, rgba(255,255,255,0) 100%)"
           }} />
@@ -84,7 +84,8 @@ export default function Home() {
             style={{
               fontFamily: "var(--font-fraunces)",
               fontStyle: "italic",
-              fontSize: "clamp(44px,7vw,96px)",
+              fontWeight: 700,
+              fontSize: "clamp(32px,4.5vw,64px)",
               lineHeight: 1.06,
               color: "#111111",
               maxWidth: 860,

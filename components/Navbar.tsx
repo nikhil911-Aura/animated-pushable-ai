@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,8 +16,15 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   function handleClick(e: React.MouseEvent, href: string) {
     if (!href.startsWith("/#")) return;
@@ -39,7 +46,17 @@ export default function Navbar() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="fixed top-0 inset-x-0 z-50 py-4"
       >
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
+        <div
+          className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between transition-all duration-300"
+          style={scrolled ? {
+            background: "rgba(243,240,235,0.88)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            boxShadow: "0 2px 16px rgba(0,0,0,0.08)",
+            borderRadius: "16px",
+            padding: "10px 24px",
+          } : {}}
+        >
 
           {/* Logo */}
           <Link href="/" className="shrink-0">

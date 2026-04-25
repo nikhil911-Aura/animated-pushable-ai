@@ -154,7 +154,7 @@ export default function AnimationShell({ children }: { children: ReactNode }) {
       <div
         ref={barRef}
         className="fixed top-0 left-0 right-0 h-px z-9999 origin-left"
-        style={{ background: "#FF8095", transform: "scaleX(0)" }}
+        style={{ background: "#E8001D", transform: "scaleX(0)" }}
         aria-hidden="true"
       />
 

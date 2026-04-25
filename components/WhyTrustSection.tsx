@@ -51,7 +51,7 @@ export default function WhyTrustSection() {
   }, []);
 
   return (
-    <section className="py-28 relative bg-white">
+    <section className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">

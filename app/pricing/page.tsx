@@ -17,7 +17,7 @@ const comparisons = [
 
 export default function PricingPage() {
   return (
-    <div className="overflow-x-hidden">
+    <div className="overflow-x-hidden bg-white">
       <Navbar />
 
       {/* Hero */}

@@ -1,10 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
-  Play, ArrowRight, BarChart3, Users, TrendingUp, Settings,
-  Activity, CheckCircle2, Zap, Clock, Shield, LayoutGrid,
-  Plug, Star, Quote, ChevronRight,
+  ArrowRight, BarChart3, Users, TrendingUp, Settings,
+  Activity, CheckCircle2, Zap,
 } from "lucide-react";
 
 /* ── Design tokens ─────────────────────────────────────── */
@@ -21,8 +21,8 @@ const T = {
 };
 
 const VIDEO   = "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4";
-const DISPLAY = "Instrument Serif, var(--font-instrument-serif), serif";
-const BODY    = "Inter, var(--font-inter), sans-serif";
+const DISPLAY = "var(--font-fraunces), Georgia, serif";
+const BODY    = "var(--font-geist-sans), system-ui, sans-serif";
 
 /* ─────────────────────────────────────────────────────────
    NAVBAR
@@ -105,7 +105,7 @@ function HeroSection() {
   return (
     <div className="flex-1 relative flex flex-col justify-center items-center overflow-hidden px-6 text-center">
       <video src={VIDEO} autoPlay muted playsInline loop className="absolute inset-0 w-full h-full object-cover z-0" aria-hidden="true" />
-      <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,0.93) 100%)" }} />
+      <div className="absolute inset-0 z-[1]" style={{ background: "linear-gradient(to bottom, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.75) 50%, rgba(255,255,255,1) 100%)" }} />
       <div className="relative z-10 flex flex-col items-center w-full max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-sm mb-6" style={{ borderColor: T.border, background: T.bg, color: T.mutedFg, fontFamily: BODY }}>
           👉 AI Agents for Every Business Function ✨
@@ -120,38 +120,10 @@ function HeroSection() {
           <button className="px-6 py-3 rounded-full text-[14px] font-semibold transition-all duration-200 hover:opacity-90 active:scale-95 flex items-center gap-2" style={{ background: T.red, color: "#fff" }}>
             Book a demo <ArrowRight className="w-4 h-4" />
           </button>
-          <button className="w-11 h-11 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95" style={{ border: `1.5px solid ${T.border}`, background: T.bg, color: T.fg }}>
-            <Play className="w-4 h-4 fill-current ml-0.5" />
-          </button>
         </motion.div>
         <DashboardPreview />
       </div>
     </div>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
-   STATS STRIP
-───────────────────────────────────────────────────────── */
-const stats = [
-  { value: "2,000+", label: "Businesses automated"  },
-  { value: "94 hrs", label: "Saved per team / month" },
-  { value: "99.8%",  label: "Uptime accuracy"        },
-  { value: "$3.2M+", label: "Revenue recovered"      },
-];
-
-function StatsStrip() {
-  return (
-    <section style={{ background: T.fg, fontFamily: BODY }}>
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
-        {stats.map((s, i) => (
-          <motion.div key={s.label} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.5 }} className="text-center">
-            <div className="text-3xl font-bold mb-1" style={{ color: "#ffffff", fontFamily: DISPLAY, fontStyle: "italic" }}>{s.value}</div>
-            <div className="text-[12px] uppercase tracking-wider" style={{ color: "rgba(255,255,255,0.5)" }}>{s.label}</div>
-          </motion.div>
-        ))}
-      </div>
-    </section>
   );
 }
 
@@ -226,182 +198,6 @@ function AgentsGrid() {
 }
 
 /* ─────────────────────────────────────────────────────────
-   HOW IT WORKS
-───────────────────────────────────────────────────────── */
-const steps = [
-  { n: "01", icon: LayoutGrid, title: "Choose Your Agent",     body: "Pick the specialist built for your biggest challenge — Finance, HR, Sales, or Operations. Zero setup, zero technical knowledge required.", color: T.red    },
-  { n: "02", icon: Plug,       title: "Connect Your Tools",    body: "Link Slack, Gmail, HubSpot and 50+ more tools in one click — no code, no APIs. Your agent learns your workflow and starts working immediately.", color: "#f59e0b" },
-  { n: "03", icon: BarChart3,  title: "Watch It Do the Work",  body: "Track every completed task on a live dashboard. Add agents, expand workflows, or connect more tools whenever you're ready.",                    color: "#10b981" },
-];
-
-function HowItWorksSection() {
-  return (
-    <section className="w-full py-24 px-6 md:px-12 lg:px-20" style={{ background: T.soft, fontFamily: BODY }}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7 }} className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold mb-5" style={{ background: `${T.red}10`, color: T.red, border: `1px solid ${T.red}25` }}>
-            3 Simple Steps
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-4" style={{ color: T.fg, fontFamily: DISPLAY }}>
-            Up and Running in <em style={{ fontStyle: "italic", color: T.red }}>Minutes</em>
-          </h2>
-          <p className="text-[16px] max-w-md mx-auto" style={{ color: T.mutedFg }}>
-            No technical setup needed. If you can send an email, you can deploy a Pushable AI agent.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step, i) => {
-            const Icon = step.icon;
-            return (
-              <motion.div key={step.n} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.12 }} className="relative">
-                <div className="rounded-2xl border p-8" style={{ borderColor: T.border, background: T.bg }}>
-                  <div className="text-[11px] font-bold mb-4" style={{ color: step.color }}>{step.n}</div>
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style={{ background: `${step.color}12`, border: `1px solid ${step.color}22` }}>
-                    <Icon className="w-5 h-5" style={{ color: step.color }} />
-                  </div>
-                  <h3 className="text-[18px] font-bold mb-3 leading-snug" style={{ color: T.fg, fontFamily: DISPLAY }}>{step.title}</h3>
-                  <p className="text-[13px] leading-relaxed" style={{ color: T.mutedFg }}>{step.body}</p>
-                </div>
-                {i < steps.length - 1 && (
-                  <div className="hidden md:flex absolute top-1/2 -right-5 z-10 w-10 justify-center">
-                    <ChevronRight className="w-5 h-5" style={{ color: T.red }} />
-                  </div>
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
-   FEATURES / WHY NEXORA
-───────────────────────────────────────────────────────── */
-
-const featuresList = [
-  { icon: Clock,    title: "94+ Hours Saved Monthly",  desc: "Your team gets back nearly 2.5 work weeks every month — freed from repetitive, manual tasks that agents handle automatically.",   color: T.red    },
-  { icon: Shield,   title: "99.8% Accuracy",            desc: "Agents follow defined workflows precisely — no human errors, no missed steps. Every process runs exactly as designed, every time.",  color: "#10b981" },
-  { icon: Zap,      title: "24/7 Always On",            desc: "Agents never sleep. Workflows run through weekends and holidays — your business never pauses waiting for someone to log in.",        color: "#f59e0b" },
-  { icon: Activity, title: "Real-Time Visibility",      desc: "Every action is logged on a live dashboard. See exactly what each agent is doing, what it completed, and what's running now.",       color: T.accent  },
-];
-
-function WhyPushable() {
-  return (
-    <section className="w-full py-24 px-6 md:px-12 lg:px-20" style={{ background: T.bg, fontFamily: BODY }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
-          {/* Left */}
-          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7 }}>
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold mb-6" style={{ background: `${T.red}10`, color: T.red, border: `1px solid ${T.red}25` }}>
-              Why Pushable AI
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-5" style={{ color: T.fg, fontFamily: DISPLAY }}>
-              Why Businesses <em style={{ fontStyle: "italic", color: T.red }}>Trust</em><br />Pushable AI
-            </h2>
-            <p className="text-[15px] leading-relaxed mb-8" style={{ color: T.mutedFg }}>
-              Pushable AI isn't another tool that adds complexity — it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can see on their bottom line.
-            </p>
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-semibold transition-all duration-200 hover:opacity-85 active:scale-95" style={{ background: T.red, color: "#fff" }}>
-              Start Free Trial <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
-
-          {/* Right — 2×2 grid */}
-          <div className="grid grid-cols-2 gap-4">
-            {featuresList.map((f, i) => {
-              const Icon = f.icon;
-              return (
-                <motion.div key={f.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: i * 0.1 }} className="rounded-2xl border p-5 hover:-translate-y-0.5 transition-all duration-300" style={{ borderColor: T.border, background: T.bg }}>
-                  <div className="w-9 h-9 rounded-xl flex items-center justify-center mb-3" style={{ background: `${f.color}10`, border: `1px solid ${f.color}20` }}>
-                    <Icon className="w-4 h-4" style={{ color: f.color }} />
-                  </div>
-                  <h3 className="text-[13px] font-bold mb-2 leading-snug" style={{ color: T.fg }}>{f.title}</h3>
-                  <p className="text-[12px] leading-relaxed" style={{ color: T.mutedFg }}>{f.desc}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
-   INTEGRATIONS STRIP
-───────────────────────────────────────────────────────── */
-const integrations = ["Slack", "Gmail", "HubSpot", "Notion", "Stripe", "Salesforce", "Zoom", "Figma", "Linear", "Airtable"];
-
-function IntegrationsStrip() {
-  return (
-    <section className="py-16 px-6 md:px-12 lg:px-20" style={{ background: T.soft, fontFamily: BODY }}>
-      <div className="max-w-6xl mx-auto text-center">
-        <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-8" style={{ color: T.mutedFg }}>
-          Works with the tools you already use
-        </motion.p>
-        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="flex flex-wrap items-center justify-center gap-3">
-          {integrations.map((name) => (
-            <div key={name} className="px-4 py-2 rounded-xl text-[13px] font-medium border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm" style={{ borderColor: T.border, background: T.bg, color: T.mutedFg }}>
-              {name}
-            </div>
-          ))}
-          <div className="px-4 py-2 rounded-xl text-[13px] font-medium" style={{ color: T.red }}>
-            +40 more →
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
-   TESTIMONIALS
-───────────────────────────────────────────────────────── */
-const testimonials = [
-  { name: "Sarah Chen",    role: "CFO, Acme Corp",         stars: 5, quote: "Pushable AI's Finance Agent cut our invoice processing time by 80%. We used to have two people on this full-time. Now it's fully automated." },
-  { name: "Marcus Rivera", role: "Head of HR, Brightline", stars: 5, quote: "The HR Agent screened 200+ candidates in a week and ranked them better than we ever did manually. Onboarding is now a 10-minute process." },
-  { name: "Priya Nair",    role: "VP Sales, Growthify",    stars: 5, quote: "We recovered $24K in at-risk accounts in the first month. The Sales Agent follows up more consistently than any human rep ever could." },
-];
-
-function Testimonials() {
-  return (
-    <section className="w-full py-24 px-6 md:px-12 lg:px-20" style={{ background: T.bg, fontFamily: BODY }}>
-      <div className="max-w-6xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-80px" }} transition={{ duration: 0.7 }} className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-semibold mb-5" style={{ background: `${T.red}10`, color: T.red, border: `1px solid ${T.red}25` }}>
-            Customer Stories
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]" style={{ color: T.fg, fontFamily: DISPLAY }}>
-            Trusted by <em style={{ fontStyle: "italic", color: T.red }}>2,000+</em> Businesses
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <motion.div key={t.name} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.6, delay: i * 0.1 }} className="rounded-2xl border p-6 flex flex-col" style={{ borderColor: T.border, background: T.bg }}>
-              <Quote className="w-6 h-6 mb-4" style={{ color: T.red }} />
-              <p className="text-[14px] leading-relaxed flex-1 mb-6" style={{ color: T.fg }}>&ldquo;{t.quote}&rdquo;</p>
-              <div>
-                <div className="flex mb-2">
-                  {Array.from({ length: t.stars }).map((_, j) => (
-                    <Star key={j} className="w-3.5 h-3.5 fill-current" style={{ color: T.red }} />
-                  ))}
-                </div>
-                <div className="text-[13px] font-semibold" style={{ color: T.fg }}>{t.name}</div>
-                <div className="text-[12px]" style={{ color: T.mutedFg }}>{t.role}</div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ─────────────────────────────────────────────────────────
    FINAL CTA
 ───────────────────────────────────────────────────────── */
 function FinalCTA() {
@@ -460,13 +256,9 @@ export default function ProductPage() {
       </div>
 
       {/* Extended sections */}
-      <StatsStrip />
       <AgentsGrid />
-      <HowItWorksSection />
-      <WhyPushable />
-      <IntegrationsStrip />
-      <Testimonials />
       <FinalCTA />
+      <Footer />
     </div>
   );
 }

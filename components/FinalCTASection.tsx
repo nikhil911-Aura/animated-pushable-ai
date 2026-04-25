@@ -4,7 +4,7 @@ import { Zap, ArrowRight, MessageCircle } from "lucide-react";
 
 export default function FinalCTASection() {
   return (
-    <section className="py-28 relative overflow-hidden bg-white">
+    <section className="py-28 relative overflow-hidden bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
 
       {/* Dot grid */}

@@ -353,7 +353,7 @@ export default function AgentsSection() {
 
   if (isMobile) {
     return (
-      <section id="agents" className="py-28 relative bg-white">
+      <section id="agents" className="py-28 relative bg-[#f3f0eb]">
         <div className="section-line absolute top-0 inset-x-0" />
         {Header}
         <div className="max-w-5xl mx-auto px-5 grid sm:grid-cols-2 gap-4">
@@ -378,7 +378,7 @@ export default function AgentsSection() {
   }
 
   return (
-    <section id="agents" className="relative bg-white">
+    <section id="agents" className="relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div ref={outerRef} className="relative overflow-hidden" style={{ height: "100vh" }}>

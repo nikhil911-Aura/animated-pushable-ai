@@ -42,7 +42,7 @@ export default function DemoSection() {
   }, []);
 
   return (
-    <section id="demo" className="py-28 relative bg-white">
+    <section id="demo" className="py-28 relative bg-[#f3f0eb]">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-brand-400/6 rounded-full blur-[110px] -translate-y-1/2" />
