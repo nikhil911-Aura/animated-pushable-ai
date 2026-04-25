@@ -40,32 +40,7 @@ export default function Home() {
   useEffect(() => {
     const video = heroVideoRef.current;
     if (!video) return;
-
-    video.style.transition = "opacity 0.5s linear";
-
-    const onTimeUpdate = () => {
-      if (isNaN(video.duration)) return;
-      const t = video.currentTime, d = video.duration;
-      const o = t < 0.6 ? t / 0.5 : t > d - 0.6 ? (d - t) / 0.5 : 1;
-      video.style.opacity = String(Math.max(0, Math.min(1, o)));
-    };
-
-    const onEnded = () => {
-      video.style.transition = "none";
-      video.style.opacity = "0";
-      setTimeout(() => {
-        video.style.transition = "opacity 0.5s linear";
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      }, 80);
-    };
-
-    video.addEventListener("timeupdate", onTimeUpdate);
-    video.addEventListener("ended", onEnded);
-    return () => {
-      video.removeEventListener("timeupdate", onTimeUpdate);
-      video.removeEventListener("ended", onEnded);
-    };
+    video.style.opacity = "1";
   }, []);
 
   return (
@@ -86,8 +61,9 @@ export default function Home() {
             autoPlay
             muted
             playsInline
+            loop
             className="w-full h-full object-cover"
-            style={{ opacity: 0 }}
+            style={{ opacity: 1 }}
             aria-hidden="true"
           />
           {/* White gradient so video fades in from bottom */}
@@ -97,8 +73,8 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 flex flex-col items-center justify-start text-center px-4"
-          style={{ minHeight: "100vh", paddingTop: "clamp(100px,12vh,140px)", paddingBottom: 60 }}>
+        <div className="relative z-10 flex flex-col items-center justify-center text-center px-4"
+          style={{ minHeight: "100vh" }}>
 
           {/* Heading */}
           <motion.h1
