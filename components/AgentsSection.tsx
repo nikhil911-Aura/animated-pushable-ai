@@ -93,7 +93,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             <Icon className="w-3.5 h-3.5" />
             {agent.title}
           </div>
-          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight">
+          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight" style={{ fontFamily: "var(--font-fraunces)", fontStyle: "italic" }}>
             Meet {agent.name}
           </h3>
           <p className="text-gray-500 text-[16px] leading-relaxed mb-6">{agent.description}</p>
@@ -340,14 +340,10 @@ export default function AgentsSection() {
       transition={{ duration: 0.7 }}
       className="text-center mb-14 max-w-5xl mx-auto px-5 sm:px-8"
     >
-      <div className="pld-3 badge mx-auto mb-5">
-        <Sparkles className="w-3 h-3" />
-        AI Agents
-      </div>
       <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
         Your AI Agents, Each Built
         <br />
-        <span className="gradient-text">for a Specific Role</span>
+        <span className="text-[#111111]">for a Specific Role</span>
       </h2>
       <p className="text-gray-500 text-[16px] max-w-xl mx-auto leading-relaxed">
         Four AI agents, each purpose-built for a different part of your business. Pick the one that fits your biggest bottleneck and let it handle the work end-to-end.

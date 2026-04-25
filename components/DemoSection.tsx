@@ -56,10 +56,6 @@ export default function DemoSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <div className="badge mx-auto mb-5">
-            <Play className="w-3 h-3 fill-[#E8001D] text-brand-500" />
-            Live Demo
-          </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             See How Your AI Assistant Handles
             <br />
@@ -142,14 +138,6 @@ export default function DemoSection() {
               </div>
             </div>
 
-            <a
-              href="#"
-              className="group w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-medium text-[13px] transition-all duration-200 shadow-sm shadow-brand-500/20"
-            >
-              <Zap className="w-4 h-4 fill-white" />
-              Request Demo
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </a>
           </motion.div>
 
           {/* Right â€” screen mockup */}

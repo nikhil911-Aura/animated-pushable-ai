@@ -51,13 +51,6 @@ export default function FinalCTASection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Live badge */}
-          <div className="flex justify-center mb-7">
-            <div className="badge">
-              <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-              Ready when you are
-            </div>
-          </div>
 
           {/* Headline */}
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#111111] mb-6 leading-[1.06]" style={{ fontFamily: "var(--font-fraunces)" }}>

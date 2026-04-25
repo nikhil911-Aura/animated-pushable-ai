@@ -64,10 +64,6 @@ export default function WhyTrustSection() {
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.7 }}
           >
-            <div className="pld-3 badge mb-5">
-              <Zap className="w-3 h-3" />
-              Why teams trust us
-            </div>
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
               Why Businesses Trust
               <br />

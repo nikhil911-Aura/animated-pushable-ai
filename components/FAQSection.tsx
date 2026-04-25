@@ -118,10 +118,6 @@ export default function FAQSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
-          <div className="badge mx-auto mb-5">
-            <HelpCircle className="w-3 h-3" />
-            FAQ
-          </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             Questions? We&apos;ve Got
             <br />

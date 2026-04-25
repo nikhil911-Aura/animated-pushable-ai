@@ -71,10 +71,6 @@ export default function IndustrySection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
-          <div className="pld-3 badge mx-auto mb-5">
-            <Briefcase className="w-3 h-3" />
-            Industries
-          </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             The Right Push for Every Industry,
             <br />
