@@ -63,7 +63,7 @@ export default function FinalCTASection() {
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#111111] mb-6 leading-[1.06]">
             Ready to Take Your
             <br />
-            <span className="pld-2 gradient-text">Business Forward?</span>
+            <span className="pld-2 text-[#111111]">Business Forward?</span>
           </h2>
 
           {/* Sub */}

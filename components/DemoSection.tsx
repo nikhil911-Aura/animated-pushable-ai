@@ -63,7 +63,7 @@ export default function DemoSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             See How Your AI Assistant Handles
             <br />
-            <span className="gradient-text">Work Behind The Scenes</span>
+            <span className="text-[#111111]">Work Behind The Scenes</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
             Your AI assistant runs real tasks in the background â€” generating invoices, following up on leads, onboarding candidates, and compiling reports â€” without you lifting a finger. Watch exactly what it handles, when it happened, and what&apos;s running right now.

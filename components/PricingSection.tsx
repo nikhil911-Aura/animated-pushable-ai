@@ -91,7 +91,7 @@ export default function PricingSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             You Don&apos;t Pay for Access.
             <br />
-            <span className="gradient-text">You Pay for Output.</span>
+            <span className="text-[#111111]">You Pay for Output.</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
             Think of credits like task tokens â€” one credit equals one completed action. An invoice sent, a lead followed up, a report filed. You only pay for work that actually gets done.

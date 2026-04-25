@@ -78,7 +78,7 @@ export default function IndustrySection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             The Right Push for Every Industry,
             <br />
-            <span className="gradient-text-soft">Built with Pushable</span>
+            <span className="text-[#111111]">Built with Pushable</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
             Whatever your business does, Pushable AI finds the routine tasks worth automating and handles them for you.

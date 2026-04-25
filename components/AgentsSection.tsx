@@ -94,7 +94,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             {agent.title}
           </div>
           <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight">
-            Meet <span style={{ color: agent.color }}>{agent.name}</span>
+            Meet {agent.name}
           </h3>
           <p className="text-gray-500 text-[16px] leading-relaxed mb-6">{agent.description}</p>
 

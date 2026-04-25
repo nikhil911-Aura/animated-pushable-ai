@@ -252,7 +252,7 @@ export default function SignatureTile() {
                 fontSize:    "clamp(44px, 7vw, 88px)",
                 fontWeight:  700,
                 letterSpacing: "-2.5px",
-                color:       orange ? "#E8001D" : "#111111",
+                color:       "#111111",
                 fontStyle:   italic ? "italic" : "normal",
                 marginRight: "0.22em",
               }}
@@ -274,7 +274,7 @@ export default function SignatureTile() {
                 fontSize:    "clamp(44px, 7vw, 88px)",
                 fontWeight:  700,
                 letterSpacing: "-2.5px",
-                color:       orange ? "#E8001D" : "#111111",
+                color:       "#111111",
                 fontStyle:   italic ? "italic" : "normal",
                 marginRight: "0.22em",
               }}

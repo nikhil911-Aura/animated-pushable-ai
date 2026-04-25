@@ -125,7 +125,7 @@ export default function FAQSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             Questions? We&apos;ve Got
             <br />
-            <span className="gradient-text">Clear Answers.</span>
+            <span className="text-[#111111]">Clear Answers.</span>
           </h2>
           <p className="text-gray-500 text-[15px]">
             Everything you need to know before deploying your first agent.

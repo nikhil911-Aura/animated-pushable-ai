@@ -129,7 +129,7 @@ export default function IntegrationsSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             Your AI Assistant Works Across
             <br />
-            <span className="gradient-text">Your Entire Stack</span>
+            <span className="text-[#111111]">Your Entire Stack</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
             Connect your existing tools in one click. Pushable AI plugs into 50+ platforms your team already uses â€” no reconfiguration needed.

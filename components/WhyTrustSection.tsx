@@ -71,7 +71,7 @@ export default function WhyTrustSection() {
             <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.1]">
               Why Businesses Trust
               <br />
-              <span className="gradient-text">Pushable AI?</span>
+              <span className="text-[#111111]">Pushable AI?</span>
             </h2>
             <p className="text-gray-500 text-[15px] leading-relaxed mb-8">
               Pushable AI isn&apos;t another tool that adds complexity â€” it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can actually see on their bottom line.

@@ -90,7 +90,7 @@ export default function HowItWorksSection() {
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
             How Your AI Assistant
             <br />
-            <span className="gradient-text">Gets to Work</span>
+            <span className="text-[#111111]">Gets to Work</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
             No technical setup needed. If you can send an email, you can run Pushable AI.
