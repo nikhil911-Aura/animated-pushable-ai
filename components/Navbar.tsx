@@ -1,19 +1,35 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 const links = [
-  { label: "Product",      href: "#agents" },
-  { label: "How it Works", href: "#how-it-works" },
-  { label: "Industries",   href: "#industries" },
-  { label: "Pricing",      href: "#pricing" },
-  { label: "FAQ",          href: "#faq" },
+  { label: "Product",      href: "/product" },
+  { label: "How it Works", href: "/#how-it-works" },
+  { label: "Industries",   href: "/#industries" },
+  { label: "Pricing",      href: "/pricing" },
+  { label: "FAQ",          href: "/#faq" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function handleClick(e: React.MouseEvent, href: string) {
+    if (!href.startsWith("/#")) return;
+    e.preventDefault();
+    const id = href.slice(2);
+    if (pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      router.push(href);
+    }
+    setOpen(false);
+  }
 
   return (
     <>
@@ -26,11 +42,11 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-5 sm:px-8 flex items-center justify-between">
 
           {/* Logo */}
-          <a href="#" className="pld-1 shrink-0">
+          <Link href="/" className="shrink-0">
             <div className="bg-[#111111] rounded-xl px-3 py-2">
               <Image src="/brand/logo.png" alt="Pushable AI" width={120} height={28} className="h-7 w-auto" priority />
             </div>
-          </a>
+          </Link>
 
           {/* Center pill nav */}
           <nav
@@ -38,26 +54,27 @@ export default function Navbar() {
             style={{ background: "rgba(1,8,40,0.75)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
           >
             {links.map((l) => (
-              <a
+              <Link
                 key={l.label}
                 href={l.href}
+                onClick={(e) => handleClick(e, l.href)}
                 className="px-3.5 py-1.5 text-[13px] text-white/70 hover:text-white rounded-full hover:bg-white/10 transition-all duration-200"
               >
                 {l.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           {/* Right actions */}
-          <div className="hidden md:flex items-center gap-2.5 flex-shrink-0">
-<a
-              href="#"
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
+            <Link
+              href="/product"
               className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-500 hover:bg-brand-400 text-white text-[13px] font-medium transition-all duration-200 overflow-hidden shadow-sm shadow-brand-500/30"
             >
               <span className="relative z-10">Get Started</span>
               <ArrowRight className="w-3.5 h-3.5 relative z-10 group-hover:translate-x-0.5 transition-transform" />
               <div className="absolute inset-0 bg-gradient-to-r from-brand-500 to-brand-400 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -83,22 +100,23 @@ export default function Navbar() {
           >
             <div className="px-5 py-5 flex flex-col gap-1">
               {links.map((l) => (
-                <a
+                <Link
                   key={l.label}
                   href={l.href}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => { handleClick(e, l.href); setOpen(false); }}
                   className="px-4 py-2.5 text-[14px] text-white/70 hover:text-white hover:bg-white/8 rounded-xl transition-all"
                 >
                   {l.label}
-                </a>
+                </Link>
               ))}
-              <div className="mt-3 pt-3 flex flex-col gap-2" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-                <a href="#" className="px-4 py-2.5 text-center text-[14px] text-white/60 hover:text-white rounded-xl transition-all" style={{ border: "1px solid rgba(255,255,255,0.12)" }}>
-                  Sign in
-                </a>
-                <a href="#" className="px-4 py-2.5 text-center text-[14px] font-medium bg-brand-500 hover:bg-brand-400 text-white rounded-xl transition-all">
+              <div className="mt-3 pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+                <Link
+                  href="/product"
+                  className="block px-4 py-2.5 text-center text-[14px] font-medium bg-brand-500 hover:bg-brand-400 text-white rounded-xl transition-all"
+                  onClick={() => setOpen(false)}
+                >
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

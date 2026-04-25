@@ -41,32 +41,18 @@ const plans = [
 ];
 
 export default function PricingSection() {
-  const featuredRef  = useRef<HTMLDivElement | null>(null);
   const cardsGridRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const featured  = featuredRef.current;
     const cardsGrid = cardsGridRef.current;
-    if (!featured || !cardsGrid) return;
+    if (!cardsGrid) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const pulse = gsap.to(featured, {
-      boxShadow: "0 0 0 2px rgba(232,0,29,0.45), 0 8px 32px 4px rgba(232,0,29,0.12)",
-      duration: 1.4, repeat: -1, yoyo: true, ease: "power1.inOut", paused: true,
-    });
-
-    ScrollTrigger.create({
-      trigger: featured, start: "top 85%", once: true,
-      onEnter: () => pulse.play(),
-    });
 
     const cols = cardsGrid.querySelectorAll<HTMLElement>(":scope > *");
     gsap.fromTo(cols, { y: 40, opacity: 0 }, {
       y: 0, opacity: 1, duration: 0.65, ease: "power3.out", stagger: 0.12,
       scrollTrigger: { trigger: cardsGrid, start: "top 82%", once: true },
     });
-
-    return () => { pulse.kill(); };
   }, []);
 
   return (
@@ -124,7 +110,7 @@ export default function PricingSection() {
           {plans.map((plan) => (
             <div
               key={plan.name}
-              ref={plan.highlight ? featuredRef : undefined}
+
               className={`relative rounded-2xl border p-6 flex flex-col transition-all duration-300 ${
                 plan.highlight
                   ? "border-brand-300 bg-white shadow-lg"
@@ -167,7 +153,7 @@ export default function PricingSection() {
                 className={`group flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${
                   plan.highlight
                     ? "bg-brand-500 hover:bg-brand-400 text-white shadow-sm shadow-brand-500/20"
-                    : "border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50"
+                    : "border border-black/8 text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50"
                 }`}
               >
                 {plan.cta}

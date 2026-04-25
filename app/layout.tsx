@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Fraunces, Rubik, Instrument_Serif, Inter } from "nex
 import "./globals.css";
 import AnimationShell from "@/components/animation/AnimationShell";
 import PageLoader     from "@/components/PageLoader";
+import ScrollToHash   from "@/components/ScrollToHash";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -75,6 +76,7 @@ export default function RootLayout({
       </head>
       <body className="bg-[#010828] text-[#EFF4FF] min-h-screen overflow-x-hidden">
         <PageLoader />
+        <ScrollToHash />
         <AnimationShell>{children}</AnimationShell>
       </body>
     </html>

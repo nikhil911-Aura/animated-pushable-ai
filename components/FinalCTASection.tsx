@@ -1,42 +1,11 @@
 ﻿"use client";
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { gsap } from "gsap";
 import { Zap, ArrowRight, MessageCircle } from "lucide-react";
-
-function AuroraBackground() {
-  const a1 = useRef<HTMLDivElement>(null);
-  const a2 = useRef<HTMLDivElement>(null);
-  const a3 = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const drift = (el: HTMLDivElement | null, dur: number, dx: number, dy: number) => {
-      if (!el) return;
-      gsap.to(el, { x: dx, y: dy, duration: dur, repeat: -1, yoyo: true, ease: "sine.inOut" });
-    };
-
-    drift(a1.current, 9,   60, -40);
-    drift(a2.current, 11, -50,  55);
-    drift(a3.current, 8,   40,  30);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      <div ref={a1} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-200 h-100 bg-brand-500/8 rounded-full blur-[150px]" />
-      <div ref={a2} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-75 bg-brand-500/6 rounded-full blur-[120px]" />
-      <div ref={a3} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-brand-400/5 rounded-full blur-[100px]" />
-    </div>
-  );
-}
 
 export default function FinalCTASection() {
   return (
     <section className="py-28 relative overflow-hidden bg-white">
       <div className="section-line absolute top-0 inset-x-0" />
-
-      <AuroraBackground />
 
       {/* Dot grid */}
       <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
