@@ -68,7 +68,7 @@ export default function WhyTrustSection() {
               <Zap className="w-3 h-3" />
               Why teams trust us
             </div>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.1]">
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
               Why Businesses Trust
               <br />
               <span className="text-[#111111]">Pushable AI?</span>

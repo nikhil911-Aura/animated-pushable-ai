@@ -88,7 +88,7 @@ export default function PricingSection() {
             <CreditCard className="w-3 h-3" />
             Pricing
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             You Don&apos;t Pay for Access.
             <br />
             <span className="text-[#111111]">You Pay for Output.</span>
@@ -151,7 +151,7 @@ export default function PricingSection() {
               </div>
 
               <div className="flex items-baseline gap-1.5 mb-1">
-                <span className="text-4xl font-bold text-[#111111] tracking-tight">{plan.price}</span>
+                <span className="text-4xl font-bold text-[#111111] tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>{plan.price}</span>
                 <span className="text-gray-400 text-sm">/mo</span>
               </div>
               <div className="text-[12px] font-medium mb-1" style={{ color: plan.color }}>{plan.credits}</div>

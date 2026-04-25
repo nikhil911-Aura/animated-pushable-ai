@@ -105,7 +105,7 @@ export default function TrustSection() {
                 <div className="absolute inset-0 bg-linear-to-b from-brand-50/0 to-orange-50/0 group-hover:from-brand-50/60 group-hover:to-brand-50/20 transition-all duration-400 pointer-events-none" />
 
                 <div className="relative">
-                  <div className="text-2xl sm:text-3xl font-bold gradient-text mb-0.5 tabular-nums">
+                  <div className="text-2xl sm:text-3xl font-bold gradient-text mb-0.5 tabular-nums" style={{ fontFamily: "var(--font-fraunces)" }}>
                     <CountUp
                       to={s.to}
                       prefix={s.prefix}

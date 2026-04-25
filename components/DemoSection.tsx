@@ -60,7 +60,7 @@ export default function DemoSection() {
             <Play className="w-3 h-3 fill-[#E8001D] text-brand-500" />
             Live Demo
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             See How Your AI Assistant Handles
             <br />
             <span className="text-[#111111]">Work Behind The Scenes</span>

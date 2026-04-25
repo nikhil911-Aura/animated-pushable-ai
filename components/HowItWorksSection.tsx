@@ -87,7 +87,7 @@ export default function HowItWorksSection() {
             <BarChart3 className="w-3 h-3" />
             How it works
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             How Your AI Assistant
             <br />
             <span className="text-[#111111]">Gets to Work</span>

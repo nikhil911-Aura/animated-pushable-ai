@@ -75,7 +75,7 @@ export default function IndustrySection() {
             <Briefcase className="w-3 h-3" />
             Industries
           </div>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]">
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             The Right Push for Every Industry,
             <br />
             <span className="text-[#111111]">Built with Pushable</span>
