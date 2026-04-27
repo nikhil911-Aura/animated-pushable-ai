@@ -111,7 +111,7 @@ function HeroSection() {
           👉 AI Agents for Every Business Function ✨
         </motion.div>
         <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12, duration: 0.75, ease: [0.16, 1, 0.3, 1] }} className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.06] mb-5" style={{ color: T.fg, fontFamily: DISPLAY }}>
-          Your <em style={{ fontStyle: "italic", color: T.red }}>AI Agents</em>,<br />Built for Every Role
+          Your <span style={{ color: T.red }}>AI Agents</span>,<br />Built for Every Role
         </motion.h1>
         <motion.p initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.22, duration: 0.65 }} className="text-[16px] leading-relaxed max-w-xl mx-auto mb-8" style={{ color: T.mutedFg, fontFamily: BODY }}>
           Automate finance, HR, sales, and operations with intelligent agents that work in the background—reducing manual effort, eliminating errors, and letting your team focus on strategic growth.
@@ -146,7 +146,7 @@ function AgentsGrid() {
             <Zap className="w-3 h-3" /> AI Agents
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-4" style={{ color: T.fg, fontFamily: DISPLAY }}>
-            Your <em style={{ fontStyle: "italic", color: T.red }}>AI Agents</em>, Each Built<br />for a Specific Role
+            Your <span style={{ color: T.red }}>AI Agents</span>, Each Built<br />for a Specific Role
           </h2>
           <p className="text-[16px] max-w-xl mx-auto" style={{ color: T.mutedFg }}>
             From finance to operations, every part of your business runs on specialized AI agents that automate workflows, reduce manual effort, and drive better outcomes.
@@ -213,7 +213,7 @@ function FinalCTA() {
           </div>
 
           <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.06] mb-6" style={{ color: "#ffffff", fontFamily: DISPLAY }}>
-            Ready to Take Your<br /><em style={{ fontStyle: "italic", color: T.red }}>Business Forward?</em>
+            Ready to Take Your<br /><span style={{ color: T.red }}>Business Forward?</span>
           </h2>
 
           <p className="text-[17px] leading-relaxed max-w-xl mx-auto mb-10" style={{ color: "rgba(255,255,255,0.55)" }}>

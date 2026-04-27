@@ -42,10 +42,10 @@ export default function PricingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="text-5xl sm:text-6xl font-bold tracking-tight text-[#111111] mb-5 leading-[1.06]"
-            style={{ fontFamily: "var(--font-fraunces)", fontStyle: "italic" }}
+            style={{ fontFamily: "var(--font-fraunces)" }}
           >
             Pay Only for{" "}
-            <em style={{ color: NEON }}>Work Done</em>
+            <span style={{ color: NEON }}>Work Done</span>
           </motion.h1>
 
           <motion.p

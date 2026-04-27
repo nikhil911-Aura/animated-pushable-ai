@@ -87,8 +87,7 @@ export default function Home() {
             transition={{ delay: 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             style={{
               fontFamily: "var(--font-fraunces)",
-              fontStyle: "italic",
-              fontWeight: 700,
+              fontWeight: 800,
               fontSize: "clamp(32px,4.5vw,64px)",
               lineHeight: 1.06,
               color: "#111111",

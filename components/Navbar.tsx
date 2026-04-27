@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* Center pill nav */}
           <nav
             className="hidden md:flex items-center gap-0.5 rounded-full px-1.5 py-1.5"
-            style={{ background: "rgba(1,8,40,0.75)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
+            style={{ background: "rgba(0,0,0,0.88)", border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }}
           >
             {links.map((l) => (
               <Link

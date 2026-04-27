@@ -93,7 +93,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             <Icon className="w-3.5 h-3.5" />
             {agent.title}
           </div>
-          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight" style={{ fontFamily: "var(--font-fraunces)", fontStyle: "italic" }}>
+          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
             Meet {agent.name}
           </h3>
           <p className="text-gray-500 text-[16px] leading-relaxed mb-6">{agent.description}</p>
