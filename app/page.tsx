@@ -4,7 +4,6 @@ import { Anton, Condiment } from "next/font/google";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Navbar              from "@/components/Navbar";
-import TrustSection        from "@/components/TrustSection";
 import AgentsSection       from "@/components/AgentsSection";
 import HowItWorksSection   from "@/components/HowItWorksSection";
 import DemoSection         from "@/components/DemoSection";
@@ -21,6 +20,22 @@ const condiment = Condiment({ weight: "400", subsets: ["latin"], variable: "--fo
 
 /* ── Design tokens ──────────────────────────────────────────── */
 const NEON  = "#E8001D";
+
+/* ── Trust logos ─────────────────────────────────────────────── */
+const LOGOS = [
+  { name: "Google",    slug: "google"    },
+  { name: "Shopify",   slug: "shopify"   },
+  { name: "Stripe",    slug: "stripe"    },
+  { name: "HubSpot",   slug: "hubspot"   },
+  { name: "Notion",    slug: "notion"    },
+  { name: "Zoom",      slug: "zoom"      },
+  { name: "Figma",     slug: "figma"     },
+  { name: "Linear",    slug: "linear"    },
+  { name: "Vercel",    slug: "vercel"    },
+  { name: "Airtable",  slug: "airtable"  },
+];
+const R1 = [...LOGOS, ...LOGOS, ...LOGOS];
+const R2 = [...LOGOS.slice(5), ...LOGOS.slice(0, 5), ...LOGOS.slice(5), ...LOGOS.slice(0, 5), ...LOGOS.slice(5), ...LOGOS.slice(0, 5)];
 
 /* ── Video URL ──────────────────────────────────────────────── */
 const V = {
@@ -74,6 +89,33 @@ export default function Home() {
           <div className="absolute inset-x-0 top-0 h-[45%] pointer-events-none" style={{
             background: "radial-gradient(ellipse 120% 60% at 50% 0%, rgba(255,255,255,0.6) 0%, transparent 100%)"
           }} />
+        </div>
+
+        {/* Trust carousel — pinned to bottom of hero */}
+        <div className="absolute bottom-0 inset-x-0 z-20 overflow-hidden pb-6 pt-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)" }}>
+          <p className="text-center text-[10px] font-semibold text-white/50 uppercase tracking-[0.22em] mb-3">Trusted by AI Leaders</p>
+          <div className="overflow-hidden mb-2">
+            <div className="flex animate-marquee" style={{ width: "max-content" }}>
+              {R1.map((l, i) => (
+                <div key={`r1-${i}`} className="shrink-0 flex items-center gap-2 px-4 py-1.5 mx-1.5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={24} height={24} className="w-6 h-6 shrink-0 object-contain opacity-70" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-[13px] text-white/70 whitespace-nowrap font-medium">{l.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="overflow-hidden">
+            <div className="flex animate-marquee-rev" style={{ width: "max-content" }}>
+              {R2.map((l, i) => (
+                <div key={`r2-${i}`} className="shrink-0 flex items-center gap-2 px-4 py-1.5 mx-1.5">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={24} height={24} className="w-6 h-6 shrink-0 object-contain opacity-70" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-[13px] text-white/70 whitespace-nowrap font-medium">{l.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Content */}
@@ -132,7 +174,6 @@ export default function Home() {
           ORIGINAL SECTIONS
       ════════════════════════════════════════ */}
       <div style={{ background: "#010828" }}>
-        <TrustSection />
         <AgentsSection />
         <HowItWorksSection />
         <DemoSection />
