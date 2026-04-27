@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -13,7 +13,7 @@ const steps = [
     icon: LayoutGrid,
     color: "#E8001D",
     title: "Choose Your Assistant",
-    body: "Pick the assistant built for your biggest challenge â€” Finance, HR, Revenue, or Operations. Zero setup, zero technical knowledge required. You'll be running in minutes.",
+    body: "Pick the assistant built for your biggest challenge — Finance, HR, Revenue, or Operations. Zero setup, zero technical knowledge required. You'll be running in minutes.",
     items: ["Select from 4 specialists", "Preview before deploying", "No commitment required"],
   },
   {
@@ -21,7 +21,7 @@ const steps = [
     icon: Plug,
     color: "#FF2D42",
     title: "Connect Your Tools",
-    body: "Link Slack, Gmail, HubSpot, and 50+ more tools with one click â€” no code, no APIs, no configuration. Your assistant learns your workflow and starts working immediately.",
+    body: "Link Slack, Gmail, HubSpot, and 50+ more tools with one click — no code, no APIs, no configuration. Your assistant learns your workflow and starts working immediately.",
     items: ["50+ one-click integrations", "No code, no APIs to configure", "Live in under 10 minutes"],
   },
   {

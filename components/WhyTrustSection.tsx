@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -12,13 +12,13 @@ const reasons = [
     icon: Clock,
     color: "#E8001D",
     title: "Reduced Manual Work",
-    desc: "Your AI handles repetitive, time-consuming tasks automatically â€” giving your team back 94+ hours a month to focus on actual growth work.",
+    desc: "Your AI handles repetitive, time-consuming tasks automatically — giving your team back 94+ hours a month to focus on actual growth work.",
   },
   {
     icon: Brain,
     color: "#FF2D42",
     title: "Smart Decision Making",
-    desc: "Agents surface insights, flag anomalies, and recommend actions at the right moment â€” so your team always stays one step ahead.",
+    desc: "Agents surface insights, flag anomalies, and recommend actions at the right moment — so your team always stays one step ahead.",
   },
   {
     icon: Repeat,
@@ -30,7 +30,7 @@ const reasons = [
     icon: Zap,
     color: "#FF2D42",
     title: "No Task Delays",
-    desc: "Agents run 24/7 through weekends and holidays â€” your workflows never pause waiting for someone to log back in.",
+    desc: "Agents run 24/7 through weekends and holidays — your workflows never pause waiting for someone to log back in.",
   },
 ];
 
@@ -70,7 +70,7 @@ export default function WhyTrustSection() {
               <span className="text-[#111111]">Pushable AI?</span>
             </h2>
             <p className="text-gray-900 text-[15px] leading-relaxed mb-8">
-              Pushable AI isn&apos;t another tool that adds complexity â€” it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can actually see on their bottom line.
+              Pushable AI isn&apos;t another tool that adds complexity — it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can actually see on their bottom line.
             </p>
             <a
               href="#"
@@ -82,7 +82,7 @@ export default function WhyTrustSection() {
             </a>
           </motion.div>
 
-          {/* Right â€” 2Ã—2 reasons */}
+          {/* Right — 2Ã—2 reasons */}
           <div ref={reasonsGridRef} className="grid grid-cols-2 gap-4">
             {reasons.map((r) => {
               const Icon = r.icon;

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -156,10 +156,10 @@ export default function CinematicHeroSection() {
           }}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
-          Now live â€” automating workflows for 2,000+ businesses
+          Now live — automating workflows for 2,000+ businesses
         </motion.div>
 
-        {/* Headline â€” word-by-word stagger with blur slide-in */}
+        {/* Headline — word-by-word stagger with blur slide-in */}
         <h1
           className="font-normal mb-0 text-5xl sm:text-7xl md:text-8xl max-w-4xl"
           style={{ fontFamily: serif, lineHeight: 0.95, letterSpacing: "-2.46px" }}
@@ -191,7 +191,7 @@ export default function CinematicHeroSection() {
           transition={{ delay: 0.9, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           Your AI assistant quietly handles emails, follow-ups, reports, and
-          repetitive tasks in the background â€” so your team can focus on
+          repetitive tasks in the background — so your team can focus on
           work that actually grows your business.
         </motion.p>
 

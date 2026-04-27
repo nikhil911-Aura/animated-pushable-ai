@@ -82,7 +82,7 @@ function MockupCard({ slide }: { slide: typeof slides[0] }) {
       {/* Bottom overlay — stat + badge */}
       <div className="absolute bottom-0 inset-x-0 p-5 flex items-end justify-between">
         {/* Left — feature badge */}
-        <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+        <div className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl" style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(16px)", border: "1px solid rgba(255,255,255,0.45)" }}>
           <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: slide.color }}>
             <Icon className="w-3.5 h-3.5 text-white" />
           </div>
@@ -106,6 +106,21 @@ function MockupCard({ slide }: { slide: typeof slides[0] }) {
 export default function StickyShowcaseSection() {
   const [active, setActive] = useState(0);
   const outerRef = useRef<HTMLDivElement>(null);
+  const autoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollingRef = useRef(false);
+  const scrollResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Auto-advance every 4s when not scrolling
+  useEffect(() => {
+    const advance = () => {
+      if (!scrollingRef.current) {
+        setActive((prev) => (prev + 1) % slides.length);
+      }
+      autoTimerRef.current = setTimeout(advance, 4000);
+    };
+    autoTimerRef.current = setTimeout(advance, 4000);
+    return () => { if (autoTimerRef.current) clearTimeout(autoTimerRef.current); };
+  }, []);
 
   useEffect(() => {
     const outer = outerRef.current;
@@ -121,6 +136,9 @@ export default function StickyShowcaseSection() {
       pin: true,
       scrub: 1,
       onUpdate: (self) => {
+        scrollingRef.current = true;
+        if (scrollResetRef.current) clearTimeout(scrollResetRef.current);
+        scrollResetRef.current = setTimeout(() => { scrollingRef.current = false; }, 800);
         const idx = Math.min(slides.length - 1, Math.floor(self.progress * slides.length));
         setActive(idx);
       },
@@ -131,15 +149,15 @@ export default function StickyShowcaseSection() {
 
   const slide = slides[active];
 
-  const PANEL_H = "74vh";
+  const PANEL_H = "48vh";
 
   return (
     <section ref={outerRef} className="relative bg-transparent">
-      <div style={{ display: "flex", height: "100vh", width: "100%", padding: "13vh 3rem", gap: "1.5rem", boxSizing: "border-box" }}>
+      <div style={{ display: "flex", height: "100vh", width: "100%", padding: "26vh 3rem", gap: "1.5rem", boxSizing: "border-box", justifyContent: "center" }}>
 
         {/* Left — frosted text panel */}
-        <div style={{ width: "40%", height: PANEL_H, flexShrink: 0 }}>
-          <div style={{ height: "100%", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.35)", boxShadow: "0 8px 40px rgba(0,0,0,0.12)", borderRadius: "1.5rem", padding: "1.75rem", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
+        <div style={{ width: "44%", height: PANEL_H, flexShrink: 0 }}>
+          <div style={{ height: "100%", background: "rgba(255,255,255,0.55)", backdropFilter: "blur(8px)", WebkitBackdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.45)", boxShadow: "0 8px 40px rgba(0,0,0,0.12)", borderRadius: "1.5rem", padding: "1.75rem", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -188,7 +206,7 @@ export default function StickyShowcaseSection() {
         </div>
 
         {/* Right — image mockup */}
-        <div style={{ flex: 1, height: PANEL_H }}>
+        <div style={{ width: "44%", flexShrink: 0, height: PANEL_H }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={active}

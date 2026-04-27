@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
 
@@ -132,7 +132,7 @@ export default function IntegrationsSection() {
             <span className="text-[#111111]">Your Entire Stack</span>
           </h2>
           <p className="text-gray-500 text-[16px] max-w-md mx-auto">
-            Connect your existing tools in one click. Pushable AI plugs into 50+ platforms your team already uses â€” no reconfiguration needed.
+            Connect your existing tools in one click. Pushable AI plugs into 50+ platforms your team already uses — no reconfiguration needed.
           </p>
         </motion.div>
 

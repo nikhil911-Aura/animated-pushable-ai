@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
@@ -16,14 +16,17 @@ const agents = [
     bgFrom: "from-brand-500/8",
     bgTo: "to-brand-600/0",
     border: "border-brand-200",
-    description: "Sara handles your financial workflows end-to-end â€” generating invoices, tracking expenses, and compiling reports â€” so your numbers stay accurate and your team stays focused on growth.",
+    description: "Sara handles your financial workflows end-to-end — generating invoices, tracking expenses, and compiling reports — so your numbers stay accurate and your team stays focused on growth.",
     tasks: ["Auto-generate & send invoices", "Track expenses in real-time", "Compile monthly P&L reports", "Flag payment anomalies"],
     stat: { label: "Invoices/mo", value: "340+" },
     mockup: [
       { label: "Invoice #1034",  status: "Sent",       pct: 100 },
       { label: "Invoice #1035",  status: "Processing", pct: 67  },
       { label: "Expense Report", status: "Drafting",   pct: 40  },
+      { label: "Q2 P&L Report",   status: "Queued",     pct: 15  },
+      { label: "Tax Summary",     status: "Pending",    pct: 5   },
     ],
+    metrics: [{ label: "Invoices sent", value: "340" }, { label: "Errors caught", value: "12" }, { label: "Hours saved", value: "94" }],
   },
   {
     name: "Layla",
@@ -33,14 +36,17 @@ const agents = [
     bgFrom: "from-brand-400/8",
     bgTo: "to-brand-500/0",
     border: "border-brand-200",
-    description: "Layla takes over your entire hiring and onboarding process â€” screening candidates, scheduling interviews, and sending welcome documents â€” so your HR team focuses on people, not admin.",
+    description: "Layla takes over your entire hiring and onboarding process — screening candidates, scheduling interviews, and sending welcome documents — so your HR team focuses on people, not admin.",
     tasks: ["Screen & rank applicants", "Automate onboarding docs", "Schedule interviews", "Track team milestones"],
     stat: { label: "Hours saved/hire", value: "18 hrs" },
     mockup: [
-      { label: "John D. â€” Interview",  status: "Scheduled", pct: 100 },
+      { label: "John D. — Interview",  status: "Scheduled", pct: 100 },
       { label: "Onboarding Pack",      status: "Sent",      pct: 100 },
       { label: "Background Check",     status: "Running",   pct: 55  },
+      { label: "Offer Letter #7",      status: "Drafting",  pct: 30  },
+      { label: "Team Intro Email",     status: "Queued",    pct: 10  },
     ],
+    metrics: [{ label: "Candidates screened", value: "84" }, { label: "Interviews booked", value: "21" }, { label: "Hrs saved/hire", value: "18" }],
   },
   {
     name: "Marco",
@@ -50,14 +56,17 @@ const agents = [
     bgFrom: "from-brand-500/8",
     bgTo: "to-brand-600/0",
     border: "border-brand-200",
-    description: "Marco keeps your revenue pipeline moving â€” following up on leads, creating proposals, tracking deals, and flagging at-risk accounts â€” so every opportunity gets the attention it deserves.",
+    description: "Marco keeps your revenue pipeline moving — following up on leads, creating proposals, tracking deals, and flagging at-risk accounts — so every opportunity gets the attention it deserves.",
     tasks: ["Follow up cold leads", "Generate proposals", "Monitor deal pipeline", "Recover at-risk accounts"],
     stat: { label: "Revenue recovered", value: "$24.8K" },
     mockup: [
       { label: "Lead: Acme Corp",   status: "Followed up", pct: 100 },
       { label: "Proposal #44",      status: "Sent",        pct: 100 },
       { label: "Deal: Nova Inc",    status: "Negotiating", pct: 70  },
+      { label: "At-risk: TechFlow", status: "Flagged",     pct: 45  },
+      { label: "Renewal: BrightCo", status: "Queued",      pct: 20  },
     ],
+    metrics: [{ label: "Revenue recovered", value: "$24.8K" }, { label: "Deals tracked", value: "38" }, { label: "Follow-ups sent", value: "120" }],
   },
   {
     name: "Priya",
@@ -67,14 +76,17 @@ const agents = [
     bgFrom: "from-brand-400/8",
     bgTo: "to-brand-500/0",
     border: "border-brand-200",
-    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks â€” giving you the headspace to focus entirely on strategy and growth.",
+    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks — giving you the headspace to focus entirely on strategy and growth.",
     tasks: ["Schedule & coordinate team syncs", "Maintain SOPs automatically", "Escalate blockers in real-time", "Track project milestones"],
     stat: { label: "Tasks automated/wk", value: "220+" },
     mockup: [
       { label: "Sprint Planning",   status: "Scheduled", pct: 100 },
       { label: "SOP Update v3",     status: "Published", pct: 100 },
       { label: "Blocker: API down", status: "Escalated", pct: 100 },
+      { label: "Team Sync — Thu",   status: "Booked",    pct: 100 },
+      { label: "Milestone Report",  status: "Drafting",  pct: 55  },
     ],
+    metrics: [{ label: "Tasks automated/wk", value: "220+" }, { label: "SOPs maintained", value: "14" }, { label: "Blockers resolved", value: "31" }],
   },
 ];
 
@@ -84,8 +96,8 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
     <div className="w-screen shrink-0 flex items-center justify-center px-5 sm:px-16 lg:px-24">
       <div className="w-full max-w-4xl grid lg:grid-cols-2 gap-10 items-center">
 
-        {/* Left â€” text */}
-        <div>
+        {/* Left — text */}
+        <div className="rounded-2xl bg-white/50 backdrop-blur-md p-7">
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium mb-5"
             style={{ background: `${agent.color}12`, color: agent.color, border: `1px solid ${agent.color}25` }}
@@ -124,7 +136,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
           </button>
         </div>
 
-        {/* Right â€” mockup */}
+        {/* Right — mockup */}
         <div
           className="rounded-2xl p-5 border bg-white shadow-sm"
           style={{ borderColor: `${agent.color}25` }}
@@ -148,7 +160,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5 flex-1">
             {agent.mockup.map((m) => (
               <div key={m.label} className="space-y-1.5">
                 <div className="flex items-center justify-between">
@@ -172,6 +184,15 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
                     style={{ background: agent.color }}
                   />
                 </div>
+              </div>
+            ))}
+          </div>
+          {/* Metrics footer */}
+          <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-black/[0.06]">
+            {agent.metrics.map((m: { label: string; value: string }) => (
+              <div key={m.label} className="text-center">
+                <div className="text-[15px] font-bold text-[#111111]" style={{ color: agent.color }}>{m.value}</div>
+                <div className="text-[10px] text-gray-500 leading-tight">{m.label}</div>
               </div>
             ))}
           </div>

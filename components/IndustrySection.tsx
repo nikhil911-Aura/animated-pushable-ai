@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -12,31 +12,31 @@ const industries = [
     icon: Code2,
     name: "SaaS",
     color: "#E8001D",
-    useCase: "Your AI assistant handles onboarding sequences, churn follow-ups, and renewal reminders automatically â€” so your team focuses on building, not chasing.",
+    useCase: "Your AI assistant handles onboarding sequences, churn follow-ups, and renewal reminders automatically — so your team focuses on building, not chasing.",
   },
   {
     icon: Megaphone,
     name: "Marketing Agencies",
     color: "#FF2D42",
-    useCase: "Automate client reports, campaign scheduling, and performance tracking across all accounts â€” so your team delivers more value without adding headcount.",
+    useCase: "Automate client reports, campaign scheduling, and performance tracking across all accounts — so your team delivers more value without adding headcount.",
   },
   {
     icon: DollarSign,
     name: "Finance",
     color: "#E8001D",
-    useCase: "Generate invoices on schedule, reconcile accounts, and flag payment anomalies automatically â€” so nothing slips through the cracks at month-end.",
+    useCase: "Generate invoices on schedule, reconcile accounts, and flag payment anomalies automatically — so nothing slips through the cracks at month-end.",
   },
   {
     icon: Settings,
     name: "Operations",
     color: "#FF2D42",
-    useCase: "Coordinate cross-team workflows, maintain SOPs, and escalate blockers before they delay delivery â€” so your operations run like clockwork every day.",
+    useCase: "Coordinate cross-team workflows, maintain SOPs, and escalate blockers before they delay delivery — so your operations run like clockwork every day.",
   },
   {
     icon: Briefcase,
     name: "Agencies",
     color: "#E8001D",
-    useCase: "Handle client onboarding, automate billing, and keep project timelines on track â€” so your team spends time on client work, not admin.",
+    useCase: "Handle client onboarding, automate billing, and keep project timelines on track — so your team spends time on client work, not admin.",
   },
 ];
 

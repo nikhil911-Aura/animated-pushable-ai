@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { motion } from "framer-motion";
 import { Zap, ArrowRight, MessageCircle } from "lucide-react";
 
@@ -28,7 +28,7 @@ export default function FinalCTASection() {
 
           {/* Sub */}
           <p className="text-gray-900 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
-            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today â€” no technical setup, no contracts, no wasted time. Just results from day one.
+            Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today — no technical setup, no contracts, no wasted time. Just results from day one.
           </p>
 
           {/* CTAs */}

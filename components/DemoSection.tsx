@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
@@ -62,12 +62,12 @@ export default function DemoSection() {
             <span className="text-[#111111]">Work Behind The Scenes</span>
           </h2>
           <p className="text-gray-900 text-[16px] max-w-lg mx-auto">
-            Your AI assistant runs real tasks in the background â€” generating invoices, following up on leads, onboarding candidates, and compiling reports â€” without you lifting a finger. Watch exactly what it handles, when it happened, and what&apos;s running right now.
+            Your AI assistant runs real tasks in the background — generating invoices, following up on leads, onboarding candidates, and compiling reports — without you lifting a finger. Watch exactly what it handles, when it happened, and what&apos;s running right now.
           </p>
         </motion.div>
 
         <div ref={gridRef} className="grid lg:grid-cols-2 gap-6 items-start" style={{ willChange: "transform" }}>
-          {/* Left â€” live feed + logs */}
+          {/* Left — live feed + logs */}
           <motion.div
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -107,7 +107,7 @@ export default function DemoSection() {
               </div>
             </div>
 
-            {/* Terminal log â€” stays dark for authenticity */}
+            {/* Terminal log — stays dark for authenticity */}
             <div className="rounded-2xl border border-gray-200 bg-gray-900 overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.07] bg-black/20">
                 <Terminal className="w-3.5 h-3.5 text-gray-900" />
@@ -140,7 +140,7 @@ export default function DemoSection() {
 
           </motion.div>
 
-          {/* Right â€” screen mockup */}
+          {/* Right — screen mockup */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -152,7 +152,7 @@ export default function DemoSection() {
               className="relative rounded-2xl overflow-hidden border border-black/[0.07] shadow-sm cursor-pointer group"
               onClick={() => setPlaying(!playing)}
             >
-              {/* Screen â€” stays dark as it represents a real UI screen */}
+              {/* Screen — stays dark as it represents a real UI screen */}
               <div className="aspect-4/3 bg-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 dot-grid opacity-10" />
 
@@ -163,7 +163,7 @@ export default function DemoSection() {
                       <div className="w-5 h-5 rounded-md bg-brand-500/30 flex items-center justify-center">
                         <Zap className="w-3 h-3 text-brand-400" />
                       </div>
-                      <span className="text-[11px] text-gray-800 mono">Pushable AI â€” Live Operations</span>
+                      <span className="text-[11px] text-gray-800 mono">Pushable AI — Live Operations</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
