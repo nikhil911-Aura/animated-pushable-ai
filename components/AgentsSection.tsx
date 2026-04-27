@@ -93,42 +93,34 @@ const agents = [
 function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: boolean }) {
   const Icon = agent.icon;
   return (
-    <div className="w-screen shrink-0 flex items-center justify-center px-5 sm:px-16 lg:px-24">
-      <div className="w-full max-w-4xl grid lg:grid-cols-2 gap-10 items-center">
+    <div className="w-screen shrink-0 flex items-center justify-center px-6 sm:px-14 lg:px-20">
+      <div className="w-full max-w-5xl rounded-2xl border border-white/40 bg-white/30 backdrop-blur-lg shadow-2xl overflow-hidden flex" style={{ height: "460px" }}>
 
         {/* Left — text */}
-        <div className="rounded-2xl bg-white/50 backdrop-blur-md p-7">
+        <div className="flex flex-col justify-center px-10 py-10" style={{ width: "42%", flexShrink: 0 }}>
           <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium mb-5"
-            style={{ background: `${agent.color}12`, color: agent.color, border: `1px solid ${agent.color}25` }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium mb-5 self-start"
+            style={{ background: `${agent.color}14`, color: agent.color, border: `1px solid ${agent.color}28` }}
           >
             <Icon className="w-3.5 h-3.5" />
             {agent.title}
           </div>
-          <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
+          <h3 className="text-3xl sm:text-4xl font-bold text-[#111111] mb-3 tracking-tight leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
             Meet {agent.name}
           </h3>
-          <p className="text-gray-900 text-[16px] leading-relaxed mb-6">{agent.description}</p>
-
-          <div
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[12px] font-medium mb-6"
-            style={{ background: `${agent.color}10`, color: agent.color, border: `1px solid ${agent.color}22` }}
-          >
-            <span className="font-bold text-base">{agent.stat.value}</span>
-            <span className="text-gray-800">{agent.stat.label}</span>
-          </div>
-
-          <ul className="space-y-2.5 mb-8">
+          <p className="text-[#222] text-[14px] leading-relaxed mb-5">{agent.description}</p>
+          <ul className="space-y-2 mb-7">
             {agent.tasks.map((t) => (
-              <li key={t} className="flex items-center gap-2.5 text-[13px] text-gray-900">
-                <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: agent.color }} />
+              <li key={t} className="flex items-center gap-2.5 text-[13px] text-[#111]">
+                <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0" style={{ background: `${agent.color}18` }}>
+                  <div className="w-1.5 h-1.5 rounded-full" style={{ background: agent.color }} />
+                </div>
                 {t}
               </li>
             ))}
           </ul>
-
           <button
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] text-white transition-all duration-200 group/btn shadow-sm"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] text-white transition-all duration-200 group/btn shadow-sm self-start"
             style={{ background: agent.color }}
           >
             Deploy {agent.name}
@@ -136,72 +128,84 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
           </button>
         </div>
 
-        {/* Right — mockup */}
-        <div
-          className="rounded-2xl p-5 border bg-white shadow-sm"
-          style={{ borderColor: `${agent.color}25` }}
-        >
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <div
-                className="w-8 h-8 rounded-lg flex items-center justify-center"
-                style={{ background: `${agent.color}14`, border: `1px solid ${agent.color}25` }}
-              >
-                <Icon className="w-4 h-4" style={{ color: agent.color }} />
+        {/* Right — dark browser mockup */}
+        <div className="flex-1 flex items-stretch p-5 pl-0">
+          <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl flex flex-col" style={{ background: "#0f1117" }}>
+            {/* Browser chrome */}
+            <div className="flex items-center gap-2 px-4 py-3 shrink-0" style={{ background: "#1a1d27", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+              <div className="flex gap-1.5">
+                <div className="w-2.5 h-2.5 rounded-full bg-red-400/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-yellow-400/80" />
+                <div className="w-2.5 h-2.5 rounded-full bg-green-400/80" />
               </div>
-              <div>
-                <div className="text-[12px] font-semibold text-[#111111]">{agent.name}</div>
-                <div className="text-[10px] text-gray-800">{agent.title}</div>
+              <div className="flex-1 mx-3">
+                <div className="rounded-md px-3 py-1 text-[10px] text-white/35 text-center" style={{ background: "rgba(255,255,255,0.06)" }}>
+                  pushable.ai / dashboard
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-[10px] text-green-400 font-semibold">LIVE</span>
               </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <Activity className="w-3 h-3 text-green-500" />
-              <span className="text-[10px] text-green-600 mono">live</span>
-            </div>
-          </div>
 
-          <div className="space-y-2.5 flex-1">
-            {agent.mockup.map((m) => (
-              <div key={m.label} className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[12px] text-gray-900">{m.label}</span>
-                  <span
-                    className="text-[10px] px-1.5 py-0.5 rounded mono"
-                    style={{
-                      background: m.pct === 100 ? `${agent.color}12` : "rgba(0,0,0,0.04)",
-                      color: m.pct === 100 ? agent.color : "#888888",
-                    }}
-                  >
-                    {m.status}
-                  </span>
+            {/* Content */}
+            <div className="flex-1 p-5 flex flex-col gap-3 overflow-hidden">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: `${agent.color}22`, border: `1px solid ${agent.color}40` }}>
+                    <Icon className="w-3.5 h-3.5" style={{ color: agent.color }} />
+                  </div>
+                  <div>
+                    <div className="text-[12px] font-semibold text-white">{agent.name}</div>
+                    <div className="text-[10px] text-white/40">{agent.title}</div>
+                  </div>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-1">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={isActive ? { width: `${m.pct}%` } : { width: 0 }}
-                    transition={{ duration: 1.1, ease: "easeOut", delay: 0.2 }}
-                    className="h-1 rounded-full"
-                    style={{ background: agent.color }}
-                  />
+                <div className="flex items-center gap-1.5">
+                  <Activity className="w-3 h-3 text-green-400" />
+                  <span className="text-[10px] text-green-400 mono">live</span>
                 </div>
               </div>
-            ))}
-          </div>
-          {/* Metrics footer */}
-          <div className="grid grid-cols-3 gap-2 mt-4 pt-4 border-t border-black/[0.06]">
-            {agent.metrics.map((m: { label: string; value: string }) => (
-              <div key={m.label} className="text-center">
-                <div className="text-[15px] font-bold text-[#111111]" style={{ color: agent.color }}>{m.value}</div>
-                <div className="text-[10px] text-gray-500 leading-tight">{m.label}</div>
+
+              <div className="space-y-2.5 flex-1">
+                {agent.mockup.map((m) => (
+                  <div key={m.label} className="space-y-1">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] text-white/70">{m.label}</span>
+                      <span className="text-[10px] px-1.5 py-0.5 rounded mono"
+                        style={{ background: m.pct === 100 ? `${agent.color}25` : "rgba(255,255,255,0.06)", color: m.pct === 100 ? agent.color : "rgba(255,255,255,0.35)" }}>
+                        {m.status}
+                      </span>
+                    </div>
+                    <div className="w-full rounded-full h-1" style={{ background: "rgba(255,255,255,0.08)" }}>
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={isActive ? { width: `${m.pct}%` } : { width: 0 }}
+                        transition={{ duration: 1.1, ease: "easeOut", delay: 0.2 }}
+                        className="h-1 rounded-full"
+                        style={{ background: agent.color }}
+                      />
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+
+              <div className="grid grid-cols-3 gap-2 pt-3 border-t border-white/[0.07]">
+                {agent.metrics.map((m: { label: string; value: string }) => (
+                  <div key={m.label} className="text-center">
+                    <div className="text-[14px] font-bold" style={{ color: agent.color }}>{m.value}</div>
+                    <div className="text-[9px] text-white/40 leading-tight">{m.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   );
 }
-
 function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active: boolean; onClick: () => void }) {
   const Icon = agent.icon;
   return (
