@@ -153,6 +153,15 @@ export default function StickyShowcaseSection() {
 
   return (
     <section ref={outerRef} className="relative bg-transparent">
+      {/* Section heading — pinned at top */}
+      <div className="absolute top-0 inset-x-0 z-10 flex flex-col items-center pt-10 pointer-events-none">
+        <div className="text-center">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-3" style={{ color: slides[active]?.color ?? "#E8001D" }}>How It Works</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#111111] leading-[1.1] tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
+            From Idea to Automation,<br />in Four Simple Steps
+          </h2>
+        </div>
+      </div>
       <div style={{ display: "flex", height: "100vh", width: "100%", padding: "26vh 3rem", gap: "1.5rem", boxSizing: "border-box", justifyContent: "center" }}>
 
         {/* Left — frosted text panel */}

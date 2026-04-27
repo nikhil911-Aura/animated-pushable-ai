@@ -9,54 +9,54 @@ gsap.registerPlugin(ScrollTrigger);
 
 const agents = [
   {
-    name: "Sara",
-    title: "Finance Workflow Agent",
+    name: "Finance",
+    title: "Invoice & Payment Workflow",
     icon: DollarSign,
     color: "#E8001D",
     bgFrom: "from-brand-500/8",
     bgTo: "to-brand-600/0",
     border: "border-brand-200",
-    description: "Sara handles your financial workflows end-to-end — generating invoices, tracking expenses, and compiling reports — so your numbers stay accurate and your team stays focused on growth.",
+    description: "Build a workflow that auto-generates invoices, chases payments, flags anomalies, and compiles reports — fully configured around your billing cycle and tools.",
     tasks: ["Auto-generate & send invoices", "Track expenses in real-time", "Compile monthly P&L reports", "Flag payment anomalies"],
-    stat: { label: "Invoices/mo", value: "340+" },
+    stat: { label: "Avg. hours saved/mo", value: "94 hrs" },
     mockup: [
       { label: "Invoice #1034",  status: "Sent",       pct: 100 },
       { label: "Invoice #1035",  status: "Processing", pct: 67  },
       { label: "Expense Report", status: "Drafting",   pct: 40  },
-      { label: "Q2 P&L Report",   status: "Queued",     pct: 15  },
-      { label: "Tax Summary",     status: "Pending",    pct: 5   },
+      { label: "Q2 P&L Report",  status: "Queued",     pct: 15  },
+      { label: "Tax Summary",    status: "Pending",    pct: 5   },
     ],
-    metrics: [{ label: "Invoices sent", value: "340" }, { label: "Errors caught", value: "12" }, { label: "Hours saved", value: "94" }],
+    metrics: [{ label: "Tasks automated", value: "340+" }, { label: "Errors caught", value: "12" }, { label: "Hours saved", value: "94" }],
   },
   {
-    name: "Layla",
-    title: "HR Workflow Manager",
+    name: "HR & Hiring",
+    title: "Recruitment & Onboarding Workflow",
     icon: Users,
     color: "#FF2D42",
     bgFrom: "from-brand-400/8",
     bgTo: "to-brand-500/0",
     border: "border-brand-200",
-    description: "Layla takes over your entire hiring and onboarding process — screening candidates, scheduling interviews, and sending welcome documents — so your HR team focuses on people, not admin.",
+    description: "Design a hiring pipeline that screens applicants, schedules interviews, and delivers onboarding packs automatically — shaped entirely by your process.",
     tasks: ["Screen & rank applicants", "Automate onboarding docs", "Schedule interviews", "Track team milestones"],
-    stat: { label: "Hours saved/hire", value: "18 hrs" },
+    stat: { label: "Saved per hire", value: "18 hrs" },
     mockup: [
-      { label: "John D. — Interview",  status: "Scheduled", pct: 100 },
-      { label: "Onboarding Pack",      status: "Sent",      pct: 100 },
-      { label: "Background Check",     status: "Running",   pct: 55  },
-      { label: "Offer Letter #7",      status: "Drafting",  pct: 30  },
-      { label: "Team Intro Email",     status: "Queued",    pct: 10  },
+      { label: "Applicant Screen",     status: "Done",      pct: 100 },
+      { label: "Interview Scheduled",  status: "Confirmed", pct: 100 },
+      { label: "Offer Letter",         status: "Drafting",  pct: 60  },
+      { label: "Onboarding Pack",      status: "Queued",    pct: 20  },
+      { label: "Background Check",     status: "Pending",   pct: 5   },
     ],
-    metrics: [{ label: "Candidates screened", value: "84" }, { label: "Interviews booked", value: "21" }, { label: "Hrs saved/hire", value: "18" }],
+    metrics: [{ label: "Candidates processed", value: "84" }, { label: "Interviews booked", value: "21" }, { label: "Hrs saved/hire", value: "18" }],
   },
   {
-    name: "Marco",
-    title: "Revenue AI Assistant",
+    name: "Sales",
+    title: "Revenue & Pipeline Workflow",
     icon: TrendingUp,
     color: "#E8001D",
     bgFrom: "from-brand-500/8",
     bgTo: "to-brand-600/0",
     border: "border-brand-200",
-    description: "Marco keeps your revenue pipeline moving — following up on leads, creating proposals, tracking deals, and flagging at-risk accounts — so every opportunity gets the attention it deserves.",
+    description: "Set up a revenue workflow that follows up on leads, generates proposals, monitors deals, and recovers at-risk accounts — built around your sales motion.",
     tasks: ["Follow up cold leads", "Generate proposals", "Monitor deal pipeline", "Recover at-risk accounts"],
     stat: { label: "Revenue recovered", value: "$24.8K" },
     mockup: [
@@ -69,14 +69,14 @@ const agents = [
     metrics: [{ label: "Revenue recovered", value: "$24.8K" }, { label: "Deals tracked", value: "38" }, { label: "Follow-ups sent", value: "120" }],
   },
   {
-    name: "Priya",
-    title: "Operations Backbone",
+    name: "Operations",
+    title: "Team & Process Workflow",
     icon: Settings,
     color: "#FF2D42",
     bgFrom: "from-brand-400/8",
     bgTo: "to-brand-500/0",
     border: "border-brand-200",
-    description: "Priya handles day-to-day coordination, task scheduling, and team communication so nothing falls through the cracks — giving you the headspace to focus entirely on strategy and growth.",
+    description: "Create an operations workflow that coordinates team syncs, maintains SOPs, escalates blockers, and tracks milestones — tailored to how your team actually works.",
     tasks: ["Schedule & coordinate team syncs", "Maintain SOPs automatically", "Escalate blockers in real-time", "Track project milestones"],
     stat: { label: "Tasks automated/wk", value: "220+" },
     mockup: [
@@ -106,7 +106,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             {agent.title}
           </div>
           <h3 className="text-3xl sm:text-4xl font-bold text-[#111111] mb-3 tracking-tight leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)" }}>
-            Meet {agent.name}
+            Build a {agent.name} Workflow
           </h3>
           <p className="text-[#222] text-[14px] leading-relaxed mb-5">{agent.description}</p>
           <ul className="space-y-2 mb-7">
@@ -123,7 +123,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-medium text-[13px] text-white transition-all duration-200 group/btn shadow-sm self-start"
             style={{ background: agent.color }}
           >
-            Deploy {agent.name}
+            Start Building
             <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
           </button>
         </div>
@@ -140,7 +140,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
               </div>
               <div className="flex-1 mx-3">
                 <div className="rounded-md px-3 py-1 text-[10px] text-white/35 text-center" style={{ background: "rgba(255,255,255,0.06)" }}>
-                  pushable.ai / dashboard
+                  pushable.ai / workflow-builder
                 </div>
               </div>
               <div className="flex items-center gap-1.5">
@@ -294,7 +294,7 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
                 className="mt-4 flex items-center gap-1.5 text-[12px] font-medium transition-colors group/btn"
                 style={{ color: agent.color }}
               >
-                Deploy {agent.name}
+                Start Building
                 <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
               </button>
             </motion.div>
@@ -387,6 +387,14 @@ export default function AgentsSection() {
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div ref={outerRef} className="relative overflow-hidden" style={{ height: "100vh" }}>
+        {/* Section heading */}
+        <div className="absolute top-0 inset-x-0 z-10 flex flex-col items-center pt-10 pointer-events-none">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-3 text-brand-500">Fully Dynamic</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#111111] leading-[1.1] tracking-tight text-center" style={{ fontFamily: "var(--font-fraunces)" }}>
+            Build Any Workflow.<br />No Code. Infinite Possibilities.
+          </h2>
+        </div>
+
         {/* Background glow */}
         <div className="absolute inset-0 pointer-events-none">
           <div
