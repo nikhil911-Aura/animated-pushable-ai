@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FinalCTASection from "@/components/FinalCTASection";
 
 const NEON = "#E8001D";
 const DISPLAY = "var(--font-fraunces), Georgia, serif";
@@ -118,14 +117,19 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="overflow-x-hidden bg-white">
+    <div className="overflow-x-hidden bg-[#f3f0eb]">
       <Navbar />
 
       {/* ── Hero ─────────────────────────────────────── */}
-      <section className="relative pt-36 pb-14 bg-white text-center overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-500/5 rounded-full blur-[120px]" />
-        </div>
+      <section className="relative pt-36 pb-14 bg-[#f3f0eb] text-center overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden="true"
+          style={{
+            background:
+              "radial-gradient(ellipse 60% 40% at 50% 0%, rgba(232,0,29,0.05) 0%, rgba(232,0,29,0) 70%)",
+          }}
+        />
         <div className="max-w-3xl mx-auto px-5 sm:px-8 relative">
           <motion.div
             initial={{ opacity: 0, y: 8 }}
@@ -161,7 +165,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── Form & Side panel ────────────────────────── */}
-      <section className="relative pb-24 bg-white">
+      <section className="relative pb-24 bg-[#f3f0eb]">
         <div className="max-w-6xl mx-auto px-5 sm:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8">
 
@@ -173,7 +177,9 @@ export default function ContactPage() {
               className="rounded-2xl bg-white p-6 sm:p-9"
               style={{
                 border: "1px solid rgba(0,0,0,0.07)",
-                boxShadow: "0 25px 80px -20px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03)",
+                boxShadow: "0 8px 24px -8px rgba(0,0,0,0.08)",
+                transform: "translateZ(0)",
+                contain: "layout paint",
               }}
             >
               <h2
@@ -331,28 +337,28 @@ export default function ContactPage() {
                 </div>
 
                 {/* Submit */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+                <div className="pt-3 space-y-3">
                   <motion.button
                     type="submit"
-                    whileHover={status === "idle" ? { scale: 1.02, y: -1 } : undefined}
-                    whileTap={status === "idle" ? { scale: 0.98 } : undefined}
+                    whileHover={status === "idle" ? { scale: 1.01, y: -1 } : undefined}
+                    whileTap={status === "idle" ? { scale: 0.99 } : undefined}
                     disabled={status === "submitting"}
-                    className="group relative inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold text-[14px] transition-all duration-200 shadow-lg shadow-brand-500/20 disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="group relative w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full bg-brand-500 hover:bg-brand-400 text-white font-semibold text-[15px] tracking-tight transition-colors duration-200 shadow-lg shadow-brand-500/25 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-brand-500"
                   >
                     {status === "submitting" ? (
                       <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Sending…
+                        <Loader2 className="w-4.5 h-4.5 animate-spin" />
+                        <span>Sending message…</span>
                       </>
                     ) : (
                       <>
-                        <Send className="w-4 h-4" />
-                        Send Message
+                        <Send className="w-4.5 h-4.5 transition-transform group-hover:translate-x-0.5" />
+                        <span>Send Message</span>
                       </>
                     )}
                   </motion.button>
 
-                  <p className="text-[12px] text-gray-400">
+                  <p className="text-[12px] sm:text-[13px] text-gray-400 leading-relaxed">
                     We&apos;ll never share your details. Replies usually within 1 business day.
                   </p>
                 </div>
@@ -444,7 +450,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <FinalCTASection />
       <Footer />
     </div>
   );
@@ -510,10 +515,10 @@ function SidePanelCard({
 }) {
   return (
     <div
-      className="rounded-2xl bg-white p-5 transition-all hover:-translate-y-0.5"
+      className="rounded-2xl bg-white p-5 transition-transform hover:-translate-y-0.5"
       style={{
         border: "1px solid rgba(0,0,0,0.07)",
-        boxShadow: "0 12px 40px -20px rgba(0,0,0,0.08)",
+        boxShadow: "0 4px 14px -6px rgba(0,0,0,0.06)",
       }}
     >
       <div

@@ -388,7 +388,7 @@ export default function AgentsSection() {
 
       <div ref={outerRef} className="relative overflow-hidden" style={{ height: "100vh" }}>
         {/* Section heading */}
-        <div className="absolute top-0 inset-x-0 z-10 flex flex-col items-center pt-10 pointer-events-none">
+        <div className="absolute top-0 inset-x-0 z-10 flex flex-col items-center pointer-events-none" style={{ paddingTop: "90px" }}>
           <p className="text-[11px] font-semibold uppercase tracking-[0.2em] mb-3 text-brand-500">Fully Dynamic</p>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#111111] leading-[1.1] tracking-tight text-center" style={{ fontFamily: "var(--font-fraunces)" }}>
             Build Any Workflow.<br />No Code. Infinite Possibilities.
