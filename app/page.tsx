@@ -83,7 +83,7 @@ export default function Home() {
 
           {/* Trust carousel — pinned to bottom of hero */}
           <div className="absolute bottom-20 inset-x-0 z-20 overflow-hidden pb-6 pt-4">
-            <p className="text-center text-[11px] font-semibold text-black uppercase tracking-[0.22em] mb-4">Trusted by AI Leaders</p>
+            <p className="text-center text-[11px] font-semibold text-white uppercase tracking-[0.22em] mb-4">Trusted by AI Leaders</p>
             <div className="overflow-hidden mb-3">
               <div className="flex animate-marquee" style={{ width: "max-content" }}>
                 {R1.map((l, i) => (
@@ -118,24 +118,35 @@ export default function Home() {
               style={{
                 fontFamily: "var(--font-fraunces)",
                 fontWeight: 800,
-                fontSize: "clamp(32px,4.5vw,64px)",
-                lineHeight: 1.06,
+                fontSize: "clamp(24px,3vw,48px)",
+                lineHeight: 1.08,
                 color: "#111111",
                 maxWidth: 860,
-                marginBottom: "1.5rem",
-                letterSpacing: "-1px",
+                marginBottom: "1rem",
+                letterSpacing: "-0.5px",
               }}
             >
-              AI Assistant That <em>Automates</em>
-              <br />
-              Your <em>Routine Workflows</em>
+              Automated AI Workflow Assistant
             </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={ready ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.22, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              style={{ marginBottom: "1.75rem", textAlign: "center" }}
+            >
+              <p style={{ color: "#222", fontSize: "clamp(12px,1vw,15px)", lineHeight: 1.85, maxWidth: 640 }}>
+                Handles repetitive tasks automatically, reducing the need for constant manual effort.<br />
+                Works quietly in the background to keep your daily operations running smoothly.<br />
+                Helps you stay focused on important work while it manages routine workflows efficiently.
+              </p>
+            </motion.div>
 
             <motion.div
               className="flex items-center gap-4"
               initial={{ opacity: 0, y: 16 }}
               animate={ready ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.32, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: 0.38, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             >
               <button
                 className="rounded-full font-semibold transition-transform hover:scale-105 active:scale-95"
