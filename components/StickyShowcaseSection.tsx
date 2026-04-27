@@ -51,7 +51,7 @@ const slides = [
 function MockupCard({ slide }: { slide: typeof slides[0] }) {
   const Icon = slide.badge.icon;
   return (
-    <div className="relative rounded-3xl overflow-hidden shadow-2xl" style={{ aspectRatio: "4/3" }}>
+    <div style={{ position: "relative", width: "100%", height: "100%", borderRadius: "1.5rem", overflow: "hidden", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.4)" }}>
       {/* Unsplash image */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -131,13 +131,15 @@ export default function StickyShowcaseSection() {
 
   const slide = slides[active];
 
+  const PANEL_H = "74vh";
+
   return (
     <section ref={outerRef} className="relative bg-transparent">
-      <div className="flex h-screen items-center px-8 sm:px-14 lg:px-20 gap-12 max-w-7xl mx-auto">
+      <div style={{ display: "flex", height: "100vh", width: "100%", padding: "13vh 3rem", gap: "1.5rem", boxSizing: "border-box" }}>
 
         {/* Left — frosted text panel */}
-        <div className="w-[42%] shrink-0">
-          <div className="relative rounded-3xl p-8 overflow-hidden" style={{ background: "rgba(255,255,255,0.18)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.35)", boxShadow: "0 8px 40px rgba(0,0,0,0.12)" }}>
+        <div style={{ width: "40%", height: PANEL_H, flexShrink: 0 }}>
+          <div style={{ height: "100%", background: "rgba(255,255,255,0.18)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.35)", boxShadow: "0 8px 40px rgba(0,0,0,0.12)", borderRadius: "1.5rem", padding: "1.75rem", display: "flex", flexDirection: "column", justifyContent: "center", overflow: "hidden" }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
@@ -148,26 +150,26 @@ export default function StickyShowcaseSection() {
               >
                 {/* Step tag */}
                 <div className="flex items-center gap-2 mb-5">
-                  <span className="text-[11px] font-bold mono" style={{ color: slide.color }}>{slide.step}</span>
-                  <div className="h-px w-8" style={{ background: slide.color }} />
-                  <span className="text-[11px] font-semibold uppercase tracking-widest" style={{ color: slide.color }}>{slide.tag}</span>
+                  <span className="text-[12px] font-bold mono" style={{ color: slide.color }}>{slide.step}</span>
+                  <div className="h-px w-10" style={{ background: slide.color }} />
+                  <span className="text-[12px] font-semibold uppercase tracking-widest" style={{ color: slide.color }}>{slide.tag}</span>
                 </div>
 
                 {/* Heading */}
-                <h2 className="text-3xl sm:text-4xl font-bold text-[#111111] mb-4 leading-[1.12]" style={{ fontFamily: "var(--font-fraunces)", whiteSpace: "pre-line" }}>
+                <h2 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 leading-[1.1]" style={{ fontFamily: "var(--font-fraunces)", whiteSpace: "pre-line" }}>
                   {slide.title}
                 </h2>
 
                 {/* Description */}
-                <p className="text-gray-800 text-[15px] leading-relaxed mb-6">
+                <p className="text-gray-800 text-[14px] leading-relaxed mb-5">
                   {slide.description}
                 </p>
 
                 {/* Bullets */}
-                <ul className="space-y-2.5 mb-7">
+                <ul className="space-y-3 mb-7">
                   {slide.bullets.map((b) => (
-                    <li key={b} className="flex items-center gap-2.5 text-[13px] text-gray-900 font-medium">
-                      <CheckCircle2 className="w-4 h-4 shrink-0" style={{ color: slide.color }} />
+                    <li key={b} className="flex items-center gap-3 text-[13px] text-gray-900 font-medium">
+                      <CheckCircle2 className="w-5 h-5 shrink-0" style={{ color: slide.color }} />
                       {b}
                     </li>
                   ))}
@@ -177,7 +179,7 @@ export default function StickyShowcaseSection() {
                 <div className="flex items-center gap-2">
                   {slides.map((_, i) => (
                     <div key={i} className="h-1.5 rounded-full transition-all duration-500"
-                      style={{ width: i === active ? 32 : 8, background: i === active ? slide.color : "rgba(0,0,0,0.18)" }} />
+                      style={{ width: i === active ? 36 : 9, background: i === active ? slide.color : "rgba(0,0,0,0.18)" }} />
                   ))}
                 </div>
               </motion.div>
@@ -186,10 +188,11 @@ export default function StickyShowcaseSection() {
         </div>
 
         {/* Right — image mockup */}
-        <div className="flex-1">
+        <div style={{ flex: 1, height: PANEL_H }}>
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
+              style={{ width: "100%", height: "100%" }}
               initial={{ opacity: 0, x: 30, scale: 0.97 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -30, scale: 0.97 }}
