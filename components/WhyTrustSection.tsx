@@ -51,7 +51,7 @@ export default function WhyTrustSection() {
   }, []);
 
   return (
-    <section className="py-28 relative bg-[#f3f0eb]">
+    <section className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
@@ -69,12 +69,12 @@ export default function WhyTrustSection() {
               <br />
               <span className="text-[#111111]">Pushable AI?</span>
             </h2>
-            <p className="text-gray-500 text-[15px] leading-relaxed mb-8">
+            <p className="text-gray-900 text-[15px] leading-relaxed mb-8">
               Pushable AI isn&apos;t another tool that adds complexity â€” it removes it. Businesses trust us because we deliver real time back, real reliability, and results they can actually see on their bottom line.
             </p>
             <a
               href="#"
-              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/8 text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 text-[13px] font-medium transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/8 text-gray-900 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 text-[13px] font-medium transition-all duration-200"
             >
               <MessageCircle className="w-3.5 h-3.5" />
               Talk to our Expert
@@ -98,7 +98,7 @@ export default function WhyTrustSection() {
                     <Icon className="w-4 h-4" style={{ color: r.color }} />
                   </div>
                   <h3 className="text-[13px] font-semibold text-[#111111] mb-2 leading-snug">{r.title}</h3>
-                  <p className="text-gray-400 text-[12px] leading-relaxed">{r.desc}</p>
+                  <p className="text-gray-800 text-[12px] leading-relaxed">{r.desc}</p>
                 </div>
               );
             })}

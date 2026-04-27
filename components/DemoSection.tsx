@@ -42,7 +42,7 @@ export default function DemoSection() {
   }, []);
 
   return (
-    <section id="demo" className="py-28 relative bg-[#f3f0eb]">
+    <section id="demo" className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 right-0 w-96 h-96 bg-brand-400/6 rounded-full blur-[110px] -translate-y-1/2" />
@@ -61,7 +61,7 @@ export default function DemoSection() {
             <br />
             <span className="text-[#111111]">Work Behind The Scenes</span>
           </h2>
-          <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
+          <p className="text-gray-900 text-[16px] max-w-lg mx-auto">
             Your AI assistant runs real tasks in the background â€” generating invoices, following up on leads, onboarding candidates, and compiling reports â€” without you lifting a finger. Watch exactly what it handles, when it happened, and what&apos;s running right now.
           </p>
         </motion.div>
@@ -77,7 +77,7 @@ export default function DemoSection() {
           >
             {/* Task feed */}
             <div className="rounded-2xl border border-black/[0.07] bg-white shadow-sm overflow-hidden">
-              <div className="flex items-center gap-2 px-4 py-3 border-b border-black/[0.06]">
+              <div className="flex items-center gap-2 px-4 py-3 border-b border-black/6">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 <span className="text-[11px] text-green-600 mono font-medium">Live task feed</span>
                 <div className="ml-auto badge text-[10px]">
@@ -100,8 +100,8 @@ export default function DemoSection() {
                     ) : (
                       <div className="w-4 h-4 rounded-full border-2 border-brand-400 border-t-transparent shrink-0 animate-spin" />
                     )}
-                    <span className={`text-[12px] flex-1 ${f.done ? "text-gray-600" : "text-brand-600"}`}>{f.text}</span>
-                    <span className="text-[10px] text-gray-400 mono shrink-0">{f.time}</span>
+                    <span className={`text-[12px] flex-1 ${f.done ? "text-gray-900" : "text-brand-600"}`}>{f.text}</span>
+                    <span className="text-[10px] text-gray-800 mono shrink-0">{f.time}</span>
                   </motion.div>
                 ))}
               </div>
@@ -110,8 +110,8 @@ export default function DemoSection() {
             {/* Terminal log â€” stays dark for authenticity */}
             <div className="rounded-2xl border border-gray-200 bg-gray-900 overflow-hidden">
               <div className="flex items-center gap-2 px-4 py-2.5 border-b border-white/[0.07] bg-black/20">
-                <Terminal className="w-3.5 h-3.5 text-gray-500" />
-                <span className="text-[11px] text-gray-500 mono">pushable-ai agent.log</span>
+                <Terminal className="w-3.5 h-3.5 text-gray-900" />
+                <span className="text-[11px] text-gray-900 mono">pushable-ai agent.log</span>
               </div>
               <div className="p-3 space-y-1">
                 {logs.map((l, i) => (
@@ -123,17 +123,17 @@ export default function DemoSection() {
                     transition={{ delay: 0.3 + i * 0.1 }}
                     className="flex items-baseline gap-3 text-[11px] mono"
                   >
-                    <span className="text-gray-600 shrink-0">{l.t}</span>
+                    <span className="text-gray-900 shrink-0">{l.t}</span>
                     <span className={
-                      l.ok === true  ? "text-gray-400" :
+                      l.ok === true  ? "text-gray-800" :
                       l.ok === false ? "text-brand-400 animate-pulse" :
-                                       "text-gray-500"
+                                       "text-gray-900"
                     }>{l.msg}</span>
                   </motion.div>
                 ))}
                 <div className="flex items-baseline gap-3 text-[11px] mono">
-                  <span className="text-gray-600">09:44:52</span>
-                  <span className="text-gray-600">â–Œ<span className="animate-blink">_</span></span>
+                  <span className="text-gray-900">09:44:52</span>
+                  <span className="text-gray-900">â–Œ<span className="animate-blink">_</span></span>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ export default function DemoSection() {
               onClick={() => setPlaying(!playing)}
             >
               {/* Screen â€” stays dark as it represents a real UI screen */}
-              <div className="aspect-[4/3] bg-gray-900 relative overflow-hidden">
+              <div className="aspect-4/3 bg-gray-900 relative overflow-hidden">
                 <div className="absolute inset-0 dot-grid opacity-10" />
 
                 <div className="absolute inset-0 p-5 flex flex-col gap-3">
@@ -163,7 +163,7 @@ export default function DemoSection() {
                       <div className="w-5 h-5 rounded-md bg-brand-500/30 flex items-center justify-center">
                         <Zap className="w-3 h-3 text-brand-400" />
                       </div>
-                      <span className="text-[11px] text-gray-400 mono">Pushable AI â€” Live Operations</span>
+                      <span className="text-[11px] text-gray-800 mono">Pushable AI â€” Live Operations</span>
                     </div>
                     <div className="flex items-center gap-1.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
@@ -181,7 +181,7 @@ export default function DemoSection() {
                       { label: "Report Generation",  w: "44%", c: "#E8001D" },
                     ].map((row, i) => (
                       <div key={i} className="flex items-center gap-2.5">
-                        <span className="text-[10px] text-gray-500 w-32 shrink-0">{row.label}</span>
+                        <span className="text-[10px] text-gray-900 w-32 shrink-0">{row.label}</span>
                         <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
                           <motion.div
                             animate={{ width: [row.w, `${parseInt(row.w) - 4}%`, row.w] }}

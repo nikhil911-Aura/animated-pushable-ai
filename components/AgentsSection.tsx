@@ -96,19 +96,19 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
           <h3 className="text-4xl sm:text-5xl font-bold text-[#111111] mb-4 tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>
             Meet {agent.name}
           </h3>
-          <p className="text-gray-500 text-[16px] leading-relaxed mb-6">{agent.description}</p>
+          <p className="text-gray-900 text-[16px] leading-relaxed mb-6">{agent.description}</p>
 
           <div
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[12px] font-medium mb-6"
             style={{ background: `${agent.color}10`, color: agent.color, border: `1px solid ${agent.color}22` }}
           >
             <span className="font-bold text-base">{agent.stat.value}</span>
-            <span className="text-gray-400">{agent.stat.label}</span>
+            <span className="text-gray-800">{agent.stat.label}</span>
           </div>
 
           <ul className="space-y-2.5 mb-8">
             {agent.tasks.map((t) => (
-              <li key={t} className="flex items-center gap-2.5 text-[13px] text-gray-500">
+              <li key={t} className="flex items-center gap-2.5 text-[13px] text-gray-900">
                 <div className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: agent.color }} />
                 {t}
               </li>
@@ -139,7 +139,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
               </div>
               <div>
                 <div className="text-[12px] font-semibold text-[#111111]">{agent.name}</div>
-                <div className="text-[10px] text-gray-400">{agent.title}</div>
+                <div className="text-[10px] text-gray-800">{agent.title}</div>
               </div>
             </div>
             <div className="flex items-center gap-1.5">
@@ -152,7 +152,7 @@ function AgentPanel({ agent, isActive }: { agent: typeof agents[0]; isActive: bo
             {agent.mockup.map((m) => (
               <div key={m.label} className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[12px] text-gray-500">{m.label}</span>
+                  <span className="text-[12px] text-gray-900">{m.label}</span>
                   <span
                     className="text-[10px] px-1.5 py-0.5 rounded mono"
                     style={{
@@ -217,13 +217,13 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
         <p className="text-[12px] mb-4" style={{ color: active ? agent.color : "#888888" }}>
           {agent.title}
         </p>
-        <p className="text-[13px] text-gray-500 leading-relaxed mb-4">{agent.description}</p>
+        <p className="text-[13px] text-gray-900 leading-relaxed mb-4">{agent.description}</p>
         <div
           className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-[11px] font-medium"
           style={{ background: `${agent.color}10`, color: agent.color, border: `1px solid ${agent.color}22` }}
         >
           <span className="font-bold text-sm">{agent.stat.value}</span>
-          <span className="text-gray-400">{agent.stat.label}</span>
+          <span className="text-gray-800">{agent.stat.label}</span>
         </div>
 
         <AnimatePresence>
@@ -238,7 +238,7 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
               <div className="mt-4 rounded-xl bg-gray-50 border border-black/5 p-3 space-y-2">
                 {agent.mockup.map((m) => (
                   <div key={m.label} className="flex items-center gap-2 text-[11px]">
-                    <div className="flex-1 text-gray-500 truncate">{m.label}</div>
+                    <div className="flex-1 text-gray-900 truncate">{m.label}</div>
                     <div
                       className="text-[10px] px-1.5 py-0.5 rounded mono"
                       style={{
@@ -259,7 +259,7 @@ function AgentCard({ agent, active, onClick }: { agent: typeof agents[0]; active
               </div>
               <ul className="mt-3 space-y-1.5">
                 {agent.tasks.map((t) => (
-                  <li key={t} className="flex items-center gap-2 text-[12px] text-gray-400">
+                  <li key={t} className="flex items-center gap-2 text-[12px] text-gray-800">
                     <div className="w-1 h-1 rounded-full shrink-0" style={{ background: agent.color }} />
                     {t}
                   </li>
@@ -334,7 +334,7 @@ export default function AgentsSection() {
 
   if (isMobile) {
     return (
-      <section id="agents" className="pt-2 pb-28 relative bg-[#f3f0eb]">
+      <section id="agents" className="pt-2 pb-28 relative bg-transparent">
         <div className="section-line absolute top-0 inset-x-0" />
         <div className="max-w-5xl mx-auto px-5 grid sm:grid-cols-2 gap-4">
           {agents.map((agent, i) => (
@@ -358,7 +358,7 @@ export default function AgentsSection() {
   }
 
   return (
-    <section id="agents" className="relative bg-[#f3f0eb]">
+    <section id="agents" className="relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div ref={outerRef} className="relative overflow-hidden" style={{ height: "100vh" }}>

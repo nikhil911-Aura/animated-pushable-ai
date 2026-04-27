@@ -49,7 +49,7 @@ function WordReveal({ text }: { text: string }) {
 
   const words = text.split(" ");
   return (
-    <p ref={containerRef} className="text-gray-500 text-[13px] leading-relaxed pb-5 pr-10">
+    <p ref={containerRef} className="text-gray-900 text-[13px] leading-relaxed pb-5 pr-10">
       {words.map((word, i) => (
         <span key={i} className="inline-block">
           {word}{i < words.length - 1 ? " " : ""}
@@ -74,14 +74,14 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between gap-4 py-5 text-left group"
       >
-        <span className="text-[14px] sm:text-[15px] text-gray-700 group-hover:text-gray-900 transition-colors duration-200 leading-snug">
+        <span className="text-[14px] sm:text-[15px] text-gray-900 group-hover:text-gray-900 transition-colors duration-200 leading-snug">
           {q}
         </span>
         <div
           className={`w-6 h-6 rounded-full shrink-0 flex items-center justify-center transition-all duration-200 ${
             open
               ? "bg-brand-500/20 text-brand-500"
-              : "bg-gray-100 text-gray-400 group-hover:bg-brand-50 group-hover:text-gray-600"
+              : "bg-gray-100 text-gray-800 group-hover:bg-brand-50 group-hover:text-gray-600"
           }`}
         >
           {open ? <Minus className="w-3 h-3" /> : <Plus className="w-3 h-3" />}
@@ -107,7 +107,7 @@ function Item({ q, a, index }: { q: string; a: string; index: number }) {
 
 export default function FAQSection() {
   return (
-    <section id="faq" className="py-28 relative bg-[#f3f0eb]">
+    <section id="faq" className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
 
       <div className="max-w-2xl mx-auto px-5 sm:px-8 relative">
@@ -123,7 +123,7 @@ export default function FAQSection() {
             <br />
             <span className="text-[#111111]">Clear Answers.</span>
           </h2>
-          <p className="text-gray-500 text-[15px]">
+          <p className="text-gray-900 text-[15px]">
             Everything you need to know before deploying your first agent.
           </p>
         </motion.div>
@@ -139,7 +139,7 @@ export default function FAQSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-gray-400 text-[12px] mt-6"
+          className="text-center text-gray-800 text-[12px] mt-6"
         >
           Still have questions?{" "}
           <a href="#" className="text-brand-500 hover:text-brand-600 transition-colors">

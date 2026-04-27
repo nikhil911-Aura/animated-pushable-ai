@@ -57,7 +57,7 @@ export default function IndustrySection() {
   }, []);
 
   return (
-    <section id="industries" className="py-28 relative bg-[#f3f0eb]">
+    <section id="industries" className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand-400/5 rounded-full blur-[110px]" />
@@ -76,7 +76,7 @@ export default function IndustrySection() {
             <br />
             <span className="text-[#111111]">Built with Pushable</span>
           </h2>
-          <p className="text-gray-500 text-[16px] max-w-md mx-auto">
+          <p className="text-gray-900 text-[16px] max-w-md mx-auto">
             Whatever your business does, Pushable AI finds the routine tasks worth automating and handles them for you.
           </p>
         </motion.div>
@@ -100,7 +100,7 @@ export default function IndustrySection() {
                   <Icon className="w-5 h-5" style={{ color: industry.color }} />
                 </div>
                 <h3 className="text-[15px] font-semibold text-[#111111] mb-2">{industry.name}</h3>
-                <p className="text-gray-400 text-[13px] leading-relaxed">{industry.useCase}</p>
+                <p className="text-gray-800 text-[13px] leading-relaxed">{industry.useCase}</p>
               </div>
             );
           })}
@@ -109,7 +109,7 @@ export default function IndustrySection() {
           <div className="rounded-2xl border border-dashed border-brand-300 bg-brand-50/50 p-6 flex flex-col justify-between">
             <div>
               <h3 className="text-[15px] font-semibold text-[#111111] mb-2">Your Industry</h3>
-              <p className="text-gray-400 text-[13px] leading-relaxed mb-4">
+              <p className="text-gray-800 text-[13px] leading-relaxed mb-4">
                 Don&apos;t see yours listed? Pushable AI adapts to any workflow across any sector.
               </p>
             </div>

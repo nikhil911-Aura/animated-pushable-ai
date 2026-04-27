@@ -56,7 +56,7 @@ export default function PricingSection() {
   }, []);
 
   return (
-    <section id="pricing" className="py-28 relative bg-[#f3f0eb]">
+    <section id="pricing" className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-100 bg-brand-400/6 rounded-full blur-[130px]" />
@@ -75,7 +75,7 @@ export default function PricingSection() {
             <br />
             <span className="text-[#111111]">You Pay for Output.</span>
           </h2>
-          <p className="text-gray-500 text-[16px] max-w-lg mx-auto">
+          <p className="text-gray-900 text-[16px] max-w-lg mx-auto">
             Think of credits like task tokens â€” one credit equals one completed action. An invoice sent, a lead followed up, a report filed. You only pay for work that actually gets done.
           </p>
         </motion.div>
@@ -99,7 +99,7 @@ export default function PricingSection() {
                   <Icon className="w-3.5 h-3.5 text-brand-500" />
                 </div>
                 <div className="text-[12px] font-semibold text-[#111111] mb-1">{label}</div>
-                <div className="text-[11px] text-gray-400 leading-snug">{desc}</div>
+                <div className="text-[11px] text-gray-800 leading-snug">{desc}</div>
               </div>
             ))}
           </div>
@@ -134,14 +134,14 @@ export default function PricingSection() {
 
               <div className="flex items-baseline gap-1.5 mb-1">
                 <span className="text-4xl font-bold text-[#111111] tracking-tight" style={{ fontFamily: "var(--font-fraunces)" }}>{plan.price}</span>
-                <span className="text-gray-400 text-sm">/mo</span>
+                <span className="text-gray-800 text-sm">/mo</span>
               </div>
               <div className="text-[12px] font-medium mb-1" style={{ color: plan.color }}>{plan.credits}</div>
-              <p className="text-[12px] text-gray-400 mb-5 leading-snug">{plan.desc}</p>
+              <p className="text-[12px] text-gray-800 mb-5 leading-snug">{plan.desc}</p>
 
               <ul className="space-y-2 flex-1 mb-6">
                 {plan.features.map((f) => (
-                  <li key={f} className="flex items-center gap-2 text-[13px] text-gray-600">
+                  <li key={f} className="flex items-center gap-2 text-[13px] text-gray-900">
                     <CheckCircle2 className="w-3.5 h-3.5 shrink-0" style={{ color: plan.color }} />
                     {f}
                   </li>
@@ -153,7 +153,7 @@ export default function PricingSection() {
                 className={`group flex items-center justify-center gap-2 py-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 ${
                   plan.highlight
                     ? "bg-brand-500 hover:bg-brand-400 text-white shadow-sm shadow-brand-500/20"
-                    : "border border-black/8 text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50"
+                    : "border border-black/8 text-gray-900 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50"
                 }`}
               >
                 {plan.cta}
@@ -168,7 +168,7 @@ export default function PricingSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.5 }}
-          className="text-center text-gray-400 text-[12px] mt-6"
+          className="text-center text-gray-800 text-[12px] mt-6"
         >
           All plans include a 14-day free trial Â· No credit card required to start
         </motion.p>

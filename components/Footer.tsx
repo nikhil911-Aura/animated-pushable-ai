@@ -1,5 +1,4 @@
-﻿"use client";
-import { motion } from "framer-motion";
+"use client";
 import { Zap, ExternalLink, Globe, Code2, Play } from "lucide-react";
 
 const nav = {
@@ -18,10 +17,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="relative pt-20 pb-10 bg-[#f3f0eb]">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-brand-600/4 rounded-full blur-100" />
-      </div>
+    <footer className="relative pt-20 pb-10" style={{ background: "linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%)" }}>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-8 relative">
         <div className="grid grid-cols-2 md:grid-cols-6 gap-8 mb-14">
@@ -29,14 +25,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <a href="#" className="flex items-center gap-2.5 mb-4 w-fit group">
-              <div className="w-7 h-7 rounded-lg bg-linear-to-br from-brand-500 to-brand-500 flex items-center justify-center shadow-lg">
+              <div className="w-7 h-7 rounded-lg bg-brand-500 flex items-center justify-center shadow-lg">
                 <Zap className="w-3.5 h-3.5 text-white fill-white" />
               </div>
-              <span className="text-[#111111] font-semibold text-[15px] tracking-tight">
-                Pushable<span className="gradient-text">AI</span>
+              <span className="text-white font-semibold text-[15px] tracking-tight">
+                Pushable<span className="text-brand-400">AI</span>
               </span>
             </a>
-            <p className="text-gray-500 text-[13px] leading-relaxed mb-5 max-w-56">
+            <p className="text-white/55 text-[13px] leading-relaxed mb-5 max-w-56">
               AI Assistants that quietly run your business in the background. Less work. More output.
             </p>
             <div className="flex items-center gap-2.5">
@@ -45,7 +41,8 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-8 h-8 rounded-lg border border-black/7 bg-white flex items-center justify-center text-gray-400 hover:text-gray-700 hover:border-brand-200 transition-all duration-200"
+                  className="w-8 h-8 rounded-lg flex items-center justify-center text-white/50 hover:text-white transition-all duration-200"
+                  style={{ border: "1px solid rgba(255,255,255,0.15)", background: "rgba(255,255,255,0.08)" }}
                 >
                   <Icon className="w-3.5 h-3.5" />
                 </a>
@@ -56,7 +53,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(nav).map(([category, items]) => (
             <div key={category}>
-              <h3 className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-4">
+              <h3 className="text-[11px] font-semibold text-white/40 uppercase tracking-widest mb-4">
                 {category}
               </h3>
               <ul className="space-y-2.5">
@@ -64,7 +61,7 @@ export default function Footer() {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-[13px] text-gray-500 hover:text-gray-800 transition-colors duration-200"
+                      className="text-[13px] text-white/60 hover:text-white transition-colors duration-200"
                     >
                       {item}
                     </a>
@@ -76,11 +73,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6">
-          <p className="text-gray-400 text-[12px]">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+          <p className="text-white/40 text-[12px]">
             © {new Date().getFullYear()} Pushable AI, Inc. All rights reserved.
           </p>
-          <div className="flex items-center gap-1.5 text-gray-400 text-[12px]">
+          <div className="flex items-center gap-1.5 text-white/40 text-[12px]">
             <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             All systems operational
           </div>

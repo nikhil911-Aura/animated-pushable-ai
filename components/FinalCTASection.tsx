@@ -4,7 +4,7 @@ import { Zap, ArrowRight, MessageCircle } from "lucide-react";
 
 export default function FinalCTASection() {
   return (
-    <section className="py-28 relative overflow-hidden bg-[#f3f0eb]">
+    <section className="py-28 relative overflow-hidden bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
 
       {/* Dot grid */}
@@ -27,7 +27,7 @@ export default function FinalCTASection() {
           </h2>
 
           {/* Sub */}
-          <p className="text-gray-500 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-gray-900 text-[17px] max-w-xl mx-auto mb-10 leading-relaxed">
             Join 2,000+ businesses already running smarter with Pushable AI. Deploy your first AI assistant today â€” no technical setup, no contracts, no wasted time. Just results from day one.
           </p>
 
@@ -49,7 +49,7 @@ export default function FinalCTASection() {
               href="#"
               whileHover={{ scale: 1.02, y: -1 }}
               whileTap={{ scale: 0.98 }}
-              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/8 text-gray-600 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 font-semibold text-[15px] transition-all duration-200"
+              className="group inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-black/8 text-gray-900 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 font-semibold text-[15px] transition-all duration-200"
             >
               <MessageCircle className="w-4 h-4" />
               Talk to the Team
@@ -62,7 +62,7 @@ export default function FinalCTASection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="flex flex-wrap items-center justify-center gap-6 mt-9 text-[12px] text-gray-400"
+            className="flex flex-wrap items-center justify-center gap-6 mt-9 text-[12px] text-gray-800"
           >
             {["14-day free trial", "No credit card required", "Cancel anytime", "Setup in < 10 min"].map((t) => (
               <span key={t} className="flex items-center gap-1.5">

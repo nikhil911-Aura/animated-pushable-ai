@@ -69,7 +69,7 @@ export default function HowItWorksSection() {
   }, []);
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="py-28 relative bg-[#f3f0eb]">
+    <section id="how-it-works" ref={sectionRef} className="py-28 relative bg-transparent">
       <div className="section-line absolute top-0 inset-x-0" />
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-brand-400/5 rounded-full blur-[110px]" />
@@ -88,7 +88,7 @@ export default function HowItWorksSection() {
             <br />
             <span className="text-[#111111]">Gets to Work</span>
           </h2>
-          <p className="text-gray-500 text-[16px] max-w-md mx-auto">
+          <p className="text-gray-900 text-[16px] max-w-md mx-auto">
             No technical setup needed. If you can send an email, you can run Pushable AI.
           </p>
         </motion.div>
@@ -139,12 +139,12 @@ export default function HowItWorksSection() {
                         {step.n}
                       </div>
                       <h3 className="text-lg font-semibold text-[#111111] mb-2">{step.title}</h3>
-                      <p className="text-gray-500 text-[13px] leading-relaxed mb-4">{step.body}</p>
+                      <p className="text-gray-900 text-[13px] leading-relaxed mb-4">{step.body}</p>
                       <ul className={`space-y-1.5 ${isLeft ? "sm:items-end" : ""} flex flex-col`}>
                         {step.items.map((item) => (
                           <li
                             key={item}
-                            className={`flex items-center gap-2 text-[12px] text-gray-400 ${isLeft ? "sm:flex-row-reverse sm:self-end" : ""}`}
+                            className={`flex items-center gap-2 text-[12px] text-gray-800 ${isLeft ? "sm:flex-row-reverse sm:self-end" : ""}`}
                           >
                             <div className="w-1 h-1 rounded-full shrink-0" style={{ background: step.color }} />
                             {item}
@@ -197,10 +197,10 @@ export default function HowItWorksSection() {
           transition={{ delay: 0.5 }}
           className="text-center mt-14"
         >
-          <p className="text-gray-400 text-sm mb-4">Not sure which agent fits your workflow?</p>
+          <p className="text-gray-800 text-sm mb-4">Not sure which agent fits your workflow?</p>
           <a
             href="#"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/[0.08] text-gray-500 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 text-[13px] font-medium transition-all duration-200 group"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-black/[0.08] text-gray-900 hover:text-gray-900 hover:border-brand-300 hover:bg-brand-50 text-[13px] font-medium transition-all duration-200 group"
           >
             <MessageCircle className="w-3.5 h-3.5" />
             Talk to our Expert
