@@ -1,11 +1,36 @@
 "use client";
 import { Zap, ExternalLink, Globe, Code2, Play } from "lucide-react";
 
-const nav = {
-  Product:   ["Features", "Pricing", "Integrations", "Changelog", "Roadmap"],
-  Company:   ["About", "Blog", "Careers", "Press", "Contact"],
-  Resources: ["Documentation", "API Reference", "Status", "Community", "Partners"],
-  Legal:     ["Privacy Policy", "Terms of Service", "Cookie Policy", "GDPR"],
+type FooterLink = { label: string; href: string };
+
+const nav: Record<string, FooterLink[]> = {
+  Product: [
+    { label: "Features",     href: "/product" },
+    { label: "Pricing",      href: "/pricing" },
+    { label: "Integrations", href: "/#integrations" },
+    { label: "Changelog",    href: "#" },
+    { label: "Roadmap",      href: "#" },
+  ],
+  Company: [
+    { label: "About",   href: "#" },
+    { label: "Blog",    href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Press",   href: "#" },
+    { label: "Contact", href: "/contact" },
+  ],
+  Resources: [
+    { label: "Documentation", href: "#" },
+    { label: "API Reference", href: "#" },
+    { label: "Status",        href: "#" },
+    { label: "Community",     href: "#" },
+    { label: "Partners",      href: "#" },
+  ],
+  Legal: [
+    { label: "Privacy Policy",   href: "#" },
+    { label: "Terms of Service", href: "#" },
+    { label: "Cookie Policy",    href: "#" },
+    { label: "GDPR",             href: "#" },
+  ],
 };
 
 const socials = [
@@ -58,12 +83,12 @@ export default function Footer() {
               </h3>
               <ul className="space-y-2.5">
                 {items.map((item) => (
-                  <li key={item}>
+                  <li key={item.label}>
                     <a
-                      href="#"
+                      href={item.href}
                       className="text-[13px] text-white/60 hover:text-white transition-colors duration-200"
                     >
-                      {item}
+                      {item.label}
                     </a>
                   </li>
                 ))}
