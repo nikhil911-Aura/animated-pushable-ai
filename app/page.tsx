@@ -92,15 +92,15 @@ export default function Home() {
         </div>
 
         {/* Trust carousel — pinned to bottom of hero */}
-        <div className="absolute bottom-0 inset-x-0 z-20 overflow-hidden pb-6 pt-4" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)" }}>
-          <p className="text-center text-[10px] font-semibold text-white/50 uppercase tracking-[0.22em] mb-3">Trusted by AI Leaders</p>
-          <div className="overflow-hidden mb-2">
+        <div className="absolute bottom-10 inset-x-0 z-20 overflow-hidden pb-6 pt-4">
+          <p className="text-center text-[11px] font-semibold text-white/70 uppercase tracking-[0.22em] mb-4">Trusted by AI Leaders</p>
+          <div className="overflow-hidden mb-3">
             <div className="flex animate-marquee" style={{ width: "max-content" }}>
               {R1.map((l, i) => (
-                <div key={`r1-${i}`} className="shrink-0 flex items-center gap-2 px-4 py-1.5 mx-1.5">
+                <div key={`r1-${i}`} className="shrink-0 flex items-center gap-2.5 px-5 py-2 mx-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={24} height={24} className="w-6 h-6 shrink-0 object-contain opacity-70" onError={(e) => { e.currentTarget.style.display = "none"; }} />
-                  <span className="text-[13px] text-white/70 whitespace-nowrap font-medium">{l.name}</span>
+                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={28} height={28} className="w-7 h-7 shrink-0 object-contain opacity-90" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-[14px] text-white/90 whitespace-nowrap font-semibold">{l.name}</span>
                 </div>
               ))}
             </div>
@@ -108,10 +108,10 @@ export default function Home() {
           <div className="overflow-hidden">
             <div className="flex animate-marquee-rev" style={{ width: "max-content" }}>
               {R2.map((l, i) => (
-                <div key={`r2-${i}`} className="shrink-0 flex items-center gap-2 px-4 py-1.5 mx-1.5">
+                <div key={`r2-${i}`} className="shrink-0 flex items-center gap-2.5 px-5 py-2 mx-2">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={24} height={24} className="w-6 h-6 shrink-0 object-contain opacity-70" onError={(e) => { e.currentTarget.style.display = "none"; }} />
-                  <span className="text-[13px] text-white/70 whitespace-nowrap font-medium">{l.name}</span>
+                  <img src={`https://cdn.simpleicons.org/${l.slug}/ffffff`} alt={l.name} width={28} height={28} className="w-7 h-7 shrink-0 object-contain opacity-90" onError={(e) => { e.currentTarget.style.display = "none"; }} />
+                  <span className="text-[14px] text-white/90 whitespace-nowrap font-semibold">{l.name}</span>
                 </div>
               ))}
             </div>
